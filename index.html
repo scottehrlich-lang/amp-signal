@@ -3,265 +3,621 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AMP Signal — AI Sales Intelligence</title>
+<title>AMP Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
+:root {
+  --navy: #080f1a;
+  --navy-2: #0d1829;
+  --navy-3: #162035;
+  --navy-4: #1e2d47;
+  --navy-5: #273d5e;
+  --amber: #f5a623;
+  --amber-dim: #f5a62330;
+  --green: #00d085;
+  --green-dim: #00d08520;
+  --red: #ff4444;
+  --red-dim: #ff444420;
+  --yellow: #ffd166;
+  --blue: #4e9bff;
+  --text: #e8edf5;
+  --text-2: #8fa3be;
+  --text-3: #4a6480;
+  --border: #1e2d47;
+  --border-2: #273d5e;
+  --indigo: #6366f1;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f1f5f9; color: #0f172a; font-size: 13px; }
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 2px; }
 
-@keyframes fadeUp { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
-@keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
-@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:.4; } }
-@keyframes typing { from { opacity:0; } to { opacity:1; } }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--text);
+  font-size: 13px;
+  overflow: hidden;
+  height: 100vh;
+}
 
-#app { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--navy-5); border-radius: 2px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes shimmer { 0%{opacity:.4} 50%{opacity:.8} 100%{opacity:.4} }
+@keyframes barGrow { from { width: 0; } to { width: var(--w); } }
+@keyframes countUp { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* LAYOUT */
+#app { display: flex; flex-direction: column; height: 100vh; }
 
 /* TOP BAR */
 #topbar {
-  background: #fff; border-bottom: 1px solid #e2e8f0;
-  padding: 0 20px; height: 54px;
-  display: flex; align-items: center; gap: 14px;
-  position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+  height: 52px;
+  background: var(--navy-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 0;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.logo-mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 24px;
+}
+.logo-icon {
+  width: 28px; height: 28px;
+  background: var(--amber);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 12px;
+  color: var(--navy);
+}
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 14px;
+  letter-spacing: -.02em;
+  color: var(--text);
+}
+.logo-text span { color: var(--amber); }
+
+.topbar-sep { width: 1px; height: 20px; background: var(--border); margin: 0 16px; }
+
+.persona-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--navy-3);
+  border-radius: 8px;
+  padding: 3px;
+}
+.persona-tab {
+  background: none; border: none;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 500;
+  color: var(--text-3);
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.persona-tab.active {
+  background: var(--navy-5);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.live-badge {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--green-dim);
+  border: 1px solid var(--green);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 10px; font-weight: 700;
+  color: var(--green);
+  letter-spacing: .08em;
+}
+.live-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+
+.signal-brief-btn {
+  background: var(--amber);
+  border: none; border-radius: 7px;
+  padding: 6px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: var(--navy);
+  cursor: pointer;
+  transition: all .15s;
+  display: flex; align-items: center; gap: 5px;
+}
+.signal-brief-btn:hover { background: #fdb646; transform: translateY(-1px); }
+
+.user-chip {
+  width: 28px; height: 28px;
+  background: var(--navy-4);
+  border: 1px solid var(--border-2);
+  border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: var(--text-2);
+}
+
+/* NOTIF */
+#notif {
+  background: linear-gradient(90deg, #1a1400, #1a1200);
+  border-bottom: 1px solid #f5a62340;
+  padding: 9px 18px;
+  display: flex; align-items: center; gap: 10px;
   flex-shrink: 0;
 }
-.logo { display:flex; align-items:center; gap:8px; }
-.logo-icon { width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,#6366f1,#8b5cf6); display:flex; align-items:center; justify-content:center; color:#fff; font-weight:900; font-size:13px; }
-.logo-text { font-weight:900; font-size:15px; }
-.logo-text span { color:#6366f1; }
-.divider { width:1px; height:24px; background:#e2e8f0; }
-.persona-btns { display:flex; gap:4px; }
-.persona-btn { background:none; border:1.5px solid transparent; border-radius:8px; padding:5px 12px; cursor:pointer; font-size:11px; font-weight:500; color:#64748b; font-family:inherit; transition:all .15s; }
-.persona-btn.active { background:#f5f3ff; border-color:#a5b4fc; color:#4f46e5; font-weight:700; }
-.live-dot { width:6px; height:6px; border-radius:50%; background:#10b981; animation:pulse 2s infinite; }
-.live-label { font-size:11px; color:#94a3b8; font-weight:600; }
-.user-avatar { width:28px; height:28px; border-radius:8px; background:linear-gradient(135deg,#6366f1,#8b5cf6); display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800; }
-.ml-auto { margin-left:auto; display:flex; align-items:center; gap:10px; }
+#notif.hidden { display: none; }
+.notif-pip { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: pulse 1.5s infinite; flex-shrink: 0; }
+.notif-text { font-size: 12px; color: #e8b84b; flex: 1; }
+.notif-text b { color: var(--amber); font-weight: 700; }
+.notif-close { background: none; border: none; color: var(--text-3); cursor: pointer; font-size: 16px; line-height: 1; padding: 0; }
 
-/* NOTIFICATION */
-#notif { background:#fffbeb; border-bottom:2px solid #fbbf24; padding:10px 20px; display:flex; align-items:center; gap:12; flex-shrink:0; }
-#notif.hidden { display:none; }
-.notif-label { font-size:12px; font-weight:700; color:#92400e; }
-.notif-text { font-size:12px; color:#92400e; flex:1; }
-.notif-close { background:none; border:none; cursor:pointer; color:#92400e; font-size:18px; font-weight:700; line-height:1; padding:0; }
-
-/* LAYOUT */
-#layout { display:flex; flex:1; overflow:hidden; }
+/* BODY LAYOUT */
+#body { display: flex; flex: 1; overflow: hidden; }
 
 /* SIDEBAR */
-#sidebar { width:190px; background:#fff; border-right:1px solid #e2e8f0; padding:14px 10px; flex-shrink:0; overflow-y:auto; display:flex; flex-direction:column; }
-.section-label { font-size:9px; font-weight:800; color:#94a3b8; letter-spacing:.12em; padding:0 6px; margin-bottom:8px; }
-.tab-btn { background:none; border:none; padding:8px 14px; cursor:pointer; font-size:12px; font-weight:500; color:#64748b; border-radius:8px; transition:all .15s; text-align:left; width:100%; display:block; margin-bottom:2px; font-family:inherit; }
-.tab-btn:hover { background:#f8fafc; }
-.tab-btn.active { background:#f5f3ff; color:#4f46e5; font-weight:700; }
-.cf-sidebar { margin-top:20px; padding-top:14px; border-top:1px solid #f1f5f9; }
-.cf-item { margin-bottom:9px; padding:0 6px; }
-.cf-row { display:flex; justify-content:space-between; margin-bottom:2px; }
-.cf-title { font-size:10px; color:#64748b; line-height:1.3; }
-.cf-val { font-size:9px; font-weight:800; font-family:monospace; }
-.bar-wrap { background:#e5e7eb; border-radius:999px; overflow:hidden; }
-.bar-fill { border-radius:999px; transition:width .8s ease; }
-.data-sources { margin-top:auto; padding-top:12px; border-top:1px solid #f1f5f9; }
-.source-row { display:flex; align-items:center; gap:6px; padding:3px 6px; }
-.source-dot { width:5px; height:5px; border-radius:50%; background:#10b981; }
-.source-label { font-size:10px; color:#94a3b8; }
+#sidebar {
+  width: 200px;
+  background: var(--navy-2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 14px 0;
+}
+
+.sidebar-section { padding: 0 12px; margin-bottom: 6px; }
+.sidebar-label {
+  font-size: 9px; font-weight: 700;
+  color: var(--text-3);
+  letter-spacing: .12em;
+  padding: 0 8px;
+  margin-bottom: 4px;
+}
+.nav-btn {
+  width: 100%;
+  background: none; border: none;
+  padding: 7px 8px;
+  border-radius: 7px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 400;
+  color: var(--text-2);
+  cursor: pointer;
+  text-align: left;
+  display: flex; align-items: center; gap: 8px;
+  transition: all .12s;
+  margin-bottom: 1px;
+}
+.nav-btn:hover { background: var(--navy-3); color: var(--text); }
+.nav-btn.active { background: var(--navy-4); color: var(--text); font-weight: 600; }
+.nav-btn .nav-icon { width: 14px; font-size: 11px; opacity: .6; text-align: center; }
+.nav-btn.active .nav-icon { opacity: 1; }
+
+.sidebar-divider { height: 1px; background: var(--border); margin: 10px 12px; }
+
+.cf-mini { padding: 0 12px; }
+.cf-mini-item { margin-bottom: 8px; }
+.cf-mini-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
+.cf-mini-title { font-size: 10px; color: var(--text-3); line-height: 1.3; }
+.cf-mini-val { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; }
+.mini-bar { height: 3px; background: var(--navy-4); border-radius: 999px; overflow: hidden; }
+.mini-bar-fill { height: 100%; border-radius: 999px; transition: width .8s ease; }
+
+.sidebar-sources { margin-top: auto; padding: 12px; border-top: 1px solid var(--border); }
+.source-item { display: flex; align-items: center; gap: 6px; padding: 3px 0; }
+.source-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); }
+.source-name { font-size: 10px; color: var(--text-3); }
 
 /* CONTENT */
-#content { flex:1; overflow-y:auto; background:#f8fafc; }
-#content-inner { padding:18px 22px 22px; }
-.page-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
-.page-title { font-size:20px; font-weight:900; letter-spacing:-.03em; }
-.page-sub { font-size:11px; color:#94a3b8; margin-top:2px; }
+#content { flex: 1; overflow-y: auto; background: var(--navy); }
+#content-inner { padding: 20px 24px 32px; }
 
-/* COMMON COMPONENTS */
-.card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:18px; }
-.ai-btn { background:linear-gradient(135deg,#6366f1,#8b5cf6); color:#fff; border:none; border-radius:8px; padding:7px 13px; cursor:pointer; font-family:inherit; font-size:11px; font-weight:700; display:inline-flex; align-items:center; gap:5px; transition:all .15s; white-space:nowrap; }
-.ai-btn:hover { transform:translateY(-1px); box-shadow:0 4px 16px rgba(99,102,241,.25); }
-.danger-btn { background:#fef2f2; border:1.5px solid #fecaca; border-radius:8px; padding:7px 12px; cursor:pointer; font-family:inherit; font-size:11px; font-weight:600; color:#dc2626; }
-.chip { font-size:10px; font-weight:700; padding:2px 8px; border-radius:999px; display:inline-block; }
-.note-input { border:1.5px solid #e2e8f0; border-radius:8px; padding:6px 10px; font-family:inherit; font-size:11px; outline:none; flex:1; }
-.note-input:focus { border-color:#6366f1; }
-.done-btn { background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:8px; padding:5px 12px; cursor:pointer; font-size:11px; font-weight:700; color:#64748b; font-family:inherit; flex-shrink:0; }
-.done-btn.done { background:#f0fdf4; border-color:#bbf7d0; color:#16a34a; }
+.page-hdr {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.page-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; letter-spacing: -.03em; }
+.page-sub { font-size: 11px; color: var(--text-3); margin-top: 3px; }
 
-/* GRID HELPERS */
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-.grid-3-2 { display:grid; grid-template-columns:3fr 2fr; gap:14px; }
-.grid-2-1 { display:grid; grid-template-columns:2fr 1fr; gap:14px; }
-.flex-col { display:flex; flex-direction:column; gap:14px; }
-.flex-row { display:flex; gap:12px; }
-.flex-center { display:flex; align-items:center; }
-.gap-8 { gap:8px; }
-.gap-10 { gap:10px; }
-.gap-12 { gap:12px; }
-.gap-14 { gap:14px; }
+/* CARDS / SURFACES */
+.surface {
+  background: var(--navy-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.surface-sm { padding: 14px; }
+.surface-lg { padding: 24px; }
 
-/* HERO CARDS */
-.hero-purple { background:linear-gradient(135deg,#4f46e5,#7c3aed); border-radius:16px; padding:22px 26px; color:#fff; }
-.hero-dark { background:linear-gradient(135deg,#0f172a,#1e293b); border-radius:16px; padding:22px 26px; color:#fff; }
-.hero-indigo { background:linear-gradient(135deg,#6366f1,#8b5cf6); border-radius:12px; padding:12px 18px; color:#fff; }
+/* HERO SURFACES */
+.hero-amber {
+  background: linear-gradient(135deg, #1a0f00, #201500);
+  border: 1px solid #f5a62330;
+  border-radius: 14px;
+  padding: 22px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-amber::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 180px; height: 180px;
+  background: radial-gradient(circle, #f5a62315, transparent 70%);
+  pointer-events: none;
+}
+.hero-dark {
+  background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+.hero-green {
+  background: linear-gradient(135deg, #001a0f, #001508);
+  border: 1px solid #00d08525;
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+
+/* TYPOGRAPHY */
+.num-xl { font-family: 'Space Mono', monospace; font-size: 42px; font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+.num-lg { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; letter-spacing: -.02em; line-height: 1; }
+.num-md { font-family: 'Space Mono', monospace; font-size: 18px; font-weight: 700; }
+.num-sm { font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700; }
+.num-xs { font-family: 'Space Mono', monospace; font-size: 11px; }
+.label { font-size: 9px; font-weight: 700; letter-spacing: .1em; color: var(--text-3); text-transform: uppercase; }
+.sublabel { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+
+/* BADGES */
+.badge {
+  display: inline-flex; align-items: center;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: .06em;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+.badge-green { background: var(--green-dim); color: var(--green); border: 1px solid #00d08530; }
+.badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid #f5a62330; }
+.badge-red { background: var(--red-dim); color: var(--red); border: 1px solid #ff444430; }
+.badge-blue { background: #4e9bff15; color: var(--blue); border: 1px solid #4e9bff30; }
+.badge-dim { background: var(--navy-4); color: var(--text-3); border: 1px solid var(--border); }
+
+/* PROGRESS BARS */
+.bar-track { background: var(--navy-4); border-radius: 999px; overflow: hidden; }
+.bar-fill { border-radius: 999px; height: 100%; animation: barGrow .8s ease forwards; }
+
+/* BUTTONS */
+.btn-ai {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border: none; border-radius: 7px;
+  padding: 6px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all .15s;
+  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-ai:hover { transform: translateY(-1px); box-shadow: 0 4px 16px #6366f130; }
+
+.btn-ghost {
+  background: var(--navy-3);
+  border: 1px solid var(--border-2);
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-ghost:hover { background: var(--navy-4); color: var(--text); }
+
+.btn-danger {
+  background: var(--red-dim);
+  border: 1px solid #ff444430;
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--red);
+  cursor: pointer;
+}
+
+/* DATA TABLE ROWS */
+.data-row {
+  display: flex; align-items: center;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  cursor: pointer;
+  transition: background .12s;
+  border-radius: 6px;
+  margin: 0 -6px;
+  padding-left: 6px; padding-right: 6px;
+}
+.data-row:last-child { border-bottom: none; }
+.data-row:hover { background: var(--navy-3); }
+
+/* PRIORITY LINE */
+.priority-line { width: 3px; border-radius: 999px; flex-shrink: 0; align-self: stretch; min-height: 20px; }
+
+/* NOTE INPUT */
+.note-input {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 6px 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  color: var(--text);
+  outline: none;
+  flex: 1;
+  transition: border .15s;
+}
+.note-input::placeholder { color: var(--text-3); }
+.note-input:focus { border-color: var(--indigo); }
+
+.done-btn {
+  background: var(--navy-3);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 6px 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--text-3);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all .15s;
+}
+.done-btn.done { background: var(--green-dim); border-color: #00d08530; color: var(--green); }
+
+/* GRIDS */
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.g32 { display: grid; grid-template-columns: 3fr 2fr; gap: 14px; }
+.g21 { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; }
+.col { display: flex; flex-direction: column; gap: 12px; }
+.row { display: flex; gap: 12px; }
+
+/* STAT BLOCK */
+.stat-block { flex: 1; }
+.stat-block .label { margin-bottom: 5px; }
+
+/* SECTION HEADER */
+.sec-hdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.sec-title { font-size: 11px; font-weight: 700; color: var(--text-2); letter-spacing: .06em; text-transform: uppercase; }
+
+/* SPARKLINE */
+.sparkline { display: flex; gap: 3px; align-items: flex-end; }
+.spark-bar { width: 14px; border-radius: 2px 2px 0 0; }
 
 /* AI MODAL */
-#ai-modal { position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:500; display:flex; align-items:flex-end; justify-content:center; }
-#ai-modal.hidden { display:none; }
-#ai-panel { background:#fff; border-radius:16px 16px 0 0; border-top:3px solid #6366f1; width:100%; max-width:720px; max-height:55vh; display:flex; flex-direction:column; animation:slideUp .25s ease; box-shadow:0 -8px 32px rgba(0,0,0,.12); }
-.ai-header { padding:12px 18px; border-bottom:1px solid #f1f5f9; display:flex; align-items:center; gap:8px; }
-.ai-dot { width:7px; height:7px; border-radius:50%; background:#6366f1; animation:pulse 2s infinite; }
-.ai-title { font-size:11px; font-weight:800; color:#4f46e5; letter-spacing:.08em; }
-.ai-label-chip { font-size:10px; color:#94a3b8; background:#f1f5f9; padding:2px 7px; border-radius:5px; }
-.ai-close { margin-left:auto; background:#f1f5f9; border:none; width:24px; height:24px; border-radius:6px; cursor:pointer; color:#64748b; font-weight:700; font-family:inherit; font-size:14px; display:flex; align-items:center; justify-content:center; }
-.ai-body { flex:1; overflow-y:auto; padding:14px 18px; }
-.ai-text { font-size:13px; color:#334155; line-height:1.9; white-space:pre-wrap; }
-.ai-loading { display:flex; flex-direction:column; gap:8px; }
-.ai-loading-msg { font-size:11px; color:#94a3b8; font-style:italic; margin-bottom:4px; }
-.skeleton { height:9px; background:#e2e8f0; border-radius:4px; animation:pulse 1.4s infinite; }
+#ai-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 500;
+  display: flex; align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+#ai-overlay.hidden { display: none; }
+#ai-panel {
+  background: var(--navy-2);
+  border: 1px solid var(--border-2);
+  border-radius: 16px 16px 0 0;
+  border-top: 2px solid var(--indigo);
+  width: 100%; max-width: 760px;
+  max-height: 58vh;
+  display: flex; flex-direction: column;
+  animation: slideUp .2s ease;
+  box-shadow: 0 -20px 60px rgba(0,0,0,.5);
+}
+.ai-hdr {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--border);
+}
+.ai-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); animation: pulse 2s infinite; }
+.ai-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--indigo); letter-spacing: .08em; }
+.ai-chip { font-size: 10px; color: var(--text-3); background: var(--navy-3); padding: 2px 8px; border-radius: 4px; }
+.ai-close { margin-left: auto; background: var(--navy-3); border: none; width: 24px; height: 24px; border-radius: 6px; cursor: pointer; color: var(--text-2); font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.ai-body { flex: 1; overflow-y: auto; padding: 16px 18px; }
+.ai-output { font-size: 13px; color: var(--text-2); line-height: 2; white-space: pre-wrap; }
+.ai-loading { display: flex; flex-direction: column; gap: 8px; }
+.ai-loading-msg { font-size: 11px; color: var(--text-3); font-style: italic; margin-bottom: 4px; }
+.skel { height: 8px; background: var(--navy-4); border-radius: 3px; animation: shimmer 1.4s infinite; }
 
-/* REGION ROWS */
-.region-row { display:flex; gap:16px; align-items:center; }
-.region-pct-box { width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:900; flex-shrink:0; }
-.region-name { font-size:14px; font-weight:800; margin-bottom:2px; }
-.region-vp { font-size:11px; color:#94a3b8; }
-.region-bar-wrap { flex:2; }
-.region-stats { display:flex; gap:14px; }
-.region-stat { text-align:center; }
-.region-stat-val { font-size:14px; font-weight:800; }
-.region-stat-label { font-size:9px; color:#94a3b8; font-weight:700; }
-
-/* SELLER ROWS */
-.seller-card { margin-bottom:0; }
-.seller-avatar { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; flex-shrink:0; }
-
-/* QUEUE */
-.queue-item { border-radius:12px; }
-.queue-account { font-size:13px; font-weight:800; }
-.queue-action { font-size:12px; color:#64748b; line-height:1.6; margin-top:4px; }
-.queue-due { text-align:right; flex-shrink:0; }
-.queue-due-label { font-size:10px; font-weight:700; color:#94a3b8; margin-bottom:2px; }
-.queue-due-val { font-size:13px; font-weight:800; }
+/* DRILL PANEL */
+#drill-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 400;
+  display: flex; align-items: center; justify-content: flex-end;
+  backdrop-filter: blur(2px);
+}
+#drill-overlay.hidden { display: none; }
+#drill-panel {
+  background: var(--navy-2);
+  border-left: 1px solid var(--border-2);
+  width: 420px; height: 100%;
+  display: flex; flex-direction: column;
+  animation: slideRight .2s ease;
+  overflow-y: auto;
+}
+@keyframes slideRight { from { transform: translateX(40px); opacity:0; } to { transform: translateX(0); opacity:1; } }
+.drill-hdr {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 12px;
+  position: sticky; top: 0;
+  background: var(--navy-2);
+  z-index: 10;
+}
+.drill-back { background: var(--navy-3); border: 1px solid var(--border); border-radius: 7px; padding: 5px 10px; cursor: pointer; font-size: 11px; color: var(--text-2); font-family: 'DM Sans', sans-serif; flex-shrink: 0; }
+.drill-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
 
 /* CHART */
-.chart-bars { display:flex; gap:4px; align-items:flex-end; height:140px; margin-bottom:10px; }
-.chart-col { flex:1; display:flex; flex-direction:column; gap:2px; align-items:center; }
-.chart-pair { display:flex; gap:2px; align-items:flex-end; height:120px; width:100%; }
-.chart-bar { flex:1; border-radius:3px 3px 0 0; }
-.chart-label { font-size:9px; color:#94a3b8; font-weight:600; }
-.chart-legend { display:flex; gap:16px; font-size:10px; color:#94a3b8; }
-.legend-item { display:flex; gap:5px; align-items:center; }
-.legend-swatch { width:10px; height:10px; border-radius:2px; }
-
-/* CF ITEMS */
-.cf-full { margin-bottom:12px; padding:16px 18px; border-left:4px solid; }
+.chart-wrap { display: flex; gap: 4px; align-items: flex-end; height: 100px; }
+.chart-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.chart-bars-pair { display: flex; gap: 2px; align-items: flex-end; width: 100%; }
+.chart-bar { flex: 1; border-radius: 3px 3px 0 0; min-height: 3px; }
+.chart-lbl { font-size: 9px; color: var(--text-3); font-weight: 600; }
 </style>
 </head>
 <body>
 <div id="app">
   <div id="topbar">
-    <div class="logo">
+    <div class="logo-mark">
       <div class="logo-icon">A</div>
       <span class="logo-text"><span>AMP</span> Signal</span>
     </div>
-    <div class="divider"></div>
-    <div class="persona-btns" id="persona-btns"></div>
-    <div class="ml-auto">
-      <div class="live-dot"></div>
-      <span class="live-label">LIVE</span>
-      <div class="user-avatar" id="user-avatar">RM</div>
+    <div class="topbar-sep"></div>
+    <div class="persona-tabs" id="persona-tabs"></div>
+    <div class="topbar-right">
+      <div class="live-badge"><div class="live-dot"></div>LIVE</div>
+      <button class="signal-brief-btn" id="brief-btn">✦ Signal Brief</button>
+      <div class="user-chip" id="user-chip">RM</div>
     </div>
   </div>
 
   <div id="notif">
-    <span class="notif-label">Scatter Alert:</span>
-    <span class="notif-text">$218K Q2 prime inventory returned in Philadelphia — OSI data, 72-hour window. 3 matching accounts in Dynamics.</span>
+    <div class="notif-pip"></div>
+    <span class="notif-text"><b>Scatter Alert:</b> $218K Q2 prime inventory returned in Philadelphia — OSI data, 72-hour capture window. 3 matching accounts in Dynamics.</span>
     <button class="notif-close" onclick="document.getElementById('notif').classList.add('hidden')">×</button>
   </div>
 
-  <div id="layout">
+  <div id="body">
     <div id="sidebar">
-      <div class="section-label">VIEWS</div>
-      <div id="tab-btns"></div>
-      <div class="cf-sidebar">
-        <div class="section-label">CRITICAL FEW</div>
-        <div id="cf-sidebar"></div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Views</div>
+        <div id="nav-btns"></div>
       </div>
-      <div class="data-sources">
-        <div class="source-row"><div class="source-dot"></div><span class="source-label">OSI Traffic</span></div>
-        <div class="source-row"><div class="source-dot"></div><span class="source-label">MS Dynamics CRM</span></div>
+      <div class="sidebar-divider"></div>
+      <div class="cf-mini">
+        <div class="sidebar-label" style="padding:0 8px;margin-bottom:8px">Critical Few</div>
+        <div id="cf-mini-list"></div>
+      </div>
+      <div class="sidebar-sources">
+        <div class="source-item"><div class="source-dot"></div><span class="source-name">OSI Traffic</span></div>
+        <div class="source-item"><div class="source-dot"></div><span class="source-name">MS Dynamics CRM</span></div>
       </div>
     </div>
+
     <div id="content">
       <div id="content-inner"></div>
     </div>
   </div>
 </div>
 
-<div id="ai-modal" class="hidden" onclick="if(event.target===this) closeAI()">
+<!-- AI MODAL -->
+<div id="ai-overlay" class="hidden" onclick="if(event.target===this)closeAI()">
   <div id="ai-panel">
-    <div class="ai-header">
+    <div class="ai-hdr">
       <div class="ai-dot"></div>
       <span class="ai-title">SIGNAL AI</span>
-      <span class="ai-label-chip" id="ai-label"></span>
+      <span class="ai-chip" id="ai-chip"></span>
       <button class="ai-close" onclick="closeAI()">×</button>
     </div>
     <div class="ai-body" id="ai-body"></div>
   </div>
 </div>
 
+<!-- DRILL PANEL -->
+<div id="drill-overlay" class="hidden" onclick="if(event.target===this)closeDrill()">
+  <div id="drill-panel">
+    <div class="drill-hdr">
+      <button class="drill-back" onclick="closeDrill()">← Back</button>
+      <div>
+        <div id="drill-title" style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800"></div>
+        <div id="drill-sub" style="font-size:11px;color:var(--text-3);margin-top:2px"></div>
+      </div>
+    </div>
+    <div class="drill-body" id="drill-body"></div>
+  </div>
+</div>
+
 <script>
-// ─── DATA ────────────────────────────────────────────────────────────────────
+// ─── DATA ─────────────────────────────────────────────────────────────────────
 const fmt = n => n>=1e6?`$${(n/1e6).toFixed(1)}M`:n>=1e3?`$${(n/1e3).toFixed(0)}K`:`$${n}`;
-const pctColor = p => p>=100?"#16a34a":p>=90?"#d97706":"#dc2626";
-const pctBg    = p => p>=100?"#f0fdf4":p>=90?"#fefce8":"#fef2f2";
+const pct = (a,b) => Math.round(a/b*100);
+const clr = p => p>=100?'var(--green)':p>=88?'var(--amber)':'var(--red)';
+const clrBg = p => p>=100?'var(--green-dim)':p>=88?'var(--amber-dim)':'var(--red-dim)';
+const trendArrow = t => t==='up'?'↑':t==='down'?'↓':'→';
+const trendClr = t => t==='up'?'var(--green)':t==='down'?'var(--red)':'var(--text-3)';
 
 const REGIONS = [
-  {id:"r1",name:"Northeast",    vp:"Priya Nair",   pct:95, digital:31,health:78,revenue:28400000,goal:30000000},
-  {id:"r2",name:"Southeast",    vp:"Marcus Webb",  pct:103,digital:29,health:91,revenue:24600000,goal:23800000},
-  {id:"r3",name:"Midwest",      vp:"Tanya Okafor", pct:81, digital:19,health:57,revenue:18900000,goal:23400000},
-  {id:"r4",name:"Southwest",    vp:"Derek Huang",  pct:103,digital:27,health:88,revenue:21300000,goal:20600000},
-  {id:"r5",name:"Mountain West",vp:"Joel Sandoval",pct:85, digital:22,health:66,revenue:11200000,goal:13200000},
-  {id:"r6",name:"Pacific Coast",vp:"Angela Kim",   pct:103,digital:34,health:92,revenue:19800000,goal:19200000},
-  {id:"r7",name:"Central",      vp:"Darnell Price",pct:81, digital:17,health:53,revenue:10400000,goal:12800000},
-  {id:"r8",name:"Mid-Atlantic", vp:"Sonia Reyes",  pct:97, digital:30,health:82,revenue:16600000,goal:17200000},
+  {id:"r1",name:"Northeast",    vp:"Priya Nair",   pct:95, digital:31,health:78,revenue:28400000,goal:30000000,sellers:112,newBiz:8, topRisk:"Renewal cluster Q2"},
+  {id:"r2",name:"Southeast",    vp:"Marcus Webb",  pct:103,digital:29,health:91,revenue:24600000,goal:23800000,sellers:98, newBiz:14,topRisk:"Digital mix below CF"},
+  {id:"r3",name:"Midwest",      vp:"Tanya Okafor", pct:81, digital:19,health:57,revenue:18900000,goal:23400000,sellers:104,newBiz:3, topRisk:"Below pace - needs intervention"},
+  {id:"r4",name:"Southwest",    vp:"Derek Huang",  pct:103,digital:27,health:88,revenue:21300000,goal:20600000,sellers:88, newBiz:11,topRisk:"Political scatter opportunity"},
+  {id:"r5",name:"Mountain West",vp:"Joel Sandoval",pct:85, digital:22,health:66,revenue:11200000,goal:13200000,sellers:62, newBiz:5, topRisk:"Pacing gap widening"},
+  {id:"r6",name:"Pacific Coast", vp:"Angela Kim",  pct:103,digital:34,health:92,revenue:19800000,goal:19200000,sellers:94, newBiz:13,topRisk:"CTV inventory tight"},
+  {id:"r7",name:"Central",      vp:"Darnell Price",pct:81, digital:17,health:53,revenue:10400000,goal:12800000,sellers:71, newBiz:2, topRisk:"Below pace - needs intervention"},
+  {id:"r8",name:"Mid-Atlantic", vp:"Sonia Reyes",  pct:97, digital:30,health:82,revenue:16600000,goal:17200000,sellers:83, newBiz:9, topRisk:"Scatter capture window open"},
 ];
 
 const CF = [
-  {id:1,title:"Grow Digital Mix to 35%",     current:24,target:35, unit:"%",   status:"behind"  },
-  {id:2,title:"Capture Political Scatter Q2",current:68,target:100,unit:"%",   status:"on-track"},
-  {id:3,title:"Reactivate Lapsed Auto",      current:41,target:60, unit:"%",   status:"behind"  },
-  {id:4,title:"New Business Adds (Monthly)", current:9, target:12, unit:"accts",status:"at-risk" },
-  {id:5,title:"CTV / OTT Sell-Through",      current:79,target:85, unit:"%",   status:"on-track"},
+  {id:1,title:"Digital Mix",    current:24,target:35, unit:"%",   status:"behind"  },
+  {id:2,title:"Political Scatter",current:68,target:100,unit:"%", status:"on-track"},
+  {id:3,title:"Lapsed Auto",    current:41,target:60, unit:"%",   status:"behind"  },
+  {id:4,title:"New Business",   current:9, target:12, unit:" accts",status:"at-risk"},
+  {id:5,title:"CTV Sell-Through",current:79,target:85,unit:"%",  status:"on-track"},
 ];
 
 const SELLERS = [
-  {id:"s1",name:"Jordan Patel",  title:"Automotive",      pct:94, revenue:920000, goal:980000, risk:2,newBiz:3,digital:18},
-  {id:"s2",name:"Aisha Morales", title:"Retail & QSR",    pct:109,revenue:1140000,goal:1050000,risk:0,newBiz:5,digital:31},
-  {id:"s3",name:"Tyler Nguyen",  title:"Healthcare/Legal",pct:84, revenue:760000, goal:900000, risk:4,newBiz:1,digital:22},
-  {id:"s4",name:"Carlos Esteban",title:"Political",       pct:106,revenue:1380000,goal:1300000,risk:0,newBiz:4,digital:11},
-  {id:"s5",name:"Becca Liu",     title:"Financial",       pct:104,revenue:880000, goal:850000, risk:1,newBiz:2,digital:27},
+  {id:"s1",name:"Jordan Patel",  title:"Automotive",      pct:94, revenue:920000, goal:980000, risk:2,newBiz:3,digital:18,accounts:24,lastContact:"2d ago"},
+  {id:"s2",name:"Aisha Morales", title:"Retail & QSR",    pct:109,revenue:1140000,goal:1050000,risk:0,newBiz:5,digital:31,accounts:31,lastContact:"Today"},
+  {id:"s3",name:"Tyler Nguyen",  title:"Healthcare/Legal",pct:84, revenue:760000, goal:900000, risk:4,newBiz:1,digital:22,accounts:28,lastContact:"4d ago"},
+  {id:"s4",name:"Carlos Esteban",title:"Political",       pct:106,revenue:1380000,goal:1300000,risk:0,newBiz:4,digital:11,accounts:18,lastContact:"Today"},
+  {id:"s5",name:"Becca Liu",     title:"Financial",       pct:104,revenue:880000, goal:850000, risk:1,newBiz:2,digital:27,accounts:22,lastContact:"Yesterday"},
 ];
 
 const QUEUE = [
-  {id:"q1",pri:"P1",account:"Sun Valley Toyota",   action:"Renewal at risk — 58% spend decline. May 28 deadline. OSI + Dynamics flagged.",revenue:141000,due:"Today",   type:"risk"    },
-  {id:"q2",pri:"P1",account:"Midtown Honda Group", action:"No digital products. $184K account. Critical Few upsell opportunity via Dynamics.",revenue:184000,due:"Today",   type:"upsell"  },
-  {id:"q3",pri:"P2",account:"Faber for Senate PAC",action:"New PAC filing in OSI. $340K historical buyer. First contact window open now.", revenue:340000,due:"Tomorrow",type:"political"},
-  {id:"q4",pri:"P2",account:"HomeFirst Mortgage",  action:"Proposal 6 days old in Dynamics — no response. Fed rate meeting catalyst.",   revenue:62000, due:"Today",   type:"followup"},
-  {id:"q5",pri:"P3",account:"Valley Spine & Rehab",action:"New practice opened March 12. Healthcare surging per OSI category data.",     revenue:null,  due:"This week",type:"newbiz"  },
+  {id:"q1",pri:"P1",account:"Sun Valley Toyota",   action:"Renewal at risk — 58% spend decline. May 28 deadline.",revenue:141000,due:"Today",   type:"risk",    seller:"Jordan Patel"},
+  {id:"q2",pri:"P1",account:"Midtown Honda Group", action:"No digital products. $184K account. Critical Few upsell.",revenue:184000,due:"Today",  type:"upsell",  seller:"Jordan Patel"},
+  {id:"q3",pri:"P2",account:"Faber for Senate PAC",action:"New PAC filing. $340K historical buyer. First contact window.",revenue:340000,due:"Tomorrow",type:"political",seller:"Carlos Esteban"},
+  {id:"q4",pri:"P2",account:"HomeFirst Mortgage",  action:"Proposal 6 days old — no response. Fed rate meeting catalyst.",revenue:62000,due:"Today",   type:"followup",seller:"Becca Liu"},
+  {id:"q5",pri:"P3",account:"Valley Spine & Rehab",action:"New practice opened March 12. Healthcare category surging.",revenue:null,  due:"This week",type:"newbiz",  seller:"Tyler Nguyen"},
 ];
 
 const MARGIN = {
   current:34.2,target:38.0,prior:31.8,
   trend:[29.1,30.4,31.8,32.5,33.1,34.2],
-  trendLabels:["Nov","Dec","Jan","Feb","Mar","Apr"],
-  byProduct:[
-    {name:"Audio / Podcast", margin:68,revenue:380, contribution:9.1, trend:"up",  color:"#10b981"},
-    {name:"Digital Display", margin:61,revenue:680, contribution:14.6,trend:"up",  color:"#6366f1"},
-    {name:"CTV / OTT",       margin:54,revenue:1240,contribution:23.5,trend:"up",  color:"#8b5cf6"},
-    {name:"Social / Video",  margin:49,revenue:510, contribution:8.8, trend:"flat",color:"#06b6d4"},
-    {name:"Linear TV",       margin:31,revenue:3820,contribution:41.6,trend:"down",color:"#f59e0b"},
-    {name:"Sports Adjacency",margin:28,revenue:210, contribution:2.4, trend:"flat",color:"#ec4899"},
+  labels:["Nov","Dec","Jan","Feb","Mar","Apr"],
+  products:[
+    {name:"Audio / Podcast", margin:68,rev:380, contrib:9.1, trend:"up",  color:"var(--green)"},
+    {name:"Digital Display", margin:61,rev:680, contrib:14.6,trend:"up",  color:"var(--blue)"},
+    {name:"CTV / OTT",       margin:54,rev:1240,contrib:23.5,trend:"up",  color:"#a78bfa"},
+    {name:"Social / Video",  margin:49,rev:510, contrib:8.8, trend:"flat",color:"#06b6d4"},
+    {name:"Linear TV",       margin:31,rev:3820,contrib:41.6,trend:"down",color:"var(--amber)"},
+    {name:"Sports Adjacency",margin:28,rev:210, contrib:2.4, trend:"flat",color:"#ec4899"},
   ],
-  byRegion:[
+  regions:[
     {name:"Pacific Coast",margin:38.4,trend:"up"  },
     {name:"Southeast",    margin:37.1,trend:"up"  },
     {name:"Southwest",    margin:36.2,trend:"flat"},
@@ -271,272 +627,434 @@ const MARGIN = {
     {name:"Midwest",      margin:28.4,trend:"down"},
     {name:"Central",      margin:27.1,trend:"down"},
   ],
-  insight:"Margin expanding +2.4pts YTD driven by digital mix shift. Every 1pt gain in digital mix adds ~0.8pts to blended margin. Linear TV remains 41.6% of contribution but at only 31% margin — the mix shift to digital and CTV is the highest-leverage margin lever available.",
 };
 
-const AI_TEXT = {
-  margin:"SITUATION: Blended margin is 34.2%, up 2.4pts YTD and trending right. But we are 3.8pts below the 38% target. Linear TV is 41.6% of revenue but generates only 31% margin. Digital and CTV generate 54-68% margin but are still underweight.\n\nIMPACT: Each 1-point shift from linear to digital adds approximately 0.8pts to blended margin. Getting digital from 24% to 35% adds roughly $2.8M in incremental margin on the same revenue base.\n\nMOVE: The margin and digital mix stories are the same story. Accelerate the 8 linear-only anchor account upsells in Dynamics. Every digital conversion improves margin AND hits Critical Few.",
-  intervention:"SITUATION: Midwest (Tanya Okafor) and Central (Darnell Price) both at 81% pacing, health scores 57 and 53. Dynamics shows low coaching cadence; OSI confirms digital mix critically below 35% CF target in both regions.\n\nIMPACT: Combined gap is $6.9M. At current pace both regions miss Q2 with no recovery path before political season.\n\nMOVE: Call both VPs today. Require written 30-day recovery plans by Friday. Deploy a $500 SPIF per new digital account in both regions immediately.",
-  scatter:"SITUATION: OSI shows $218K in Q2 prime avails returned from national holdback in Philadelphia. New Faber Senate PAC filing detected — $340K historical buyer, same DMA.\n\nIMPACT: Scatter has 72-hour capture window. The PAC historically places within 2 weeks of filing — first contact is critical.\n\nMOVE: Brief Philadelphia team now. Carlos Esteban makes first PAC contact before noon today.",
+const AI_COPY = {
+  briefcro:"MIDWEST INTERVENTION NEEDED: Both regions at 81% with $6.9M combined gap. Tanya Okafor and Darnell Price need recovery plans by Friday.\n\nDIGITAL MIX LAGGING: 24% vs 35% Critical Few target. 8 linear-only anchor accounts in Dynamics worth $190K ready for upsell now.\n\nINSTANT REVENUE: OSI shows $558K available today — $218K scatter returned plus $340K new Faber Senate PAC filing in Philadelphia.\n\nTHREE REGIONS ABOVE GOAL: Southeast 103%, Southwest 103%, Pacific Coast 103%.\n\nPOLITICAL WINDOW OPEN: Assign Carlos Esteban to the PAC today — two-week first-mover advantage.",
+  briefae:"SUN VALLEY URGENT: Renewal May 28 — 23 days away. Dynamics shows 11 days no contact. OSI confirms 58% spend decline. Call today.\n\nDIGITAL GAP: You are at 18% vs 35% Critical Few target. Midtown Honda at $184K with zero digital is your clearest path this week.\n\nPOLITICAL MONEY: Faber Senate PAC filed. $340K in your DMA. Two-week first-mover window. Reach out before noon.\n\nSCATTER AVAILABLE: OSI returned $218K Q2 prime inventory. 72-hour window. Three matching accounts in your book.",
   talking:"OPENING: I have been reviewing your campaign data and see a real opportunity before your renewal.\n\nVALUE PROPS:\n1. AMP covers every screen — linear, CTV/OTT, digital, social — one unified buy, one contact.\n2. OSI data shows your category surging now. Competitors are spending aggressively.\n3. We can start a digital test at 13% of your linear investment and prove ROI in 60 days.\n\nASK: 30 minutes this week for a multi-platform proposal with numbers specific to your category.",
   renewal:"DIAGNOSIS: OSI shows Sun Valley Toyota spend down 58% over 90 days. Dynamics: last contact 11 days ago. Renewal May 28 is 23 days away.\n\nMEETING AGENDA:\n1. Ask what has changed — listen first\n2. Show OSI performance data vs category benchmarks\n3. Present Q3 EV incentive season\n\nMOVE: Bundle a 60-day CTV test into renewal at no added cost. Fallback: 6-month renewal at 80% with performance escalator.",
-  briefcro:"MIDWEST INTERVENTION NEEDED: Both regions at 81% with $6.9M combined gap. Recovery plans due Friday.\n\nDIGITAL MIX LAGGING: 24% vs 35% Critical Few target. 8 linear-only anchor accounts worth $190K ready for upsell now.\n\nINSTANT REVENUE: $558K available today — $218K scatter returned + $340K new Faber Senate PAC filing in Philadelphia.\n\nTHREE REGIONS ABOVE GOAL: Southeast 103%, Southwest 103%, Pacific Coast 103%.\n\nPOLITICAL WINDOW OPEN: Assign Carlos Esteban to the PAC today — two-week first-mover advantage.",
-  briefae:"SUN VALLEY URGENT: Renewal May 28 — 23 days away. 11 days no contact in Dynamics. OSI confirms 58% spend decline. Call today.\n\nDIGITAL GAP: You are at 18% vs 35% Critical Few target. Midtown Honda at $184K with zero digital is your clearest path this week.\n\nPOLITICAL MONEY: Faber Senate PAC filed. $340K in your DMA. Two-week first-mover window. Reach out before noon.\n\nSCATTER: OSI returned $218K Q2 prime inventory. 72-hour window. Three matching accounts in your book.",
+  intervention:"SITUATION: Midwest (Tanya Okafor) and Central (Darnell Price) both at 81% pacing, health scores 57 and 53. Dynamics shows low coaching cadence; OSI confirms digital mix critically below 35% CF target in both regions.\n\nIMPACT: Combined gap is $6.9M. At current pace both regions miss Q2 with no recovery path before political season.\n\nMOVE: Call both VPs today. Require written 30-day recovery plans by Friday. Deploy a $500 SPIF per new digital account in both regions immediately.",
+  scatter:"SITUATION: OSI shows $218K in Q2 prime avails returned in Philadelphia. New Faber Senate PAC filing detected — $340K historical buyer, same DMA.\n\nIMPACT: 72-hour capture window. The PAC historically places within 2 weeks of filing.\n\nMOVE: Brief Philadelphia team now. Carlos Esteban makes first PAC contact before noon today.",
+  margin:"SITUATION: Blended margin is 34.2%, up 2.4pts YTD. But we are 3.8pts below the 38% target. Linear TV is 41.6% of revenue at only 31% margin. Digital and CTV generate 54-68% margin.\n\nIMPACT: Each 1-point shift from linear to digital adds approximately 0.8pts to blended margin. Getting digital from 24% to 35% adds roughly $2.8M in incremental margin.\n\nMOVE: The margin and digital mix stories are the same story. Every digital upsell improves margin AND hits Critical Few.",
 };
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const PERSONAS = [
-  {id:"cro",     label:"CRO",           name:"Ryan Moore",  initials:"RM"},
-  {id:"regional",label:"Regional VP",   name:"Vic Torres",  initials:"VT"},
-  {id:"mm",      label:"Mkt Manager",   name:"Sonia Reyes", initials:"SR"},
-  {id:"ae",      label:"Account Exec",  name:"Jordan Patel",initials:"JP"},
+  {id:"cro",     label:"CRO",          name:"Ryan Moore",  initials:"RM"},
+  {id:"regional",label:"Regional VP",  name:"Vic Torres",  initials:"VT"},
+  {id:"mm",      label:"Market Mgr",   name:"Sonia Reyes", initials:"SR"},
+  {id:"ae",      label:"Account Exec", name:"Jordan Patel",initials:"JP"},
 ];
-const TABS_BY_PERSONA = {
-  cro:      ["Overview","Regions","Critical Few","Margin","Pacing"],
-  regional: ["Overview","Regions","Critical Few","Margin","Pacing"],
-  mm:       ["Overview","Team","Critical Few","Margin","Pacing"],
-  ae:       ["Overview","Action Queue","Critical Few","Margin","Pacing"],
+const NAV = {
+  cro:      [{icon:"◈",label:"Overview"},{icon:"◉",label:"Regions"},{icon:"◎",label:"Critical Few"},{icon:"▲",label:"Margin"},{icon:"⊟",label:"Pacing"}],
+  regional: [{icon:"◈",label:"Overview"},{icon:"◉",label:"Regions"},{icon:"◎",label:"Critical Few"},{icon:"▲",label:"Margin"},{icon:"⊟",label:"Pacing"}],
+  mm:       [{icon:"◈",label:"Overview"},{icon:"◉",label:"Team"},{icon:"◎",label:"Critical Few"},{icon:"▲",label:"Margin"},{icon:"⊟",label:"Pacing"}],
+  ae:       [{icon:"◈",label:"Overview"},{icon:"▤",label:"Action Queue"},{icon:"◎",label:"Critical Few"},{icon:"▲",label:"Margin"},{icon:"⊟",label:"Pacing"}],
 };
 
-let state = {
-  persona: "cro",
-  tab: "Overview",
-  notes: {},
-  done: {},
-};
+let S = { persona:"cro", tab:"Overview", notes:{}, done:{} };
+let typingTimer = null;
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
-function bar(pct, color, h=8) {
-  const c = color || pctColor(pct);
-  return `<div class="bar-wrap" style="height:${h}px"><div class="bar-fill" style="width:${Math.min(pct,100)}%;height:100%;background:${c}"></div></div>`;
+function bar(p, color, h=6) {
+  const c = color || clr(p);
+  return `<div class="bar-track" style="height:${h}px"><div class="bar-fill" style="width:${Math.min(p,100)}%;background:${c};--w:${Math.min(p,100)}%"></div></div>`;
 }
-function chip(label, color) {
-  return `<span class="chip" style="background:${color}18;color:${color};border:1px solid ${color}30">${label}</span>`;
+function badge(label, type='dim') {
+  return `<span class="badge badge-${type}">${label}</span>`;
 }
-function statusColor(s) { return {on_track:"#10b981","on-track":"#10b981",behind:"#f59e0b","at-risk":"#ef4444"}[s]||"#94a3b8"; }
-function cfLabel(s) { return {"on-track":"ON TRACK",behind:"BEHIND","at-risk":"AT RISK"}[s]||s; }
+function cfColor(s) { return {on_track:'var(--green)',"on-track":'var(--green)',behind:'var(--amber)',"at-risk":'var(--red)'}[s]||'var(--text-3)'; }
+function cfBadge(s) {
+  const map = {"on-track":["ON TRACK","green"],behind:["BEHIND","amber"],"at-risk":["AT RISK","red"]};
+  const [l,t] = map[s]||["","dim"];
+  return badge(l,t);
+}
 
-// ─── AI MODAL ─────────────────────────────────────────────────────────────────
-let typingInterval = null;
-function openAI(key, label) {
-  document.getElementById('ai-modal').classList.remove('hidden');
-  document.getElementById('ai-label').textContent = label;
+// ─── AI ───────────────────────────────────────────────────────────────────────
+async function openAI(key, label, useAPI=false, prompt='') {
+  document.getElementById('ai-overlay').classList.remove('hidden');
+  document.getElementById('ai-chip').textContent = label;
   const body = document.getElementById('ai-body');
-  body.innerHTML = `<div class="ai-loading"><div class="ai-loading-msg">Analyzing OSI and Dynamics data...</div>${[90,75,85,65].map((w,i)=>`<div class="skeleton" style="width:${w}%;animation-delay:${i*0.1}s"></div>`).join('')}</div>`;
-  
-  clearInterval(typingInterval);
-  setTimeout(() => {
-    const text = AI_TEXT[key] || AI_TEXT.talking;
-    body.innerHTML = `<div class="ai-text" id="ai-output"></div>`;
-    const out = document.getElementById('ai-output');
-    let i = 0;
-    typingInterval = setInterval(() => {
-      if (i < text.length) { out.textContent = text.slice(0, ++i); }
-      else { clearInterval(typingInterval); }
-    }, 14);
-  }, 800 + Math.random()*300);
+  body.innerHTML = `<div class="ai-loading"><div class="ai-loading-msg">Analyzing OSI and Dynamics data...</div>${[90,72,84,60].map((w,i)=>`<div class="skel" style="width:${w}%;animation-delay:${i*0.12}s"></div>`).join('')}</div>`;
+
+  clearInterval(typingTimer);
+
+  if (useAPI) {
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-20250514",
+          max_tokens: 1000,
+          system: "You are Signal AI, an embedded intelligence layer inside AMP Signal — Sinclair Broadcast Group's AI sales platform. You have access to OSI traffic data and Microsoft Dynamics CRM data. Your responses are sharp, data-driven, and action-oriented. Use SITUATION / IMPACT / MOVE structure. Be specific. Be brief. Use line breaks between sections.",
+          messages: [{ role: "user", content: prompt }]
+        })
+      });
+      const data = await response.json();
+      const text = data.content?.[0]?.text || "Unable to generate analysis.";
+      body.innerHTML = `<div class="ai-output" id="ai-out"></div>`;
+      typeText(document.getElementById('ai-out'), text);
+    } catch(e) {
+      const text = AI_COPY[key] || AI_COPY.talking;
+      body.innerHTML = `<div class="ai-output" id="ai-out"></div>`;
+      typeText(document.getElementById('ai-out'), text);
+    }
+  } else {
+    setTimeout(() => {
+      const text = AI_COPY[key] || AI_COPY.talking;
+      body.innerHTML = `<div class="ai-output" id="ai-out"></div>`;
+      typeText(document.getElementById('ai-out'), text);
+    }, 600 + Math.random()*300);
+  }
 }
+
+function typeText(el, text) {
+  let i = 0;
+  clearInterval(typingTimer);
+  typingTimer = setInterval(() => {
+    if (i < text.length) { el.textContent = text.slice(0, ++i); }
+    else clearInterval(typingTimer);
+  }, 12);
+}
+
 function closeAI() {
-  clearInterval(typingInterval);
-  document.getElementById('ai-modal').classList.add('hidden');
+  clearInterval(typingTimer);
+  document.getElementById('ai-overlay').classList.add('hidden');
+}
+
+// ─── DRILL PANEL ──────────────────────────────────────────────────────────────
+function openDrill(title, sub, html) {
+  document.getElementById('drill-title').textContent = title;
+  document.getElementById('drill-sub').textContent = sub;
+  document.getElementById('drill-body').innerHTML = html;
+  document.getElementById('drill-overlay').classList.remove('hidden');
+}
+function closeDrill() {
+  document.getElementById('drill-overlay').classList.add('hidden');
+}
+
+function drillRegion(id) {
+  const r = REGIONS.find(x=>x.id===id);
+  const sc = clr(r.pct);
+  const html = `
+    <div class="surface">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div class="label">Pacing</div>
+          <div class="num-lg" style="color:${sc};margin-top:4px">${r.pct}%</div>
+          <div class="sublabel">${fmt(r.revenue)} of ${fmt(r.goal)}</div>
+        </div>
+        <div style="text-align:right">
+          ${r.pct<88?badge("INTERVENTION","red"):r.pct>=100?badge("ABOVE GOAL","green"):badge("ON TRACK","amber")}
+        </div>
+      </div>
+      <div style="margin-top:14px">${bar(r.pct,sc,8)}</div>
+    </div>
+    <div class="g3">
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">Digital Mix</div>
+        <div class="num-md" style="color:${r.digital>=28?'var(--green)':'var(--amber)'};margin-top:6px">${r.digital}%</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:2px">Target 35%</div>
+      </div>
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">Health Score</div>
+        <div class="num-md" style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'};margin-top:6px">${r.health}</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:2px">of 100</div>
+      </div>
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">Sellers</div>
+        <div class="num-md" style="margin-top:6px">${r.sellers}</div>
+        <div style="font-size:10px;color:var(--text-3);margin-top:2px">active</div>
+      </div>
+    </div>
+    <div class="surface">
+      <div class="label" style="margin-bottom:8px">Top Signal</div>
+      <div style="font-size:13px;color:var(--amber)">${r.topRisk}</div>
+    </div>
+    <div class="surface">
+      <div class="label" style="margin-bottom:8px">VP</div>
+      <div style="font-size:14px;font-weight:600">${r.vp}</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px">${r.name} Region</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-ai" style="flex:1" onclick="openAI('intervention','${r.name} Analysis',true,'Region: ${r.name}. VP: ${r.vp}. Pacing: ${r.pct}% of goal. Revenue: ${fmt(r.revenue)} vs ${fmt(r.goal)} goal. Digital mix: ${r.digital}% vs 35% target. Health score: ${r.health}/100. New business: ${r.newBiz} accounts. Top risk: ${r.topRisk}. Analyze this region and give me a specific action plan.')">✦ AI Analysis</button>
+      <button class="btn-ghost" onclick="closeDrill()">Close</button>
+    </div>
+  `;
+  openDrill(r.name, r.vp + ' · ' + r.sellers + ' sellers', html);
+}
+
+function drillSeller(id) {
+  const s = SELLERS.find(x=>x.id===id);
+  const sc = clr(s.pct);
+  const html = `
+    <div class="surface">
+      <div style="display:flex;justify-content:space-between">
+        <div>
+          <div class="label">Revenue Pacing</div>
+          <div class="num-lg" style="color:${sc};margin-top:4px">${s.pct}%</div>
+          <div class="sublabel">${fmt(s.revenue)} of ${fmt(s.goal)}</div>
+        </div>
+        <div style="text-align:right">
+          <div class="label">Last Contact</div>
+          <div style="font-size:13px;font-weight:600;margin-top:4px;color:${s.lastContact==='Today'?'var(--green)':s.lastContact==='Yesterday'?'var(--amber)':'var(--red)'}">${s.lastContact}</div>
+        </div>
+      </div>
+      <div style="margin-top:14px">${bar(s.pct,sc,8)}</div>
+    </div>
+    <div class="g3">
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">Digital Mix</div>
+        <div class="num-md" style="color:${s.digital>=28?'var(--green)':'var(--amber)'};margin-top:6px">${s.digital}%</div>
+      </div>
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">New Biz</div>
+        <div class="num-md" style="color:${s.newBiz>=4?'var(--green)':'var(--amber)'};margin-top:6px">${s.newBiz}</div>
+      </div>
+      <div class="surface surface-sm" style="text-align:center">
+        <div class="label">At Risk</div>
+        <div class="num-md" style="color:${s.risk>0?'var(--red)':'var(--green)'};margin-top:6px">${s.risk}</div>
+      </div>
+    </div>
+    <div class="surface">
+      <div class="label" style="margin-bottom:8px">Accounts</div>
+      <div style="font-size:22px;font-weight:700">${s.accounts}</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px">active accounts · ${s.title}</div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-ai" style="flex:1" onclick="openAI('talking','Coach — ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% of goal (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital mix: ${s.digital}% vs 35% target. New business: ${s.newBiz} accounts this month vs target of 4. At-risk renewals: ${s.risk}. Last CRM contact: ${s.lastContact}. Give me a coaching brief and specific action items for this seller today.')">✦ Coach Brief</button>
+      <button class="btn-ghost" onclick="closeDrill()">Close</button>
+    </div>
+  `;
+  openDrill(s.name, s.title, html);
+}
+
+function drillQueue(id) {
+  const q = QUEUE.find(x=>x.id===id);
+  const priClr = q.pri==='P1'?'var(--red)':q.pri==='P2'?'var(--amber)':'var(--text-3)';
+  const html = `
+    <div class="surface" style="border-left:3px solid ${priClr}">
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+        ${badge(q.pri, q.pri==='P1'?'red':q.pri==='P2'?'amber':'dim')}
+        ${badge(q.type.toUpperCase(),'blue')}
+        <span style="font-size:11px;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--text-3)'};font-weight:700;margin-left:auto">${q.due}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:8px">${q.account}</div>
+      <div style="font-size:12px;color:var(--text-2);line-height:1.7">${q.action}</div>
+      ${q.revenue?`<div style="margin-top:10px"><span class="label">Est. Revenue</span><div class="num-sm" style="color:var(--green);margin-top:4px">${fmt(q.revenue)}</div></div>`:''}
+    </div>
+    <div class="surface">
+      <div class="label" style="margin-bottom:6px">Assigned To</div>
+      <div style="font-size:13px;font-weight:600">${q.seller}</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-ai" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Situation: ${q.action}. Type: ${q.type}. Due: ${q.due}. Assigned to: ${q.seller}. Generate specific talking points and an outreach approach for this account right now.')">✦ Talking Points</button>
+      ${q.type==='risk'?`<button class="btn-danger" onclick="openAI('renewal','Rescue Plan',true,'Account: ${q.account}. Situation: renewal at risk, 58% spend decline, renewal deadline May 28, 11 days no contact in Dynamics. Build a rescue plan with a specific meeting agenda and fallback positions.')">Rescue Plan</button>`:''}
+      <button class="btn-ghost" onclick="closeDrill()">Close</button>
+    </div>
+  `;
+  openDrill(q.account, q.seller + ' · ' + q.due, html);
 }
 
 // ─── RENDER ───────────────────────────────────────────────────────────────────
 function render() {
-  const cur = PERSONAS.find(p=>p.id===state.persona);
-  const tabs = TABS_BY_PERSONA[state.persona];
+  const cur = PERSONAS.find(p=>p.id===S.persona);
+  const navItems = NAV[S.persona];
 
-  // Persona buttons
-  document.getElementById('persona-btns').innerHTML = PERSONAS.map(p=>
-    `<button class="persona-btn${state.persona===p.id?' active':''}" onclick="switchPersona('${p.id}')">${p.label}</button>`
+  // Persona tabs
+  document.getElementById('persona-tabs').innerHTML = PERSONAS.map(p=>
+    `<button class="persona-tab${S.persona===p.id?' active':''}" onclick="switchPersona('${p.id}')">${p.label}</button>`
   ).join('');
 
-  // Avatar
-  document.getElementById('user-avatar').textContent = cur.initials;
+  document.getElementById('user-chip').textContent = cur.initials;
+  document.getElementById('brief-btn').onclick = () => openAI(S.persona==='ae'?'briefae':'briefcro','Signal Brief');
 
-  // Tab buttons
-  document.getElementById('tab-btns').innerHTML = tabs.map(t=>
-    `<button class="tab-btn${state.tab===t?' active':''}" onclick="switchTab('${t}')">${t}</button>`
+  // Nav
+  document.getElementById('nav-btns').innerHTML = navItems.map(n=>
+    `<button class="nav-btn${S.tab===n.label?' active':''}" onclick="switchTab('${n.label}')">
+      <span class="nav-icon">${n.icon}</span>${n.label}
+    </button>`
   ).join('');
 
   // CF sidebar
-  document.getElementById('cf-sidebar').innerHTML = CF.map(cf => {
-    const sc = statusColor(cf.status);
-    const pct = Math.round(cf.current/cf.target*100);
-    return `<div class="cf-item">
-      <div class="cf-row">
-        <span class="cf-title">${cf.title}</span>
-        <span class="cf-val" style="color:${sc}">${cf.current}${cf.unit}</span>
+  document.getElementById('cf-mini-list').innerHTML = CF.map(cf=>{
+    const sc = cfColor(cf.status);
+    const p = Math.round(cf.current/cf.target*100);
+    return `<div class="cf-mini-item">
+      <div class="cf-mini-row">
+        <span class="cf-mini-title">${cf.title}</span>
+        <span class="cf-mini-val" style="color:${sc}">${cf.current}${cf.unit}</span>
       </div>
-      ${bar(pct, sc, 4)}
+      <div class="mini-bar"><div class="mini-bar-fill" style="width:${p}%;background:${sc}"></div></div>
     </div>`;
   }).join('');
 
   // Content
-  const inner = document.getElementById('content-inner');
-  inner.innerHTML = `
-    <div class="page-header">
+  document.getElementById('content-inner').innerHTML = `
+    <div class="page-hdr" style="animation:fadeUp .25s ease">
       <div>
-        <div class="page-title">${state.tab}</div>
-        <div class="page-sub">${cur.name} — ${cur.label}</div>
+        <div class="page-title">${S.tab}</div>
+        <div class="page-sub">${cur.name} · ${cur.label}</div>
       </div>
-      <button class="ai-btn" onclick="openAI('${state.persona==='ae'?'briefae':'briefcro'}','Signal Brief')">✦ Signal Brief</button>
     </div>
     <div id="tab-content" style="animation:fadeUp .3s ease"></div>
   `;
 
   const tc = document.getElementById('tab-content');
-  const t = state.tab;
-  if (t==="Overview")      tc.innerHTML = renderOverview();
-  else if (t==="Regions")  tc.innerHTML = renderRegions();
-  else if (t==="Critical Few") tc.innerHTML = renderCF();
-  else if (t==="Margin")   tc.innerHTML = renderMargin();
-  else if (t==="Pacing")   tc.innerHTML = renderPacing();
-  else if (t==="Team")     tc.innerHTML = renderTeam();
-  else if (t==="Action Queue") tc.innerHTML = renderQueue();
+  const t = S.tab;
+  if (t==='Overview')      tc.innerHTML = renderOverview();
+  else if (t==='Regions')  tc.innerHTML = renderRegions();
+  else if (t==='Critical Few') tc.innerHTML = renderCF();
+  else if (t==='Margin')   tc.innerHTML = renderMargin();
+  else if (t==='Pacing')   tc.innerHTML = renderPacing();
+  else if (t==='Team')     tc.innerHTML = renderTeam();
+  else if (t==='Action Queue') tc.innerHTML = renderQueue();
 }
 
 // ─── OVERVIEW ─────────────────────────────────────────────────────────────────
 function renderOverview() {
-  if (state.persona === "cro") {
+  if (S.persona==='cro') {
     const totalRev  = REGIONS.reduce((s,r)=>s+r.revenue,0);
     const totalGoal = REGIONS.reduce((s,r)=>s+r.goal,0);
-    const pct = Math.round(totalRev/totalGoal*100);
+    const p = pct(totalRev,totalGoal);
     const above = REGIONS.filter(r=>r.pct>=100).length;
-    return `
-    <div class="flex-col">
-      <div class="hero-purple">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#c4b5fd;margin-bottom:8px">AMP SIGNAL — ENTERPRISE REVENUE</div>
-        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:6px">
-          <span style="font-size:44px;font-weight:900;letter-spacing:-.04em">${fmt(totalRev)}</span>
-          <span style="font-size:16px;color:#c4b5fd">/ ${fmt(totalGoal)}</span>
-        </div>
-        <div style="background:rgba(255,255,255,.2);border-radius:999px;height:8px;overflow:hidden;margin-bottom:12px">
-          <div style="width:${pct}%;height:100%;background:#a7f3d0;border-radius:999px"></div>
-        </div>
-        <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
-          <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">OF PLAN</div><div style="font-size:17px;font-weight:900;color:#a7f3d0">${pct}%</div></div>
-          <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">GAP</div><div style="font-size:17px;font-weight:900;color:#fde68a">${fmt(totalGoal-totalRev)}</div></div>
-          <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">ABOVE GOAL REGIONS</div><div style="font-size:17px;font-weight:900;color:#a7f3d0">${above} of 8</div></div>
-          <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">SELLERS</div><div style="font-size:17px;font-weight:900;color:#a7f3d0">847</div></div>
-          <div style="margin-left:auto;background:rgba(255,255,255,.1);border-radius:10px;padding:8px 16px;display:flex;gap:20px;align-items:center;border:1px solid rgba(255,255,255,.15)">
-            <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">BLENDED MARGIN</div>
-              <div style="display:flex;align-items:baseline;gap:6px"><span style="font-size:22px;font-weight:900;color:#a7f3d0">${MARGIN.current}%</span><span style="font-size:11px;color:#4ade80;font-weight:700">+${(MARGIN.current-MARGIN.prior).toFixed(1)}pts YTD</span></div></div>
-            <div style="width:1px;height:32px;background:rgba(255,255,255,.2)"></div>
-            <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">TARGET</div><div style="font-size:22px;font-weight:900;color:#fde68a">${MARGIN.target}%</div></div>
-            <div style="width:1px;height:32px;background:rgba(255,255,255,.2)"></div>
-            <div><div style="font-size:9px;font-weight:800;color:#c4b5fd;letter-spacing:.1em">GAP</div><div style="font-size:22px;font-weight:900;color:#fbbf24">${(MARGIN.target-MARGIN.current).toFixed(1)}pts</div></div>
+    return `<div class="col">
+      <div class="hero-amber">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+          <div>
+            <div class="label" style="color:var(--amber);margin-bottom:8px">AMP SIGNAL · ENTERPRISE REVENUE</div>
+            <div style="display:flex;align-items:baseline;gap:14px">
+              <span class="num-xl" style="color:var(--text)">${fmt(totalRev)}</span>
+              <span style="font-size:16px;color:var(--text-3)">/ ${fmt(totalGoal)}</span>
+              <span class="num-md" style="color:${clr(p)}">${p}%</span>
+            </div>
           </div>
+          <button class="btn-ai" onclick="openAI('briefcro','Signal Brief')">✦ Signal Brief</button>
+        </div>
+        <div style="background:var(--navy-4);border-radius:999px;height:6px;overflow:hidden;margin-bottom:16px">
+          <div style="width:${p}%;height:100%;background:var(--amber);border-radius:999px;transition:width .8s"></div>
+        </div>
+        <div style="display:flex;gap:28px;flex-wrap:wrap">
+          ${[
+            {l:"GAP TO GOAL",v:fmt(totalGoal-totalRev),c:"var(--red)"},
+            {l:"ABOVE GOAL",v:`${above} of 8`,c:"var(--green)"},
+            {l:"SELLERS",v:"847",c:"var(--text)"},
+            {l:"BLENDED MARGIN",v:`${MARGIN.current}%`,c:"var(--amber)"},
+            {l:"MARGIN GAP",v:`${(MARGIN.target-MARGIN.current).toFixed(1)}pts`,c:"var(--yellow)"},
+          ].map(m=>`<div>
+            <div class="label">${m.l}</div>
+            <div class="num-sm" style="color:${m.c};margin-top:4px">${m.v}</div>
+          </div>`).join('')}
         </div>
       </div>
 
-      <div class="flex-row">
-        <div style="flex:1;background:#fef2f2;border:1.5px solid #fecaca;border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:center">
-          <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#dc2626;margin-bottom:2px">Intervention Required</div>
-          <div style="font-size:11px;color:#991b1b">Midwest 81% + Central 81% — Combined gap $6.9M — Tanya Okafor + Darnell Price</div></div>
-          <button class="ai-btn" onclick="openAI('intervention','Intervention Plan')">Analyze</button>
+      <div class="row">
+        <div style="flex:1;background:linear-gradient(135deg,#1a0000,#140000);border:1px solid #ff444425;border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+          <div style="flex:1">
+            <div style="font-size:11px;font-weight:700;color:var(--red);margin-bottom:3px">⚠ Intervention Required</div>
+            <div style="font-size:11px;color:var(--text-2)">Midwest 81% · Central 81% — $6.9M combined gap — Tanya Okafor · Darnell Price</div>
+          </div>
+          <button class="btn-ai" onclick="openAI('intervention','Intervention Plan')">Analyze</button>
         </div>
-        <div style="flex:1;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:center">
-          <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#16a34a;margin-bottom:2px">$558K Immediate Opportunity</div>
-          <div style="font-size:11px;color:#166534">OSI: $218K scatter returned + Faber Senate PAC $340K filing in Philadelphia</div></div>
-          <button class="ai-btn" onclick="openAI('scatter','Capture Strategy')">Strategy</button>
+        <div style="flex:1;background:linear-gradient(135deg,#001a0d,#001208);border:1px solid #00d08525;border-radius:12px;padding:14px 16px;display:flex;gap:10px;align-items:center">
+          <div style="flex:1">
+            <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:3px">● $558K Immediate Opportunity</div>
+            <div style="font-size:11px;color:var(--text-2)">$218K scatter returned · Faber Senate PAC $340K filing in Philadelphia</div>
+          </div>
+          <button class="btn-ai" onclick="openAI('scatter','Capture Strategy')">Strategy</button>
         </div>
       </div>
 
-      <div class="grid-4">
+      <div class="g4">
         ${REGIONS.map(r=>`
-        <div class="card" style="padding:14px;background:${pctBg(r.pct)};border:1.5px solid ${pctColor(r.pct)}30">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:12px;font-weight:800">${r.name}</span>
-            <span style="font-size:12px;font-weight:800;color:${pctColor(r.pct)}">${r.pct}%</span>
+        <div onclick="drillRegion('${r.id}')" style="background:var(--navy-2);border:1px solid ${r.pct<88?'#ff444425':r.pct>=100?'#00d08520':'var(--border)'};border-radius:12px;padding:14px;cursor:pointer;transition:all .15s" onmouseover="this.style.borderColor='var(--border-2)'" onmouseout="this.style.borderColor='${r.pct<88?'#ff444425':r.pct>=100?'#00d08520':'var(--border)'}'">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <span style="font-size:12px;font-weight:600">${r.name}</span>
+            <span class="num-xs" style="color:${clr(r.pct)}">${r.pct}%</span>
           </div>
-          ${bar(r.pct,null,6)}
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <span style="font-size:10px;color:#94a3b8">Dig: <b style="color:${r.digital>=28?'#10b981':'#f59e0b'}">${r.digital}%</b></span>
-            <span style="font-size:10px;color:#94a3b8">H: <b style="color:${r.health>=80?'#10b981':r.health>=65?'#f59e0b':'#dc2626'}">${r.health}</b></span>
+          ${bar(r.pct,null,5)}
+          <div style="display:flex;gap:10px;margin-top:8px">
+            <span style="font-size:10px;color:var(--text-3)">Dig <b style="color:${r.digital>=28?'var(--green)':'var(--amber)'}">${r.digital}%</b></span>
+            <span style="font-size:10px;color:var(--text-3)">H <b style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</b></span>
           </div>
         </div>`).join('')}
       </div>
     </div>`;
   }
 
-  if (state.persona === "ae") {
+  if (S.persona==='ae') {
     const s = SELLERS[0];
-    return `
-    <div class="flex-col">
+    return `<div class="col">
       <div class="hero-dark">
-        <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#94a3b8;margin-bottom:12px">YOUR SCOREBOARD</div>
-        <div style="display:flex;gap:24px">
+        <div class="label" style="margin-bottom:12px">YOUR SCOREBOARD</div>
+        <div style="display:flex;gap:28px;flex-wrap:wrap">
           ${[
-            {l:"REVENUE",v:fmt(s.revenue),sub:`${s.pct}% of ${fmt(s.goal)}`,c:pctColor(s.pct)},
-            {l:"DIGITAL MIX",v:`${s.digital}%`,sub:"Target 35%",c:"#fbbf24"},
-            {l:"NEW BIZ",v:s.newBiz,sub:"Target 4/mo",c:s.newBiz>=4?"#4ade80":"#94a3b8"},
-            {l:"RENEWAL RISKS",v:s.risk,sub:"need attention",c:"#f87171"},
-          ].map(m=>`<div style="flex:1">
-            <div style="font-size:9px;font-weight:800;color:#475569;letter-spacing:.1em;margin-bottom:4px">${m.l}</div>
-            <div style="font-size:26px;font-weight:900;color:${m.c};letter-spacing:-.03em">${m.v}</div>
-            <div style="font-size:10px;color:#475569">${m.sub}</div>
+            {l:"REVENUE",v:fmt(s.revenue),sub:`${s.pct}% of ${fmt(s.goal)}`,c:clr(s.pct)},
+            {l:"DIGITAL MIX",v:`${s.digital}%`,sub:"Target 35%",c:"var(--amber)"},
+            {l:"NEW BIZ",v:s.newBiz,sub:"Target 4/mo",c:s.newBiz>=4?'var(--green)':'var(--text-2)'},
+            {l:"RENEWAL RISKS",v:s.risk,sub:"accounts",c:"var(--red)"},
+          ].map(m=>`<div>
+            <div class="label">${m.l}</div>
+            <div class="num-lg" style="color:${m.c};margin-top:6px">${m.v}</div>
+            <div style="font-size:10px;color:var(--text-3);margin-top:3px">${m.sub}</div>
           </div>`).join('')}
         </div>
       </div>
-      <div class="grid-2-1">
-        <div class="card">
-          <div style="font-size:10px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:12px">TOP ACTIONS TODAY</div>
+      <div class="g21">
+        <div class="surface">
+          <div class="sec-hdr"><span class="sec-title">Top Actions Today</span></div>
           ${QUEUE.slice(0,3).map(q=>`
-          <div style="display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f8fafc">
-            <div style="width:4px;border-radius:999px;background:${q.pri==='P1'?'#ef4444':'#f59e0b'};flex-shrink:0"></div>
+          <div class="data-row" onclick="drillQueue('${q.id}')">
+            <div class="priority-line" style="background:${q.pri==='P1'?'var(--red)':'var(--amber)'}"></div>
             <div style="flex:1">
-              <div style="font-size:12px;font-weight:700;margin-bottom:2px">${q.account}</div>
-              <div style="font-size:11px;color:#64748b">${q.action}</div>
+              <div style="font-size:12px;font-weight:600;margin-bottom:2px">${q.account}</div>
+              <div style="font-size:11px;color:var(--text-3)">${q.action}</div>
             </div>
-            <div style="font-size:11px;font-weight:700;color:${q.due==='Today'?'#dc2626':'#d97706'};flex-shrink:0">${q.due}</div>
+            <div style="font-size:11px;font-weight:700;color:${q.due==='Today'?'var(--red)':'var(--amber)'};flex-shrink:0">${q.due}</div>
           </div>`).join('')}
         </div>
-        <div class="card">
-          <div style="font-size:10px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:12px">CRITICAL FEW</div>
-          ${CF.map(cf=>{
-            const sc=statusColor(cf.status);
-            return `<div style="margin-bottom:10px">
-              <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-                <span style="font-size:10px;color:#64748b">${cf.title}</span>
-                <span style="font-size:10px;font-weight:800;color:${sc}">${cf.current}${cf.unit}</span>
-              </div>${bar(Math.round(cf.current/cf.target*100),sc,5)}</div>`;
-          }).join('')}
+        <div class="surface">
+          <div class="sec-hdr"><span class="sec-title">Critical Few</span></div>
+          ${CF.map(cf=>{const sc=cfColor(cf.status);return`<div style="margin-bottom:10px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span style="font-size:10px;color:var(--text-2)">${cf.title}</span>
+              <span class="num-xs" style="color:${sc}">${cf.current}${cf.unit}</span>
+            </div>${bar(Math.round(cf.current/cf.target*100),sc,5)}</div>`;}).join('')}
         </div>
       </div>
     </div>`;
   }
 
-  // mm / regional
-  return `
-  <div class="flex-col">
-    <div class="grid-4">
+  return `<div class="col">
+    <div class="g4">
       ${[
-        {l:"MARKET REVENUE",v:fmt(16600000),sub:"97% of $17.2M goal",c:"#d97706"},
-        {l:"DIGITAL MIX",   v:"30%",         sub:"Target 35%",        c:"#d97706"},
-        {l:"TEAM SIZE",     v:"10",           sub:"sellers active",    c:"#6366f1"},
-        {l:"RENEWAL RISKS", v:"7",            sub:"this month",        c:"#dc2626"},
-      ].map(m=>`<div class="card">
-        <div style="font-size:9px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:6px">${m.l}</div>
-        <div style="font-size:26px;font-weight:900;color:${m.c}">${m.v}</div>
-        <div style="font-size:11px;color:#64748b">${m.sub}</div>
+        {l:"MARKET REVENUE",v:fmt(16600000),sub:"97% of $17.2M",c:"var(--amber)"},
+        {l:"DIGITAL MIX",   v:"30%",        sub:"Target 35%",  c:"var(--amber)"},
+        {l:"TEAM SIZE",     v:"10",          sub:"active sellers",c:"var(--text)"},
+        {l:"RENEWAL RISKS", v:"7",           sub:"this month",  c:"var(--red)"},
+      ].map(m=>`<div class="surface surface-sm">
+        <div class="label">${m.l}</div>
+        <div class="num-md" style="color:${m.c};margin-top:8px">${m.v}</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:3px">${m.sub}</div>
       </div>`).join('')}
     </div>
-    <div class="grid-2">
-      <div class="card">
-        <div style="font-size:10px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:12px">CRITICAL FEW STATUS</div>
-        ${CF.map(cf=>{const sc=statusColor(cf.status);return`<div style="margin-bottom:12px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span style="font-size:11px;font-weight:600">${cf.title}</span>
-            ${chip(cfLabel(cf.status),sc)}
+    <div class="g2">
+      <div class="surface">
+        <div class="sec-hdr"><span class="sec-title">Critical Few Status</span></div>
+        ${CF.map(cf=>{const sc=cfColor(cf.status);return`<div style="margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
+            <span style="font-size:12px;font-weight:500">${cf.title}</span>
+            ${cfBadge(cf.status)}
           </div>${bar(Math.round(cf.current/cf.target*100),sc,7)}</div>`;}).join('')}
       </div>
-      <div class="card">
-        <div style="font-size:10px;font-weight:800;color:#94a3b8;letter-spacing:.1em;margin-bottom:12px">8 REGIONS AT A GLANCE</div>
-        ${REGIONS.map(r=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div style="width:6px;height:6px;border-radius:50%;background:${pctColor(r.pct)};flex-shrink:0"></div>
-          <div style="flex:1"><div style="font-size:11px;font-weight:600;margin-bottom:2px">${r.name}</div>${bar(r.pct,null,4)}</div>
-          <span style="font-size:11px;font-weight:800;color:${pctColor(r.pct)};font-family:monospace">${r.pct}%</span>
+      <div class="surface">
+        <div class="sec-hdr"><span class="sec-title">8 Regions</span></div>
+        ${REGIONS.map(r=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
+          <div style="width:5px;height:5px;border-radius:50%;background:${clr(r.pct)};flex-shrink:0"></div>
+          <div style="flex:1"><div style="font-size:11px;font-weight:500;margin-bottom:3px">${r.name}</div>${bar(r.pct,null,4)}</div>
+          <span class="num-xs" style="color:${clr(r.pct)}">${r.pct}%</span>
         </div>`).join('')}
       </div>
     </div>
@@ -545,54 +1063,67 @@ function renderOverview() {
 
 // ─── REGIONS ──────────────────────────────────────────────────────────────────
 function renderRegions() {
-  return `<div class="flex-col">
+  return `<div class="col">
     ${REGIONS.map(r=>`
-    <div class="card region-row">
-      <div class="region-pct-box" style="background:${pctBg(r.pct)};color:${pctColor(r.pct)}">${r.pct}%</div>
-      <div style="flex:2"><div class="region-name">${r.name}</div><div class="region-vp">${r.vp}</div></div>
-      <div style="flex:2">${bar(r.pct,null,8)}
-        <div style="display:flex;justify-content:space-between;margin-top:4px">
-          <span style="font-size:10px;color:#94a3b8;font-family:monospace">${fmt(r.revenue)}</span>
-          <span style="font-size:10px;color:#94a3b8;font-family:monospace">${fmt(r.goal)}</span>
+    <div onclick="drillRegion('${r.id}')" style="background:var(--navy-2);border:1px solid ${r.pct<88?'#ff444425':r.pct>=100?'#00d08520':'var(--border)'};border-radius:12px;padding:16px;cursor:pointer;display:flex;gap:16px;align-items:center;transition:all .15s" onmouseover="this.style.background='var(--navy-3)'" onmouseout="this.style.background='var(--navy-2)'">
+      <div style="width:52px;height:52px;border-radius:10px;background:${clrBg(r.pct)};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <span class="num-sm" style="color:${clr(r.pct)}">${r.pct}%</span>
+      </div>
+      <div style="flex:1.5">
+        <div style="font-size:14px;font-weight:700;margin-bottom:2px">${r.name}</div>
+        <div style="font-size:11px;color:var(--text-3)">${r.vp}</div>
+      </div>
+      <div style="flex:2">${bar(r.pct,null,7)}
+        <div style="display:flex;justify-content:space-between;margin-top:5px">
+          <span class="num-xs" style="color:var(--text-3)">${fmt(r.revenue)}</span>
+          <span class="num-xs" style="color:var(--text-3)">${fmt(r.goal)}</span>
         </div>
       </div>
-      <div class="region-stats">
-        <div class="region-stat"><div class="region-stat-val" style="color:${r.digital>=28?'#10b981':'#f59e0b'}">${r.digital}%</div><div class="region-stat-label">DIGITAL</div></div>
-        <div class="region-stat"><div class="region-stat-val" style="color:${r.health>=80?'#10b981':r.health>=65?'#f59e0b':'#dc2626'}">${r.health}</div><div class="region-stat-label">HEALTH</div></div>
+      <div style="display:flex;gap:16px;flex-shrink:0">
+        <div style="text-align:center">
+          <div class="label">DIGITAL</div>
+          <div class="num-sm" style="color:${r.digital>=28?'var(--green)':'var(--amber)'};margin-top:4px">${r.digital}%</div>
+        </div>
+        <div style="text-align:center">
+          <div class="label">HEALTH</div>
+          <div class="num-sm" style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'};margin-top:4px">${r.health}</div>
+        </div>
       </div>
-      ${r.pct<85?chip("INTERVENE","#ef4444"):''}
-      ${r.pct>=100?chip("ABOVE GOAL","#10b981"):''}
-      <button class="ai-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('intervention','${r.name}')">Analyze</button>
+      ${r.pct<88?badge("INTERVENE","red"):r.pct>=100?badge("ABOVE GOAL","green"):''}
+      <span style="color:var(--text-3);font-size:14px;flex-shrink:0">›</span>
     </div>`).join('')}
   </div>`;
 }
 
 // ─── CRITICAL FEW ─────────────────────────────────────────────────────────────
 function renderCF() {
-  return `<div class="flex-col">
-    <div class="card" style="background:#fafafa;display:flex;justify-content:space-between;align-items:center">
+  return `<div class="col">
+    <div class="surface" style="display:flex;justify-content:space-between;align-items:center">
       <div>
-        <div style="font-size:13px;font-weight:700">Critical Few Priority Tracker</div>
-        <div style="font-size:11px;color:#94a3b8;margin-top:2px">Set by Ryan Moore, CRO — Cascaded to 847 sellers via OSI + Dynamics</div>
+        <div style="font-size:14px;font-weight:700">Critical Few Priority Tracker</div>
+        <div style="font-size:11px;color:var(--text-3);margin-top:3px">Set by Ryan Moore, CRO · Cascaded to 847 sellers via OSI + Dynamics</div>
       </div>
-      <button class="ai-btn" onclick="openAI('${state.persona==='ae'?'briefae':'briefcro'}','CF Analysis')">AI Analysis</button>
+      <button class="btn-ai" onclick="openAI('${S.persona==='ae'?'briefae':'briefcro'}','CF Analysis')">AI Analysis</button>
     </div>
     ${CF.map((cf,i)=>{
-      const sc=statusColor(cf.status);
-      const sb={"on-track":"#f0fdf4",behind:"#fefce8","at-risk":"#fef2f2"}[cf.status];
-      return`<div class="card" style="border-left:4px solid ${sc};background:${sb}">
-        <div style="display:flex;gap:16px;align-items:flex-start">
+      const sc=cfColor(cf.status);
+      return `<div style="background:var(--navy-2);border:1px solid ${sc}25;border-left:3px solid ${sc};border-radius:12px;padding:18px">
+        <div style="display:flex;gap:16px;align-items:center">
           <div style="flex:1">
-            <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-              <span style="font-size:10px;color:#94a3b8;font-family:monospace">CF-${i+1}</span>
-              <span style="font-size:14px;font-weight:800">${cf.title}</span>
-              ${chip(cfLabel(cf.status),sc)}
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+              <span style="font-size:10px;color:var(--text-3);font-family:'Space Mono',monospace">CF-${i+1}</span>
+              <span style="font-size:14px;font-weight:700">${cf.title}</span>
+              ${cfBadge(cf.status)}
             </div>
             ${bar(Math.round(cf.current/cf.target*100),sc,10)}
+            <div style="display:flex;justify-content:space-between;margin-top:5px">
+              <span style="font-size:10px;color:var(--text-3)">0${cf.unit}</span>
+              <span style="font-size:10px;color:var(--text-3)">Target: ${cf.target}${cf.unit}</span>
+            </div>
           </div>
           <div style="text-align:right;flex-shrink:0">
-            <div style="font-size:34px;font-weight:900;color:${sc};letter-spacing:-.04em">${cf.current}${cf.unit}</div>
-            <div style="font-size:11px;color:#94a3b8">of ${cf.target}${cf.unit}</div>
+            <div class="num-lg" style="color:${sc}">${cf.current}${cf.unit}</div>
+            <div style="font-size:11px;color:var(--text-3);margin-top:3px">of ${cf.target}${cf.unit}</div>
           </div>
         </div>
       </div>`;
@@ -603,45 +1134,43 @@ function renderCF() {
 // ─── PACING ───────────────────────────────────────────────────────────────────
 function renderPacing() {
   const months=[{m:"Nov",a:5820,g:6200},{m:"Dec",a:7140,g:6800},{m:"Jan",a:5990,g:6100},{m:"Feb",a:6230,g:6300},{m:"Mar",a:7010,g:6900},{m:"Apr",a:6840,g:7100}];
-  const products=[{n:"Linear TV",r:3820,g:3900,p:98,c:"#6366f1"},{n:"CTV/OTT",r:1240,g:1300,p:95,c:"#8b5cf6"},{n:"Digital",r:680,g:920,p:74,c:"#f59e0b"},{n:"Social",r:510,g:580,p:88,c:"#06b6d4"},{n:"Audio",r:380,g:320,p:119,c:"#10b981"},{n:"Sports",r:210,g:280,p:75,c:"#ec4899"}];
+  const products=[{n:"Linear TV",r:3820,g:3900,p:98,c:"var(--amber)"},{n:"CTV/OTT",r:1240,g:1300,p:95,c:"#a78bfa"},{n:"Digital",r:680,g:920,p:74,c:"var(--blue)"},{n:"Social",r:510,g:580,p:88,c:"#06b6d4"},{n:"Audio",r:380,g:320,p:119,c:"var(--green)"},{n:"Sports",r:210,g:280,p:75,c:"#ec4899"}];
   const maxV = Math.max(...months.flatMap(m=>[m.a,m.g]));
-  return`<div class="flex-col">
-    <div class="card">
-      <div style="display:flex;justify-content:space-between;margin-bottom:16px">
-        <span style="font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.08em">MONTHLY REVENUE VS. GOAL</span>
-        <button class="ai-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('briefcro','Pacing Analysis')">Analyze</button>
+  return `<div class="col">
+    <div class="surface">
+      <div class="sec-hdr">
+        <span class="sec-title">Monthly Revenue vs. Goal</span>
+        <button class="btn-ai" style="font-size:10px;padding:5px 10px" onclick="openAI('briefcro','Pacing Analysis')">Analyze</button>
       </div>
-      <div class="chart-bars">
+      <div class="chart-wrap">
         ${months.map(m=>`<div class="chart-col">
-          <div class="chart-pair">
-            <div class="chart-bar" style="background:#e2e8f0;height:${(m.g/maxV)*100}%"></div>
-            <div class="chart-bar" style="background:${m.a>=m.g?'#10b981':'#6366f1'};height:${(m.a/maxV)*100}%;${m.a>=m.g?'box-shadow:0 0 10px #10b98140':''}"></div>
+          <div class="chart-bars-pair" style="height:90px">
+            <div class="chart-bar" style="background:var(--navy-4);height:${(m.g/maxV)*90}px"></div>
+            <div class="chart-bar" style="background:${m.a>=m.g?'var(--green)':'var(--indigo)'};height:${(m.a/maxV)*90}px;${m.a>=m.g?'box-shadow:0 0 8px #00d08540':''}"></div>
           </div>
-          <div class="chart-label">${m.m}</div>
+          <div class="chart-lbl">${m.m}</div>
         </div>`).join('')}
       </div>
-      <div class="chart-legend">
-        <div class="legend-item"><div class="legend-swatch" style="background:#e2e8f0"></div>Goal</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#6366f1"></div>Actual</div>
-        <div class="legend-item"><div class="legend-swatch" style="background:#10b981"></div>Beat</div>
+      <div style="display:flex;gap:16px;margin-top:10px">
+        ${[["var(--navy-4)","Goal"],["var(--indigo)","Actual"],["var(--green)","Beat"]].map(([c,l])=>`<div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;background:${c};border-radius:2px"></div><span style="font-size:10px;color:var(--text-3)">${l}</span></div>`).join('')}
       </div>
     </div>
-    <div class="card">
-      <div style="font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.08em;margin-bottom:14px">SELL-THROUGH BY PRODUCT — OSI DATA</div>
-      ${products.map(p=>`<div style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;margin-bottom:5px">
+    <div class="surface">
+      <div class="sec-hdr"><span class="sec-title">Sell-Through by Product — OSI Data</span></div>
+      ${products.map(p=>`<div style="margin-bottom:13px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
           <div style="display:flex;gap:8px;align-items:center">
-            <div style="width:8px;height:8px;border-radius:50%;background:${p.c}"></div>
-            <span style="font-size:12px;font-weight:600">${p.n}</span>
-            ${p.p>=110?chip("BEATING GOAL","#10b981"):''}
-            ${p.p<80?chip("NEEDS PUSH","#ef4444"):''}
+            <div style="width:7px;height:7px;border-radius:50%;background:${p.c}"></div>
+            <span style="font-size:12px;font-weight:500">${p.n}</span>
+            ${p.p>=110?badge("BEATING GOAL","green"):''}
+            ${p.p<80?badge("NEEDS PUSH","red"):''}
           </div>
           <div style="display:flex;gap:12px;align-items:center">
-            <span style="font-size:10px;color:#94a3b8;font-family:monospace">$${p.r}K / $${p.g}K</span>
-            <span style="font-size:13px;font-weight:900;color:${pctColor(p.p)};font-family:monospace;width:40px;text-align:right">${p.p}%</span>
+            <span class="num-xs" style="color:var(--text-3)">$${p.r}K / $${p.g}K</span>
+            <span class="num-sm" style="color:${clr(p.p)};width:40px;text-align:right">${p.p}%</span>
           </div>
         </div>
-        ${bar(p.p,p.c,8)}
+        ${bar(p.p,p.c,7)}
       </div>`).join('')}
     </div>
   </div>`;
@@ -650,83 +1179,82 @@ function renderPacing() {
 // ─── MARGIN ───────────────────────────────────────────────────────────────────
 function renderMargin() {
   const m = MARGIN;
-  const maxBar = Math.max(...m.byProduct.map(p=>p.margin));
-  return`<div class="flex-col">
-    <div class="hero-dark">
-      <div style="font-size:10px;font-weight:800;letter-spacing:.12em;color:#94a3b8;margin-bottom:10px">AMP SIGNAL — BLENDED MARGIN</div>
-      <div style="display:flex;gap:32px;align-items:flex-end;margin-bottom:16px;flex-wrap:wrap">
+  const maxBar = Math.max(...m.products.map(p=>p.margin));
+  return `<div class="col">
+    <div class="hero-dark" style="border-color:var(--amber)20">
+      <div style="display:flex;gap:32px;align-items:flex-end;flex-wrap:wrap">
         <div>
-          <div style="font-size:56px;font-weight:900;letter-spacing:-.04em;line-height:1;color:#f1f5f9">${m.current}%</div>
-          <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
-            <span style="font-size:13px;font-weight:800;color:#4ade80">+${(m.current-m.prior).toFixed(1)}pts YTD</span>
-            <span style="font-size:12px;color:#475569">vs ${m.prior}% prior year</span>
+          <div class="label" style="color:var(--amber);margin-bottom:8px">BLENDED MARGIN</div>
+          <div class="num-xl" style="color:var(--text)">${m.current}%</div>
+          <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
+            <span style="font-size:12px;font-weight:600;color:var(--green)">+${(m.current-m.prior).toFixed(1)}pts YTD</span>
+            <span style="font-size:11px;color:var(--text-3)">vs ${m.prior}% prior year</span>
           </div>
         </div>
         <div style="flex:1;min-width:200px">
           <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:11px;color:#94a3b8;font-weight:600">Progress to ${m.target}% target</span>
-            <span style="font-size:11px;color:#fbbf24;font-weight:800">${(m.target-m.current).toFixed(1)}pts to go</span>
+            <span style="font-size:11px;color:var(--text-3)">Progress to ${m.target}% target</span>
+            <span style="font-size:11px;color:var(--yellow);font-weight:700">${(m.target-m.current).toFixed(1)}pts to go</span>
           </div>
-          <div style="background:rgba(255,255,255,.2);border-radius:999px;height:10px;overflow:hidden">
-            <div style="width:${(m.current/m.target)*100}%;height:100%;background:linear-gradient(90deg,#818cf8,#a78bfa);border-radius:999px"></div>
+          <div style="background:var(--navy-4);border-radius:999px;height:8px;overflow:hidden">
+            <div style="width:${(m.current/m.target)*100}%;height:100%;background:linear-gradient(90deg,var(--amber),var(--yellow));border-radius:999px"></div>
           </div>
         </div>
-        <div style="text-align:right">
-          <div style="font-size:9px;font-weight:800;color:#475569;letter-spacing:.1em;margin-bottom:4px">6-MONTH TREND</div>
-          <div style="display:flex;gap:4px;align-items:flex-end;height:44px">
+        <div>
+          <div class="label" style="margin-bottom:6px">6-MONTH TREND</div>
+          <div class="sparkline">
             ${m.trend.map((v,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:3px">
-              <div style="width:16px;background:${i===m.trend.length-1?'#a78bfa':'#334155'};border-radius:3px 3px 0 0;height:${Math.max(4,((v-26)/16)*40)}px"></div>
-              <div style="font-size:8px;color:#475569">${m.trendLabels[i]}</div>
+              <div class="spark-bar" style="height:${Math.max(4,((v-26)/16)*36)}px;background:${i===m.trend.length-1?'var(--amber)':'var(--navy-5)'}"></div>
+              <div style="font-size:8px;color:var(--text-3)">${m.labels[i]}</div>
             </div>`).join('')}
           </div>
         </div>
       </div>
-      <div style="background:rgba(255,255,255,.07);border-radius:10px;padding:12px 16px;font-size:12px;color:#94a3b8;line-height:1.7">${m.insight}</div>
+      <div style="margin-top:16px;padding:12px 14px;background:rgba(255,255,255,.04);border-radius:8px;font-size:12px;color:var(--text-3);line-height:1.7">
+        ${MARGIN.byRegion[0].name} — margin expanding +2.4pts YTD driven by digital mix shift. Every 1pt gain in digital mix adds ~0.8pts to blended margin. Linear TV remains 41.6% of contribution at only 31% margin.
+      </div>
     </div>
-    <div class="grid-3-2">
-      <div class="card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <div style="font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.08em">MARGIN BY PRODUCT LINE</div>
-          <button class="ai-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('margin','Margin Analysis')">AI Analysis</button>
+    <div class="g32">
+      <div class="surface">
+        <div class="sec-hdr">
+          <span class="sec-title">Margin by Product Line</span>
+          <button class="btn-ai" style="font-size:10px;padding:5px 10px" onclick="openAI('margin','Margin Analysis')">AI Analysis</button>
         </div>
-        ${m.byProduct.map(p=>`<div style="margin-bottom:14px">
+        ${m.products.map(p=>`<div style="margin-bottom:14px">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
             <div style="display:flex;gap:8px;align-items:center">
-              <div style="width:8px;height:8px;border-radius:50%;background:${p.color};flex-shrink:0"></div>
-              <span style="font-size:12px;font-weight:600">${p.name}</span>
-              <span style="font-size:10px;color:#94a3b8">($${p.revenue}K)</span>
+              <div style="width:7px;height:7px;border-radius:50%;background:${p.color}"></div>
+              <span style="font-size:12px;font-weight:500">${p.name}</span>
+              <span style="font-size:10px;color:var(--text-3)">($${p.rev}K)</span>
             </div>
-            <div style="display:flex;gap:14px;align-items:center">
-              <span style="font-size:10px;color:#94a3b8">${p.contribution}% of margin</span>
-              <span style="font-size:14px;font-weight:900;color:${p.margin>=50?'#10b981':p.margin>=35?'#d97706':'#94a3b8'};font-family:monospace;width:42px;text-align:right">${p.margin}%</span>
-              <span style="font-size:11px;color:${p.trend==='up'?'#10b981':p.trend==='down'?'#ef4444':'#94a3b8'};font-weight:700">${p.trend==='up'?'▲':p.trend==='down'?'▼':'–'}</span>
+            <div style="display:flex;gap:12px;align-items:center">
+              <span style="font-size:10px;color:var(--text-3)">${p.contrib}% of total</span>
+              <span class="num-sm" style="color:${p.margin>=50?'var(--green)':p.margin>=35?'var(--amber)':'var(--text-3)'};width:38px;text-align:right">${p.margin}%</span>
+              <span style="font-size:11px;color:${trendClr(p.trend)};width:12px">${trendArrow(p.trend)}</span>
             </div>
           </div>
-          <div style="background:#e5e7eb;border-radius:999px;height:8px;overflow:hidden">
+          <div style="background:var(--navy-4);border-radius:999px;height:7px;overflow:hidden">
             <div style="width:${(p.margin/maxBar)*100}%;height:100%;background:${p.color};border-radius:999px"></div>
           </div>
         </div>`).join('')}
       </div>
-      <div class="card">
-        <div style="font-size:12px;font-weight:800;color:#94a3b8;letter-spacing:.08em;margin-bottom:16px">MARGIN BY REGION</div>
-        ${m.byRegion.map((r,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
-          <div style="width:28px;height:28px;border-radius:8px;background:${r.margin>=36?'#f0fdf4':r.margin>=32?'#fefce8':'#fef2f2'};display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:${r.margin>=36?'#16a34a':r.margin>=32?'#d97706':'#dc2626'};flex-shrink:0">${i+1}</div>
+      <div class="surface">
+        <div class="sec-hdr"><span class="sec-title">Margin by Region</span></div>
+        ${m.regions.map((r,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
+          <div style="width:24px;height:24px;border-radius:6px;background:var(--navy-4);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:var(--text-3);flex-shrink:0">${i+1}</div>
           <div style="flex:1">
             <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-              <span style="font-size:12px;font-weight:600">${r.name}</span>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="font-size:11px;color:${r.trend==='up'?'#10b981':r.trend==='down'?'#ef4444':'#94a3b8'};font-weight:700">${r.trend==='up'?'▲':r.trend==='down'?'▼':'–'}</span>
-                <span style="font-size:13px;font-weight:900;color:${r.margin>=36?'#10b981':r.margin>=32?'#d97706':'#dc2626'};font-family:monospace">${r.margin}%</span>
+              <span style="font-size:11px;font-weight:500">${r.name}</span>
+              <div style="display:flex;gap:6px;align-items:center">
+                <span style="color:${trendClr(r.trend)};font-size:11px">${trendArrow(r.trend)}</span>
+                <span class="num-xs" style="color:${r.margin>=36?'var(--green)':r.margin>=32?'var(--amber)':'var(--red)'}">${r.margin}%</span>
               </div>
             </div>
-            <div style="background:#e5e7eb;border-radius:999px;height:6px;overflow:hidden">
-              <div style="width:${(r.margin/42)*100}%;height:100%;background:${r.margin>=36?'#10b981':r.margin>=32?'#f59e0b':'#ef4444'};border-radius:999px"></div>
+            <div style="background:var(--navy-4);border-radius:999px;height:5px;overflow:hidden">
+              <div style="width:${(r.margin/42)*100}%;height:100%;background:${r.margin>=36?'var(--green)':r.margin>=32?'var(--amber)':'var(--red)'};border-radius:999px"></div>
             </div>
           </div>
         </div>`).join('')}
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid #f1f5f9;font-size:11px;color:#64748b;line-height:1.6">
-          <b style="color:#dc2626">Watch:</b> Midwest (28.4%) and Central (27.1%) are margin drags. Low digital mix is the common cause.
-        </div>
       </div>
     </div>
   </div>`;
@@ -734,37 +1262,35 @@ function renderMargin() {
 
 // ─── TEAM ─────────────────────────────────────────────────────────────────────
 function renderTeam() {
-  return`<div class="flex-col">
-    <div style="background:#fef2f2;border:1.5px solid #fecaca;border-radius:12px;padding:12px 16px">
-      <span style="font-size:12px;font-weight:800;color:#dc2626">ACTION NEEDED: </span>
-      <span style="font-size:12px;color:#991b1b">Sun Valley Toyota renewal May 28 — 11 days no contact in Dynamics, OSI shows 58% spend decline. Assign Jordan Patel urgent call today.</span>
+  return `<div class="col">
+    <div style="background:linear-gradient(90deg,#1a0000,#140500);border:1px solid #ff444425;border-radius:10px;padding:12px 16px;font-size:12px">
+      <span style="color:var(--red);font-weight:700">ACTION NEEDED: </span>
+      <span style="color:var(--text-2)">Sun Valley Toyota renewal May 28 — 11 days no contact in Dynamics, OSI shows 58% spend decline. Assign Jordan Patel urgent call today.</span>
     </div>
     ${SELLERS.map(s=>`
-    <div class="card seller-card" id="seller-${s.id}" style="opacity:${state.done['seller_'+s.id]?0.6:1}">
+    <div style="background:var(--navy-2);border:1px solid var(--border);border-radius:12px;padding:16px;opacity:${S.done['seller_'+s.id]?0.5:1}">
       <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-        <div class="seller-avatar" style="background:${pctBg(s.pct)};color:${pctColor(s.pct)}">${s.name.split(' ').map(n=>n[0]).join('')}</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:700">${s.name}</div>
-          <div style="font-size:11px;color:#94a3b8">${s.title}</div>
+        <div onclick="drillSeller('${s.id}')" style="width:38px;height:38px;border-radius:9px;background:var(--navy-4);border:1px solid var(--border-2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:${clr(s.pct)};flex-shrink:0;cursor:pointer">${s.name.split(' ').map(n=>n[0]).join('')}</div>
+        <div style="flex:1;cursor:pointer" onclick="drillSeller('${s.id}')">
+          <div style="font-size:13px;font-weight:600">${s.name}</div>
+          <div style="font-size:11px;color:var(--text-3)">${s.title}</div>
         </div>
-        <div style="flex:1">${bar(s.pct,null,8)}
-          <div style="display:flex;justify-content:space-between;margin-top:3px">
-            <span style="font-size:10px;color:#94a3b8;font-family:monospace">${fmt(s.revenue)}</span>
-            <span style="font-size:11px;font-weight:800;color:${pctColor(s.pct)}">${s.pct}%</span>
+        <div style="flex:1.5">${bar(s.pct,null,7)}
+          <div style="display:flex;justify-content:space-between;margin-top:4px">
+            <span class="num-xs" style="color:var(--text-3)">${fmt(s.revenue)}</span>
+            <span class="num-xs" style="color:${clr(s.pct)}">${s.pct}%</span>
           </div>
         </div>
-        <div style="display:flex;gap:6px">
-          ${s.risk>0?chip(`${s.risk} risk`,"#ef4444"):''}
-          ${chip(`${s.digital}% dig`,s.digital>=28?"#10b981":"#f59e0b")}
+        <div style="display:flex;gap:5px">
+          ${s.risk>0?badge(`${s.risk} risk`,'red'):''}
+          ${badge(`${s.digital}% dig`,s.digital>=28?'green':'amber')}
         </div>
-        <button class="ai-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('talking','Coach — ${s.name}')">Coach</button>
+        <button class="btn-ai" style="font-size:10px;padding:5px 10px" onclick="openAI('talking','Coach — ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital mix: ${s.digital}%. New biz: ${s.newBiz} vs 4 target. At-risk accounts: ${s.risk}. Give me a coaching brief and 3 specific action items for today.')">Coach</button>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <span style="font-size:10px;font-weight:700;color:#94a3b8;flex-shrink:0">NOTE</span>
-        <input class="note-input" placeholder="Note for ${s.name.split(' ')[0]}..." value="${state.notes['seller_'+s.id]||''}" oninput="updateNote('seller_${s.id}',this.value)">
-        <button class="${state.done['seller_'+s.id]?'done-btn done':'done-btn'}" onclick="toggleDone('seller_${s.id}')">
-          ${state.done['seller_'+s.id]?'Done ✓':'Mark Done'}
-        </button>
+        <span style="font-size:10px;font-weight:700;color:var(--text-3);flex-shrink:0">NOTE</span>
+        <input class="note-input" placeholder="Add note for ${s.name.split(' ')[0]}..." value="${S.notes['seller_'+s.id]||''}" oninput="S.notes['seller_${s.id}']=this.value">
+        <button class="done-btn ${S.done['seller_'+s.id]?'done':''}" onclick="toggleDone('seller_${s.id}')">${S.done['seller_'+s.id]?'Done ✓':'Mark Done'}</button>
       </div>
     </div>`).join('')}
   </div>`;
@@ -773,58 +1299,44 @@ function renderTeam() {
 // ─── QUEUE ────────────────────────────────────────────────────────────────────
 function renderQueue() {
   const total = QUEUE.reduce((s,q)=>s+(q.revenue||0),0);
-  return`<div class="flex-col">
-    <div class="hero-indigo">
-      <div style="font-size:12px;font-weight:800;margin-bottom:1px">Signal AI Action Queue</div>
-      <div style="font-size:11px;color:#c4b5fd">Ranked by revenue + urgency — OSI Traffic + Dynamics CRM — ${QUEUE.length} items — Est. impact: ${fmt(total)}</div>
+  return `<div class="col">
+    <div style="background:linear-gradient(135deg,var(--navy-3),var(--navy-2));border:1px solid var(--indigo)30;border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:12px">
+      <div style="flex:1">
+        <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:2px">Signal AI Action Queue</div>
+        <div style="font-size:11px;color:var(--text-3)">Ranked by revenue + urgency · OSI + Dynamics · ${QUEUE.length} items · Est. impact: <span style="color:var(--green)">${fmt(total)}</span></div>
+      </div>
     </div>
     ${QUEUE.map(q=>`
-    <div class="card queue-item" style="border-left:4px solid ${q.pri==='P1'?'#ef4444':q.pri==='P2'?'#f59e0b':'#e2e8f0'};opacity:${state.done['queue_'+q.id]?0.55:1}">
-      <div style="display:flex;gap:12px;margin-bottom:10px">
+    <div style="background:var(--navy-2);border:1px solid ${q.pri==='P1'?'#ff444425':q.pri==='P2'?'#f5a62325':'var(--border)'};border-left:3px solid ${q.pri==='P1'?'var(--red)':q.pri==='P2'?'var(--amber)':'var(--border)'};border-radius:12px;padding:16px;opacity:${S.done['queue_'+q.id]?0.5:1}">
+      <div style="display:flex;gap:12px;margin-bottom:12px;cursor:pointer" onclick="drillQueue('${q.id}')">
         <div style="flex:1">
-          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
-            ${chip(q.pri,q.pri==='P1'?"#ef4444":q.pri==='P2'?"#f59e0b":"#94a3b8")}
-            <span class="queue-account">${q.account}</span>
-            ${q.revenue?`<span style="font-size:12px;font-weight:800;color:#10b981;margin-left:auto;font-family:monospace">${fmt(q.revenue)}</span>`:''}
+          <div style="display:flex;gap:7px;align-items:center;margin-bottom:6px">
+            ${badge(q.pri,q.pri==='P1'?'red':q.pri==='P2'?'amber':'dim')}
+            <span style="font-size:13px;font-weight:700">${q.account}</span>
+            ${q.revenue?`<span class="num-xs" style="color:var(--green);margin-left:auto">${fmt(q.revenue)}</span>`:''}
           </div>
-          <div class="queue-action">${q.action}</div>
+          <div style="font-size:12px;color:var(--text-2);line-height:1.6">${q.action}</div>
         </div>
-        <div class="queue-due">
-          <div class="queue-due-label">DUE</div>
-          <div class="queue-due-val" style="color:${q.due==='Today'?'#dc2626':q.due==='Tomorrow'?'#d97706':'#64748b'}">${q.due}</div>
+        <div style="text-align:right;flex-shrink:0">
+          <div class="label" style="margin-bottom:4px">DUE</div>
+          <div style="font-size:12px;font-weight:700;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--text-3)'}">${q.due}</div>
         </div>
       </div>
       <div style="display:flex;gap:8px;align-items:center">
-        <button class="ai-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('talking','Talking Points')">Talking Points</button>
-        ${q.type==='risk'?`<button class="danger-btn" style="font-size:10px;padding:5px 10px" onclick="openAI('renewal','Renewal Rescue')">Rescue Plan</button>`:''}
-        <input class="note-input" placeholder="Add note..." value="${state.notes['queue_'+q.id]||''}" oninput="updateNote('queue_${q.id}',this.value)" style="font-size:11px">
-        <button class="${state.done['queue_'+q.id]?'done-btn done':'done-btn'}" onclick="toggleDone('queue_${q.id}')">
-          ${state.done['queue_'+q.id]?'Done ✓':'Mark Done'}
-        </button>
+        <button class="btn-ai" style="font-size:10px;padding:5px 10px" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Action needed: ${q.action}. Priority: ${q.pri}. Due: ${q.due}. Generate specific talking points for outreach today.')">Talking Points</button>
+        ${q.type==='risk'?`<button class="btn-danger" style="font-size:10px;padding:5px 10px" onclick="openAI('renewal','Rescue Plan',true,'Sun Valley Toyota renewal rescue: 58% spend decline, renewal May 28, 11 days no contact in Dynamics. Build a specific rescue plan with meeting agenda and fallback positions.')">Rescue Plan</button>`:''}
+        <input class="note-input" placeholder="Add note..." value="${S.notes['queue_'+q.id]||''}" oninput="S.notes['queue_${q.id}']=this.value" style="font-size:11px">
+        <button class="done-btn ${S.done['queue_'+q.id]?'done':''}" onclick="toggleDone('queue_${q.id}')">${S.done['queue_'+q.id]?'Done ✓':'Mark Done'}</button>
       </div>
     </div>`).join('')}
   </div>`;
 }
 
 // ─── ACTIONS ──────────────────────────────────────────────────────────────────
-function switchPersona(p) {
-  state.persona = p;
-  state.tab = TABS_BY_PERSONA[p][0];
-  render();
-}
-function switchTab(t) {
-  state.tab = t;
-  render();
-}
-function updateNote(key, val) {
-  state.notes[key] = val;
-}
-function toggleDone(key) {
-  state.done[key] = !state.done[key];
-  render();
-}
+function switchPersona(p) { S.persona=p; S.tab=NAV[p][0].label; render(); }
+function switchTab(t) { S.tab=t; render(); }
+function toggleDone(k) { S.done[k]=!S.done[k]; render(); }
 
-// ─── INIT ─────────────────────────────────────────────────────────────────────
 render();
 </script>
 </body>
