@@ -3,125 +3,157 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>AMP Signal — Sales Intelligence</title>
+<title>AMP Signal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800;900&family=Barlow+Condensed:wght@600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --black:#0a0a0a; --b2:#111; --b3:#161616; --b4:#1e1e1e; --b5:#282828; --b6:#333;
-  --lime:#c5f135; --lime2:#d4f755; --lime-dim:rgba(197,241,53,.12); --lime-mid:rgba(197,241,53,.25);
-  --white:#f0f0f0; --w2:#aaa; --w3:#666; --w4:#444;
-  --green:#22c55e; --gdim:rgba(34,197,94,.15);
-  --red:#ef4444;   --rdim:rgba(239,68,68,.15);
-  --amber:#f59e0b; --adim:rgba(245,158,11,.15);
-  --blue:#60a5fa;
-  --border:#242424; --border2:#303030;
+:root {
+  /* AMP exact brand colors from ampmediasales.com */
+  --navy:    #0a1634;
+  --navy2:   #0d1c3f;
+  --navy3:   #111f45;
+  --navy4:   #162550;
+  --navy5:   #1d2e5e;
+  --navy6:   #243468;
+  --teal:    #00ffae;
+  --teal2:   #00e89e;
+  --teal-d:  rgba(0,255,174,.12);
+  --teal-m:  rgba(0,255,174,.25);
+  --white:   #ffffff;
+  --w2:      #c8d4e8;
+  --w3:      #7a90b0;
+  --w4:      #4a6080;
+  --green:   #00ffae;
+  --gdim:    rgba(0,255,174,.12);
+  --red:     #ff4d6a;
+  --rdim:    rgba(255,77,106,.12);
+  --amber:   #ffbb33;
+  --adim:    rgba(255,187,51,.12);
+  --blue:    #4ea8ff;
+  --border:  rgba(255,255,255,.07);
+  --border2: rgba(255,255,255,.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);font-size:13px;overflow:hidden;height:100vh}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--b5)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideIn{from{opacity:0;transform:translateX(32px)}to{opacity:1;transform:translateX(0)}}
-@keyframes slideUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-@keyframes shimmer{0%,100%{opacity:.3}50%{opacity:.6}}
+body{font-family:'Lato',sans-serif;background:var(--navy);color:var(--white);font-size:13px;overflow:hidden;height:100vh}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--navy5)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes shimmer{0%,100%{opacity:.25}50%{opacity:.55}}
 
 /* TOPBAR */
 #app{display:flex;flex-direction:column;height:100vh}
-#topbar{height:52px;background:var(--b2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 18px;gap:0;flex-shrink:0}
-.logo{display:flex;align-items:center;gap:10px;margin-right:18px;text-decoration:none}
-.logo-box{width:32px;height:32px;background:var(--lime);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:var(--black);letter-spacing:-.02em;flex-shrink:0}
-.logo-text{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:.05em;text-transform:uppercase;color:var(--white);line-height:1}
-.logo-sub{font-family:'Barlow',sans-serif;font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--w3);margin-top:1px}
+#topbar{
+  height:52px;background:var(--navy2);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 18px;gap:0;flex-shrink:0
+}
+.logo{display:flex;align-items:center;gap:10px;margin-right:20px}
+.logo-sq{
+  width:32px;height:32px;background:var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Lato',sans-serif;font-weight:900;font-size:13px;
+  color:var(--navy);letter-spacing:.02em
+}
+.logo-name{font-family:'Lato',sans-serif;font-weight:900;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:var(--white)}
+.logo-name span{color:var(--teal)}
+.logo-sub{font-size:9px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--w3)}
+
 .tb-sep{width:1px;height:22px;background:var(--border);margin:0 16px;flex-shrink:0}
-.demo-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--w3);border:1px solid var(--b5);padding:3px 8px;margin-right:10px}
-.persona-wrap{display:flex;align-items:center;gap:8px}
-.persona-tabs{display:flex;gap:2px;background:var(--b4);border:1px solid var(--border);padding:3px}
-.ptab{background:none;border:none;padding:4px 12px;font-family:'Barlow',sans-serif;font-size:11px;font-weight:600;color:var(--w3);cursor:pointer;letter-spacing:.04em;text-transform:uppercase;transition:all .12s}
-.ptab.on{background:var(--lime);color:var(--black);font-weight:800}
+
+.demo-label{font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--w4);border:1px solid var(--navy5);padding:3px 8px;margin-right:10px}
+
+.ptabs{display:flex;gap:2px;background:var(--navy3);border:1px solid var(--border);padding:3px}
+.ptab{background:none;border:none;padding:4px 12px;font-family:'Lato',sans-serif;font-size:10px;font-weight:900;color:var(--w3);cursor:pointer;letter-spacing:.06em;text-transform:uppercase;transition:all .12s}
+.ptab:hover{color:var(--white)}
+.ptab.on{background:var(--teal);color:var(--navy)}
+
 .tb-r{margin-left:auto;display:flex;align-items:center;gap:10px}
-.live-tag{display:flex;align-items:center;gap:5px;border:1px solid var(--green);padding:3px 10px;font-size:10px;font-weight:800;color:var(--green);letter-spacing:.1em;text-transform:uppercase}
-.live-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-.brief-btn{background:var(--lime);border:none;padding:7px 18px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--black);cursor:pointer;transition:background .12s}
-.brief-btn:hover{background:var(--lime2)}
-.user-box{width:30px;height:30px;background:var(--b4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--w2);letter-spacing:.03em}
+.live-tag{display:flex;align-items:center;gap:5px;border:1px solid rgba(0,255,174,.4);padding:3px 10px;font-size:10px;font-weight:900;color:var(--teal);letter-spacing:.1em;text-transform:uppercase}
+.live-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
+.brief-btn{background:var(--teal);border:none;padding:7px 18px;font-family:'Lato',sans-serif;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);cursor:pointer;transition:background .12s}
+.brief-btn:hover{background:var(--teal2)}
+.user-box{width:30px;height:30px;background:var(--navy4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;color:var(--w2);letter-spacing:.04em}
 
 /* NOTIF */
-#notif{background:var(--b2);border-bottom:2px solid var(--lime);padding:8px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0}
+#notif{background:rgba(0,255,174,.06);border-bottom:2px solid var(--teal);padding:8px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0}
 #notif.hidden{display:none}
-.notif-pill{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--lime);color:var(--black);padding:3px 9px;flex-shrink:0}
-.notif-txt{font-size:12px;color:var(--w2);flex:1}.notif-txt b{color:var(--lime);font-weight:700}
+.notif-pill{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:var(--navy);padding:3px 9px;flex-shrink:0}
+.notif-txt{font-size:12px;color:var(--w2);flex:1}.notif-txt b{color:var(--teal);font-weight:900}
 .notif-x{background:none;border:none;color:var(--w3);cursor:pointer;font-size:16px;line-height:1;padding:0}
 
 /* BODY */
 #body{display:flex;flex:1;overflow:hidden}
 
 /* SIDEBAR */
-#sidebar{width:192px;background:var(--b2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;padding:14px 0}
-.sb-hd{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--w3);padding:0 14px;margin-bottom:5px}
-.nb{width:100%;background:none;border:none;padding:8px 14px;font-family:'Barlow',sans-serif;font-size:13px;font-weight:500;color:var(--w3);cursor:pointer;text-align:left;display:flex;align-items:center;gap:8px;transition:all .1s;border-left:2px solid transparent;margin-bottom:1px}
-.nb:hover{background:var(--b3);color:var(--white)}
-.nb.on{background:var(--b3);color:var(--white);font-weight:700;border-left-color:var(--lime)}
-.nb-ic{font-size:10px;opacity:.4;width:14px;text-align:center}.nb.on .nb-ic{opacity:1;color:var(--lime)}
+#sidebar{width:192px;background:var(--navy2);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;padding:14px 0}
+.sb-hd{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--w4);padding:0 14px;margin-bottom:6px}
+.nb{width:100%;background:none;border:none;padding:8px 14px;font-family:'Lato',sans-serif;font-size:13px;font-weight:400;color:var(--w3);cursor:pointer;text-align:left;display:flex;align-items:center;gap:8px;transition:all .1s;border-left:2px solid transparent;margin-bottom:1px}
+.nb:hover{background:var(--navy3);color:var(--white)}
+.nb.on{background:var(--navy3);color:var(--white);font-weight:900;border-left-color:var(--teal)}
+.nb-ic{font-size:10px;opacity:.4;width:14px;text-align:center}.nb.on .nb-ic{opacity:1;color:var(--teal)}
 .sb-div{height:1px;background:var(--border);margin:12px 14px}
 .cf-sb{padding:0 14px}
 .cfm{margin-bottom:9px}
 .cfm-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
-.cfm-n{font-size:10px;color:var(--w3);line-height:1.3}.cfm-v{font-family:'Space Mono',monospace;font-size:9px;font-weight:700}
-.mtrack{height:3px;background:var(--b5);border-radius:1px;overflow:hidden}.mfill{height:100%;border-radius:1px}
+.cfm-n{font-size:10px;color:var(--w4)}.cfm-v{font-family:'Space Mono',monospace;font-size:9px;font-weight:700}
+.mtrack{height:3px;background:var(--navy4);overflow:hidden}.mfill{height:100%}
 .sb-bot{margin-top:auto;padding:12px 14px;border-top:1px solid var(--border)}
 .src{display:flex;align-items:center;gap:7px;padding:3px 0}
-.src-d{width:4px;height:4px;border-radius:50%;background:var(--green)}
-.src-l{font-size:10px;color:var(--w3)}
+.src-d{width:4px;height:4px;border-radius:50%;background:var(--teal)}
+.src-l{font-size:10px;color:var(--w4)}
 
 /* CONTENT */
-#content{flex:1;overflow-y:auto;background:var(--black)}
+#content{flex:1;overflow-y:auto;background:var(--navy)}
 #ci{padding:20px 22px 32px}
 .ph{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
-.pt{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:800;letter-spacing:.02em;text-transform:uppercase;line-height:1}
-.ps{font-size:11px;color:var(--w3);margin-top:4px;font-weight:500}
+.pt{font-size:24px;font-weight:900;letter-spacing:.01em;text-transform:uppercase;line-height:1}
+.ps{font-size:11px;color:var(--w3);margin-top:4px;font-weight:400}
 
 /* SURFACES */
-.s{background:var(--b2);border:1px solid var(--border);padding:18px}
-.s-sm{background:var(--b2);border:1px solid var(--border);padding:14px}
-.s-hero{background:var(--b3);border:1px solid var(--border2);padding:22px 24px}
+.s{background:var(--navy2);border:1px solid var(--border);padding:18px}
+.s-sm{background:var(--navy2);border:1px solid var(--border);padding:14px}
+.s-dark{background:var(--navy3);border:1px solid var(--border);padding:18px}
 
-/* HERO LIME */
-.hero-lime{background:var(--lime);padding:22px 24px;color:var(--black)}
-.hero-lime .lbl{color:rgba(0,0,0,.55)}
-.hero-lime .num-xl{color:var(--black)}
+/* HERO TEAL — exact AMP brand treatment */
+.hero-teal{
+  background:var(--teal);padding:22px 24px;color:var(--navy);
+  position:relative;overflow:hidden
+}
+.hero-teal .lbl{color:rgba(10,22,52,.55)}
+.hero-teal .num-xl,.hero-teal .num-lg{color:var(--navy)}
 
 /* TYPOGRAPHY */
-.lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--w3)}
-.num-xl{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;letter-spacing:-.02em;line-height:1}
-.num-lg{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.01em;line-height:1}
+.lbl{font-size:9px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--w3)}
+.num-xl{font-size:48px;font-weight:900;letter-spacing:-.02em;line-height:1}
+.num-lg{font-size:30px;font-weight:900;letter-spacing:-.01em;line-height:1}
 .num-md{font-family:'Space Mono',monospace;font-size:18px;font-weight:700;line-height:1}
 .num-sm{font-family:'Space Mono',monospace;font-size:13px;font-weight:700}
 .num-xs{font-family:'Space Mono',monospace;font-size:11px}
 
 /* TAGS */
-.tag{display:inline-flex;align-items:center;font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px}
-.tag-lime{background:var(--lime);color:var(--black)}
-.tag-green{background:var(--gdim);color:var(--green);border:1px solid rgba(34,197,94,.3)}
-.tag-red{background:var(--rdim);color:var(--red);border:1px solid rgba(239,68,68,.3)}
-.tag-amber{background:var(--adim);color:var(--amber);border:1px solid rgba(245,158,11,.3)}
-.tag-dim{background:var(--b4);color:var(--w2);border:1px solid var(--border2)}
-.tag-blue{background:rgba(96,165,250,.12);color:var(--blue);border:1px solid rgba(96,165,250,.25)}
+.tag{display:inline-flex;align-items:center;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px}
+.tag-teal{background:var(--teal);color:var(--navy)}
+.tag-green{background:var(--gdim);color:var(--teal);border:1px solid rgba(0,255,174,.25)}
+.tag-red{background:var(--rdim);color:var(--red);border:1px solid rgba(255,77,106,.25)}
+.tag-amber{background:var(--adim);color:var(--amber);border:1px solid rgba(255,187,51,.25)}
+.tag-dim{background:var(--navy4);color:var(--w3);border:1px solid var(--border2)}
+.tag-blue{background:rgba(78,168,255,.1);color:var(--blue);border:1px solid rgba(78,168,255,.2)}
 
 /* PROGRESS */
-.track{background:var(--b5);overflow:hidden}.fill{height:100%;transition:width .7s ease}
+.track{background:var(--navy4);overflow:hidden}.fill{height:100%;transition:width .7s ease}
 
 /* BUTTONS */
-.btn-ai{background:var(--lime);border:none;padding:7px 14px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--black);cursor:pointer;transition:background .12s;white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
-.btn-ai:hover{background:var(--lime2)}
-.btn-ghost{background:var(--b4);border:1px solid var(--border2);padding:7px 12px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;color:var(--w2);cursor:pointer;transition:all .12s}
-.btn-ghost:hover{background:var(--b5);color:var(--white)}
-.btn-red{background:var(--rdim);border:1px solid rgba(239,68,68,.3);padding:7px 12px;font-family:'Barlow',sans-serif;font-size:12px;font-weight:700;color:var(--red);cursor:pointer}
-.note-in{background:var(--b3);border:1px solid var(--border);padding:6px 10px;font-family:'Barlow',sans-serif;font-size:12px;color:var(--white);outline:none;flex:1;transition:border .12s}
-.note-in::placeholder{color:var(--w4)}
-.note-in:focus{border-color:var(--lime)}
-.done-btn{background:var(--b4);border:1px solid var(--border2);padding:6px 12px;font-family:'Barlow',sans-serif;font-size:11px;font-weight:700;color:var(--w3);cursor:pointer;flex-shrink:0;transition:all .12s}
-.done-btn.done{background:var(--gdim);border-color:rgba(34,197,94,.3);color:var(--green)}
+.btn-ai{background:var(--teal);border:none;padding:7px 14px;font-family:'Lato',sans-serif;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);cursor:pointer;transition:background .12s;white-space:nowrap}
+.btn-ai:hover{background:var(--teal2)}
+.btn-ghost{background:var(--navy3);border:1px solid var(--border2);padding:7px 12px;font-family:'Lato',sans-serif;font-size:12px;font-weight:400;color:var(--w2);cursor:pointer;transition:all .12s}
+.btn-ghost:hover{background:var(--navy4);color:var(--white)}
+.btn-red{background:var(--rdim);border:1px solid rgba(255,77,106,.25);padding:7px 12px;font-family:'Lato',sans-serif;font-size:11px;font-weight:900;color:var(--red);cursor:pointer}
+.note-in{background:var(--navy3);border:1px solid var(--border);padding:6px 10px;font-family:'Lato',sans-serif;font-size:12px;color:var(--white);outline:none;flex:1;transition:border .12s}
+.note-in::placeholder{color:var(--w4)}.note-in:focus{border-color:var(--teal)}
+.done-btn{background:var(--navy3);border:1px solid var(--border2);padding:6px 12px;font-family:'Lato',sans-serif;font-size:11px;font-weight:900;color:var(--w3);cursor:pointer;flex-shrink:0;transition:all .12s}
+.done-btn.done{background:var(--gdim);border-color:rgba(0,255,174,.25);color:var(--teal)}
 
 /* GRIDS */
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
@@ -133,37 +165,36 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .row{display:flex;gap:12px}
 
 /* DATA ROWS */
-.dr{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);gap:10px;cursor:pointer;transition:background .1s;margin:0 -8px;padding-left:8px;padding-right:8px}
-.dr:last-child{border-bottom:none}
-.dr:hover{background:var(--b3)}
-.pri-bar{width:3px;border-radius:1px;flex-shrink:0;align-self:stretch;min-height:18px}
+.dr{display:flex;align-items:center;padding:10px 6px;border-bottom:1px solid var(--border);gap:10px;cursor:pointer;transition:background .1s;margin:0 -6px}
+.dr:last-child{border-bottom:none}.dr:hover{background:var(--navy3)}
+.pri-bar{width:3px;flex-shrink:0;align-self:stretch;min-height:18px}
 
 /* SECTION HEADER */
 .sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.sh-t{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--w2)}
+.sh-t{font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--w3)}
 
 /* AI MODAL */
-#ai-ov{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(3px)}
+#ai-ov{position:fixed;inset:0;background:rgba(10,22,52,.85);z-index:500;display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
 #ai-ov.hidden{display:none}
-#ai-p{background:var(--b2);border:1px solid var(--border2);border-top:3px solid var(--lime);width:100%;max-width:740px;max-height:56vh;display:flex;flex-direction:column;animation:slideUp .2s ease;box-shadow:0 -16px 48px rgba(0,0,0,.6)}
+#ai-p{background:var(--navy2);border:1px solid var(--border2);border-top:3px solid var(--teal);width:100%;max-width:740px;max-height:56vh;display:flex;flex-direction:column;animation:slideUp .2s ease;box-shadow:0 -20px 60px rgba(0,0,0,.5)}
 .ai-hdr{display:flex;align-items:center;gap:8px;padding:12px 18px;border-bottom:1px solid var(--border)}
-.ai-dot{width:6px;height:6px;background:var(--lime);animation:pulse 2s infinite}
-.ai-ttl{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--lime)}
-.ai-chip{font-size:10px;color:var(--w3);background:var(--b4);padding:2px 8px;font-weight:600}
-.ai-x{margin-left:auto;background:var(--b4);border:1px solid var(--border);width:24px;height:24px;cursor:pointer;color:var(--w2);font-size:14px;display:flex;align-items:center;justify-content:center;font-family:'Barlow',sans-serif}
+.ai-dot{width:6px;height:6px;background:var(--teal);animation:pulse 2s infinite}
+.ai-ttl{font-size:11px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
+.ai-chip{font-size:10px;color:var(--w3);background:var(--navy3);padding:2px 8px;font-weight:400}
+.ai-x{margin-left:auto;background:var(--navy3);border:1px solid var(--border);width:24px;height:24px;cursor:pointer;color:var(--w2);font-size:14px;display:flex;align-items:center;justify-content:center}
 .ai-body{flex:1;overflow-y:auto;padding:16px 18px}
-.ai-out{font-size:13px;color:var(--w2);line-height:1.95;white-space:pre-wrap}
+.ai-out{font-size:13px;color:var(--w2);line-height:2;white-space:pre-wrap}
 .ai-load{display:flex;flex-direction:column;gap:8px}
 .ai-msg{font-size:11px;color:var(--w3);font-style:italic;margin-bottom:4px}
-.sk{height:8px;background:var(--b4);animation:shimmer 1.4s infinite}
+.sk{height:8px;background:var(--navy4);animation:shimmer 1.4s infinite}
 
-/* DRILL */
-#dr-ov{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:400;display:flex;align-items:center;justify-content:flex-end;backdrop-filter:blur(2px)}
+/* DRILL PANEL */
+#dr-ov{position:fixed;inset:0;background:rgba(10,22,52,.75);z-index:400;display:flex;align-items:center;justify-content:flex-end;backdrop-filter:blur(2px)}
 #dr-ov.hidden{display:none}
-#dr-p{background:var(--b2);border-left:1px solid var(--border2);width:400px;height:100%;display:flex;flex-direction:column;animation:slideIn .2s ease;overflow-y:auto}
-.dr-hdr{padding:18px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--b2);z-index:5;display:flex;align-items:flex-start;gap:12px}
-.dr-back{background:var(--b4);border:1px solid var(--border2);padding:5px 12px;cursor:pointer;font-family:'Barlow',sans-serif;font-size:11px;font-weight:700;color:var(--w2);flex-shrink:0;text-transform:uppercase;letter-spacing:.04em}
-.dr-ttl{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1}
+#dr-p{background:var(--navy2);border-left:1px solid var(--border2);width:400px;height:100%;display:flex;flex-direction:column;animation:slideIn .2s ease;overflow-y:auto}
+.dr-hdr{padding:18px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--navy2);z-index:5;display:flex;align-items:flex-start;gap:12px}
+.dr-back{background:var(--navy3);border:1px solid var(--border2);padding:5px 12px;cursor:pointer;font-family:'Lato',sans-serif;font-size:10px;font-weight:900;color:var(--w2);text-transform:uppercase;letter-spacing:.06em}
+.dr-ttl{font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:.01em;line-height:1}
 .dr-sub{font-size:11px;color:var(--w3);margin-top:3px}
 .dr-body{padding:18px 20px;display:flex;flex-direction:column;gap:14px}
 
@@ -172,24 +203,22 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 .cc{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
 .cpair{display:flex;gap:2px;align-items:flex-end;width:100%}
 .cb{flex:1;min-height:3px}
-.clbl{font-size:9px;color:var(--w3);font-weight:600}
+.clbl{font-size:9px;color:var(--w3);font-weight:900;letter-spacing:.04em}
 </style>
 </head>
 <body>
 <div id="app">
   <div id="topbar">
     <div class="logo">
-      <div class="logo-box">A</div>
+      <div class="logo-sq">A</div>
       <div>
-        <div class="logo-text">AMP Signal</div>
-        <div class="logo-sub">Sales Intelligence Platform</div>
+        <div class="logo-name"><span>AMP</span> Signal</div>
+        <div class="logo-sub">Sales Intelligence</div>
       </div>
     </div>
     <div class="tb-sep"></div>
-    <div class="demo-tag">DEMO VIEW</div>
-    <div class="persona-wrap">
-      <div class="persona-tabs" id="ptabs"></div>
-    </div>
+    <span class="demo-label">Demo View</span>
+    <div class="ptabs" id="ptabs"></div>
     <div class="tb-r">
       <div class="live-tag"><div class="live-dot"></div>LIVE</div>
       <button class="brief-btn" id="brief-btn">Signal Brief</button>
@@ -199,13 +228,13 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 
   <div id="notif">
     <div class="notif-pill">Scatter Alert</div>
-    <span class="notif-txt"><b>$218K Q2 prime returned in Baltimore</b> — OSI data, 72-hour window. 3 matching accounts in Dynamics. WBFF market.</span>
+    <span class="notif-txt"><b>$218K Q2 prime returned — Baltimore WBFF</b> · OSI data · 72-hr capture window · 3 matching accounts in Dynamics</span>
     <button class="notif-x" onclick="document.getElementById('notif').classList.add('hidden')">×</button>
   </div>
 
   <div id="body">
     <div id="sidebar">
-      <div style="padding:0 14px;margin-bottom:8px"><div class="sb-hd">Views</div></div>
+      <div class="sb-hd" style="padding:0 14px;margin-bottom:6px">Views</div>
       <div id="nb-list"></div>
       <div class="sb-div"></div>
       <div class="sb-hd" style="padding:0 14px;margin-bottom:8px">Critical Few</div>
@@ -247,24 +276,22 @@ body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);
 </div>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────────
-const fmt = n => n>=1e6?`$${(n/1e6).toFixed(1)}M`:n>=1e3?`$${(n/1e3).toFixed(0)}K`:`$${n}`;
-const gc  = p => p>=100?'var(--green)':p>=88?'var(--amber)':'var(--red)';
-const gct = p => p>=100?'green':p>=88?'amber':'red';
+const fmt=n=>n>=1e6?`$${(n/1e6).toFixed(1)}M`:n>=1e3?`$${(n/1e3).toFixed(0)}K`:`$${n}`;
+const gc=p=>p>=100?'var(--teal)':p>=88?'var(--amber)':'var(--red)';
+const gct=p=>p>=100?'green':p>=88?'amber':'red';
 
-// Real Sinclair markets
-const REGIONS = [
-  {id:'r1',name:'Baltimore / DC',  vp:'Priya Nair',   pct:95, digital:31,health:78,revenue:28400000,goal:30000000,sellers:112,newBiz:8, markets:'WBFF, WJLA, WDCA',   topRisk:'Renewal cluster Q2'},
-  {id:'r2',name:'Seattle / Portland',vp:'Marcus Webb', pct:103,digital:29,health:91,revenue:24600000,goal:23800000,sellers:98, newBiz:14,markets:'KOMO, KATU, KUNS',   topRisk:'Digital mix below CF target'},
-  {id:'r3',name:'Columbus / Dayton',vp:'Tanya Okafor', pct:81, digital:19,health:57,revenue:18900000,goal:23400000,sellers:104,newBiz:3, markets:'WSYX, WTTE, WRGT',   topRisk:'Below pace — needs intervention'},
-  {id:'r4',name:'Tampa / Orlando',  vp:'Derek Huang',  pct:103,digital:27,health:88,revenue:21300000,goal:20600000,sellers:88, newBiz:11,markets:'WTTA, WKCF, WRBW',   topRisk:'Political scatter window open'},
-  {id:'r5',name:'Las Vegas / Reno', vp:'Joel Sandoval',pct:85, digital:22,health:66,revenue:11200000,goal:13200000,sellers:62, newBiz:5, markets:'KSNV, KRXI, KRNV',   topRisk:'Pacing gap widening'},
-  {id:'r6',name:'Salt Lake / Boise',vp:'Angela Kim',   pct:103,digital:34,health:92,revenue:19800000,goal:19200000,sellers:94, newBiz:13,markets:'KUTV, KMYU, KBOI',   topRisk:'CTV inventory tightening'},
-  {id:'r7',name:'Tulsa / Little Rock',vp:'Darnell Price',pct:81,digital:17,health:53,revenue:10400000,goal:12800000,sellers:71,newBiz:2, markets:'KTUL, KATV, KFSM',   topRisk:'Below pace — needs intervention'},
-  {id:'r8',name:'Pittsburgh / Roanoke',vp:'Sonia Reyes',pct:97,digital:30,health:82,revenue:16600000,goal:17200000,sellers:83,newBiz:9, markets:'WJAC, WPGH, WSET',   topRisk:'Scatter capture window open'},
+const REGIONS=[
+  {id:'r1',name:'Baltimore / DC',     vp:'Priya Nair',    pct:95, digital:31,health:78,revenue:28400000,goal:30000000,sellers:112,newBiz:8, markets:'WBFF, WJLA, WDCA',topRisk:'Renewal cluster Q2'},
+  {id:'r2',name:'Seattle / Portland', vp:'Marcus Webb',   pct:103,digital:29,health:91,revenue:24600000,goal:23800000,sellers:98, newBiz:14,markets:'KOMO, KATU, KUNS',topRisk:'Digital mix below CF target'},
+  {id:'r3',name:'Columbus / Dayton',  vp:'Tanya Okafor',  pct:81, digital:19,health:57,revenue:18900000,goal:23400000,sellers:104,newBiz:3, markets:'WSYX, WTTE, WRGT',topRisk:'Below pace — needs intervention'},
+  {id:'r4',name:'Tampa / Orlando',    vp:'Derek Huang',   pct:103,digital:27,health:88,revenue:21300000,goal:20600000,sellers:88, newBiz:11,markets:'WTTA, WKCF, WRBW',topRisk:'Political scatter window open'},
+  {id:'r5',name:'Las Vegas / Reno',   vp:'Joel Sandoval', pct:85, digital:22,health:66,revenue:11200000,goal:13200000,sellers:62, newBiz:5, markets:'KSNV, KRXI, KRNV',topRisk:'Pacing gap widening'},
+  {id:'r6',name:'Salt Lake / Boise',  vp:'Angela Kim',    pct:103,digital:34,health:92,revenue:19800000,goal:19200000,sellers:94, newBiz:13,markets:'KUTV, KMYU, KBOI',topRisk:'CTV inventory tightening'},
+  {id:'r7',name:'Tulsa / Little Rock',vp:'Darnell Price',  pct:81, digital:17,health:53,revenue:10400000,goal:12800000,sellers:71, newBiz:2, markets:'KTUL, KATV, KFSM',topRisk:'Below pace — needs intervention'},
+  {id:'r8',name:'Pittsburgh / Roanoke',vp:'Sonia Reyes',  pct:97, digital:30,health:82,revenue:16600000,goal:17200000,sellers:83, newBiz:9, markets:'WJAC, WPGH, WSET',topRisk:'Scatter capture window open'},
 ];
 
-const CF = [
+const CF=[
   {id:1,title:'Digital Mix',       current:24,target:35, unit:'%',    status:'behind'  },
   {id:2,title:'Political Scatter', current:68,target:100,unit:'%',    status:'on-track'},
   {id:3,title:'Lapsed Auto',       current:41,target:60, unit:'%',    status:'behind'  },
@@ -272,7 +299,7 @@ const CF = [
   {id:5,title:'CTV Sell-Through',  current:79,target:85, unit:'%',    status:'on-track'},
 ];
 
-const SELLERS = [
+const SELLERS=[
   {id:'s1',name:'Jordan Patel',  title:'Automotive',      pct:94, revenue:920000, goal:980000, risk:2,newBiz:3,digital:18,accounts:24,lastContact:'2d ago'},
   {id:'s2',name:'Aisha Morales', title:'Retail & QSR',    pct:109,revenue:1140000,goal:1050000,risk:0,newBiz:5,digital:31,accounts:31,lastContact:'Today'},
   {id:'s3',name:'Tyler Nguyen',  title:'Healthcare/Legal',pct:84, revenue:760000, goal:900000, risk:4,newBiz:1,digital:22,accounts:28,lastContact:'4d ago'},
@@ -280,25 +307,25 @@ const SELLERS = [
   {id:'s5',name:'Becca Liu',     title:'Financial',       pct:104,revenue:880000, goal:850000, risk:1,newBiz:2,digital:27,accounts:22,lastContact:'Yesterday'},
 ];
 
-const QUEUE = [
-  {id:'q1',pri:'P1',account:'Sun Valley Toyota',    action:'Renewal at risk — 58% spend decline. May 28 deadline. OSI + Dynamics flagged.',     revenue:141000,due:'Today',    type:'risk',    seller:'Jordan Patel',  market:'Salt Lake City'},
-  {id:'q2',pri:'P1',account:'Midtown Honda Group',  action:'No digital products. $184K account. Critical Few upsell opportunity via Dynamics.',  revenue:184000,due:'Today',    type:'upsell',  seller:'Jordan Patel',  market:'Columbus'},
-  {id:'q3',pri:'P2',account:'Faber for Senate PAC', action:'New PAC filing in OSI. $340K historical buyer. First contact window open now.',      revenue:340000,due:'Tomorrow', type:'political',seller:'Carlos Esteban', market:'Baltimore'},
-  {id:'q4',pri:'P2',account:'HomeFirst Mortgage',   action:'Proposal 6 days old in Dynamics — no response. Fed rate meeting this week.',        revenue:62000, due:'Today',    type:'followup', seller:'Becca Liu',     market:'Pittsburgh'},
-  {id:'q5',pri:'P3',account:'Valley Spine & Rehab', action:'New practice opened March 12. Healthcare category surging per OSI category data.',   revenue:null,  due:'This week',type:'newbiz',   seller:'Tyler Nguyen',  market:'Roanoke'},
+const QUEUE=[
+  {id:'q1',pri:'P1',account:'Sun Valley Toyota',    action:'Renewal at risk — 58% spend decline. May 28 deadline.',revenue:141000,due:'Today',    type:'risk',    seller:'Jordan Patel',  market:'Salt Lake / KUTV'},
+  {id:'q2',pri:'P1',account:'Midtown Honda Group',  action:'No digital products. $184K account. Critical Few upsell.',revenue:184000,due:'Today',   type:'upsell',  seller:'Jordan Patel',  market:'Columbus / WSYX'},
+  {id:'q3',pri:'P2',account:'Faber for Senate PAC', action:'New PAC filing. $340K historical buyer. First contact window.',revenue:340000,due:'Tomorrow',type:'political',seller:'Carlos Esteban',market:'Baltimore / WBFF'},
+  {id:'q4',pri:'P2',account:'HomeFirst Mortgage',   action:'Proposal 6 days old — no response. Fed rate meeting catalyst.',revenue:62000,due:'Today',  type:'followup', seller:'Becca Liu',     market:'Pittsburgh / WJAC'},
+  {id:'q5',pri:'P3',account:'Valley Spine & Rehab', action:'New practice opened March 12. Healthcare category surging per OSI.',revenue:null,due:'This week',type:'newbiz',seller:'Tyler Nguyen',market:'Roanoke / WSET'},
 ];
 
-const MARGIN = {
+const MARGIN={
   current:34.2,target:38.0,prior:31.8,
   trend:[29.1,30.4,31.8,32.5,33.1,34.2],
   labels:['Nov','Dec','Jan','Feb','Mar','Apr'],
   products:[
-    {name:'Audio / Podcast', margin:68,rev:380, contrib:9.1, trend:'up',  color:'var(--green)'},
+    {name:'Audio / Podcast',margin:68,rev:380, contrib:9.1, trend:'up',  color:'var(--teal)'},
     {name:'Digital Display', margin:61,rev:680, contrib:14.6,trend:'up',  color:'var(--blue)'},
     {name:'CTV / OTT',       margin:54,rev:1240,contrib:23.5,trend:'up',  color:'#a78bfa'},
     {name:'Social / Video',  margin:49,rev:510, contrib:8.8, trend:'flat',color:'#06b6d4'},
     {name:'Linear TV',       margin:31,rev:3820,contrib:41.6,trend:'down',color:'var(--amber)'},
-    {name:'Sports Adjacency',margin:28,rev:210, contrib:2.4, trend:'flat',color:'var(--w2)'},
+    {name:'Sports Adjacency',margin:28,rev:210, contrib:2.4, trend:'flat',color:'var(--w3)'},
   ],
   regions:[
     {name:'Salt Lake / Boise',    margin:38.4,trend:'up'  },
@@ -312,57 +339,53 @@ const MARGIN = {
   ],
 };
 
-const AI = {
-  briefcro:`MIDWEST / SOUTH-CENTRAL INTERVENTION: Columbus/Dayton and Tulsa/Little Rock both at 81% — $6.9M combined gap. Tanya Okafor and Darnell Price need recovery plans by Friday.\n\nDIGITAL MIX LAGGING: 24% vs 35% Critical Few target. 8 linear-only anchor accounts in Dynamics worth $190K ready for upsell now.\n\nINSTANT REVENUE: OSI shows $558K available — $218K scatter returned in Baltimore (WBFF) plus $340K Faber Senate PAC filing in same market.\n\nTHREE REGIONS ABOVE GOAL: Seattle/Portland 103%, Tampa/Orlando 103%, Salt Lake/Boise 103%.\n\nPOLITICAL WINDOW OPEN: Assign Carlos Esteban to the PAC today — two-week first-mover advantage.`,
-  briefae:`SUN VALLEY URGENT: Renewal May 28 — 23 days away. Dynamics shows 11 days no contact. OSI confirms 58% spend decline. Call today.\n\nDIGITAL GAP: You are at 18% vs 35% Critical Few target. Midtown Honda at $184K with zero digital is your clearest path this week.\n\nPOLITICAL MONEY: Faber Senate PAC filed in Baltimore market. $340K historical buyer. Two-week first-mover window.\n\nSCATTER: OSI returned $218K Q2 prime inventory in Baltimore. 72-hour window. Three matching accounts in your book.\n\nFOLLOW UP: HomeFirst Mortgage proposal 6 days old in Dynamics. Fed rate meeting this week is your re-engage catalyst.`,
-  talking:`OPENING: I've been watching your campaign performance and see a real opportunity heading into your renewal.\n\nVALUE PROPS:\n1. AMP covers every screen — linear, CTV/OTT, digital, social — one unified buy, one contact point.\n2. OSI data shows your category surging right now. Competitors are spending aggressively.\n3. We can start a digital test at 13% of your linear budget and prove ROI in 60 days.\n\nASK: 30 minutes this week for a multi-platform proposal with numbers specific to your category and market.`,
-  renewal:`DIAGNOSIS: OSI shows Sun Valley Toyota spend down 58% over 90 days in the Salt Lake market. Dynamics: last contact 11 days ago. A competitor is likely running conquest. Renewal May 28 is 23 days away.\n\nMEETING AGENDA:\n1. Ask what has changed — listen first\n2. Show OSI performance data vs category benchmarks on KUTV\n3. Present Q3 EV incentive season — their biggest opportunity\n\nMOVE: Bundle a 60-day CTV test at no added cost. Fallback: 6-month renewal at 80% with performance escalator.`,
-  intervention:`SITUATION: Columbus/Dayton (Tanya Okafor) and Tulsa/Little Rock (Darnell Price) both at 81% pacing, health scores 57 and 53. Dynamics shows low coaching cadence; OSI confirms digital mix critically below 35% CF target.\n\nIMPACT: Combined gap is $6.9M. At current pace both miss Q2 with no recovery path before political season.\n\nMOVE: Call both VPs today. Require written 30-day recovery plans by Friday. Deploy a $500 SPIF per new digital account in both regions immediately.`,
-  scatter:`SITUATION: OSI shows $218K in Q2 prime avails returned in Baltimore (WBFF). New Faber Senate PAC filing detected — $340K historical buyer, same market.\n\nIMPACT: Scatter has 72-hour capture window. PAC historically places within 2 weeks of filing — first contact is critical.\n\nMOVE: Brief Baltimore/DC team now. Carlos Esteban makes first PAC contact before noon today.`,
-  margin:`SITUATION: Blended margin is 34.2%, up 2.4pts YTD. But 3.8pts below the 38% target. Linear TV is 41.6% of revenue at only 31% margin. Digital and CTV generate 54-68% margin.\n\nIMPACT: Each 1-point shift from linear to digital adds ~0.8pts to blended margin. Getting digital from 24% to 35% adds roughly $2.8M in incremental margin on flat revenue.\n\nMOVE: The margin and digital mix stories are the same story. Every digital upsell improves margin AND hits Critical Few simultaneously.`,
+const AI={
+  briefcro:`INTERVENTION: Columbus/Dayton and Tulsa/Little Rock both at 81% — $6.9M combined gap. Tanya Okafor and Darnell Price need recovery plans by Friday.\n\nDIGITAL MIX: 24% vs 35% Critical Few target. 8 linear-only accounts in Dynamics worth $190K ready for digital upsell.\n\nINSTANT REVENUE: $218K scatter returned in Baltimore WBFF · $340K Faber Senate PAC filing same market. 72-hour window.\n\nABOVE GOAL: Seattle/Portland 103% · Tampa/Orlando 103% · Salt Lake/Boise 103%.\n\nACTION: Assign Carlos Esteban to PAC today — two-week first-mover advantage.`,
+  briefae:`URGENT: Sun Valley Toyota renewal May 28 — 23 days. 11 days no contact in Dynamics. OSI shows 58% spend decline. Call today.\n\nDIGITAL GAP: You're at 18% vs 35% target. Midtown Honda ($184K, zero digital) is your clearest path this week.\n\nPOLITICAL: Faber PAC filed in Baltimore. $340K buyer. Two-week first-mover window.\n\nSCATTER: $218K Q2 prime returned at WBFF. 72-hour window. Three matching accounts in your book.\n\nFOLLOW UP: HomeFirst Mortgage proposal 6 days old. Fed rate meeting this week is your catalyst.`,
+  talking:`OPENING: I've been tracking your campaign data and see a real opportunity ahead of your renewal.\n\nVALUE PROPS:\n1. AMP covers every screen — linear, CTV/OTT, digital, social — one unified buy, one point of contact.\n2. OSI data shows your category surging right now. Competitors are spending aggressively.\n3. We can start a digital test at 13% of your linear investment and prove ROI in 60 days.\n\nASK: 30 minutes this week for a multi-platform proposal tailored to your category and market.`,
+  renewal:`DIAGNOSIS: OSI shows Sun Valley Toyota down 58% over 90 days in Salt Lake. Dynamics: 11 days no contact. Renewal May 28 is 23 days away.\n\nMEETING AGENDA:\n1. Ask what changed — listen first\n2. Show OSI performance vs category benchmarks on KUTV\n3. Present Q3 EV incentive season opportunity\n\nMOVE: Bundle 60-day CTV test at no added cost. Fallback: 6-month renewal at 80% with performance escalator.`,
+  intervention:`SITUATION: Columbus/Dayton (Tanya Okafor) and Tulsa/Little Rock (Darnell Price) both at 81%, health scores 57 and 53. Low coaching cadence in Dynamics. Digital mix critically below 35% CF target.\n\nIMPACT: $6.9M combined gap. At current pace both miss Q2 with no recovery path before political season.\n\nMOVE: Call both VPs today. Written 30-day recovery plans due Friday. Deploy $500 SPIF per new digital account in both regions immediately.`,
+  scatter:`SITUATION: $218K Q2 prime avails returned at Baltimore WBFF. New Faber Senate PAC filing — $340K historical buyer, same DMA.\n\nIMPACT: 72-hour capture window. PAC historically places within 2 weeks of filing.\n\nMOVE: Brief Baltimore/DC team now. Carlos Esteban contacts PAC before noon today.`,
+  margin:`SITUATION: Blended margin 34.2%, up 2.4pts YTD. But 3.8pts below 38% target. Linear TV is 41.6% of revenue at only 31% margin. Digital and CTV run 54–68% margin.\n\nIMPACT: Each 1pt shift from linear to digital adds ~0.8pts to blended margin. Closing the digital mix gap from 24% to 35% adds ~$2.8M in incremental margin on flat revenue.\n\nMOVE: The margin story and the digital mix story are the same story. Every digital upsell hits Critical Few and margin simultaneously.`,
 };
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-const PERSONAS = [
+const PERSONAS=[
   {id:'cro',     label:'CRO',        name:'Ryan Moore',  init:'RM'},
   {id:'regional',label:'Regional VP',name:'Vic Torres',  init:'VT'},
-  {id:'mm',      label:'Mkt Manager',name:'Sonia Reyes', init:'SR'},
+  {id:'mm',      label:'Mkt Mgr',    name:'Sonia Reyes', init:'SR'},
   {id:'ae',      label:'Acct Exec',  name:'Jordan Patel',init:'JP'},
 ];
-const NAV = {
+const NAV={
   cro:      [{ic:'◈',l:'Overview'},{ic:'◉',l:'Regions'},{ic:'◎',l:'Critical Few'},{ic:'▲',l:'Margin'},{ic:'⊟',l:'Pacing'}],
   regional: [{ic:'◈',l:'Overview'},{ic:'◉',l:'Regions'},{ic:'◎',l:'Critical Few'},{ic:'▲',l:'Margin'},{ic:'⊟',l:'Pacing'}],
   mm:       [{ic:'◈',l:'Overview'},{ic:'◉',l:'Team'},{ic:'◎',l:'Critical Few'},{ic:'▲',l:'Margin'},{ic:'⊟',l:'Pacing'}],
   ae:       [{ic:'◈',l:'Overview'},{ic:'▤',l:'Action Queue'},{ic:'◎',l:'Critical Few'},{ic:'▲',l:'Margin'},{ic:'⊟',l:'Pacing'}],
 };
-let S = {persona:'cro',tab:'Overview',notes:{},done:{}};
-let typerT = null;
+let S={persona:'cro',tab:'Overview',notes:{},done:{}};
+let tyT=null;
 
-// ── HELPERS ───────────────────────────────────────────────────────────────────
 function bar(p,color,h=6){
   const c=color||gc(p);
-  return `<div class="track" style="height:${h}px;border-radius:1px"><div class="fill" style="width:${Math.min(p,100)}%;background:${c};height:100%;border-radius:1px"></div></div>`;
+  return `<div class="track" style="height:${h}px"><div class="fill" style="width:${Math.min(p,100)}%;background:${c};height:100%"></div></div>`;
 }
 function tag(l,t='dim'){return `<span class="tag tag-${t}">${l}</span>`}
-function cfC(s){return {'on-track':'var(--green)',behind:'var(--amber)','at-risk':'var(--red)'}[s]||'var(--w3)'}
+function cfC(s){return {'on-track':'var(--teal)',behind:'var(--amber)','at-risk':'var(--red)'}[s]||'var(--w3)'}
 function cfT(s){return {'on-track':'green',behind:'amber','at-risk':'red'}[s]||'dim'}
 function cfL(s){return {'on-track':'ON TRACK',behind:'BEHIND','at-risk':'AT RISK'}[s]||s}
 function tr(t){return t==='up'?'↑':t==='down'?'↓':'→'}
-function trc(t){return t==='up'?'var(--green)':t==='down'?'var(--red)':'var(--w3)'}
+function trc(t){return t==='up'?'var(--teal)':t==='down'?'var(--red)':'var(--w3)'}
 
-// ── AI ────────────────────────────────────────────────────────────────────────
 async function openAI(key,label,live=false,prompt=''){
   document.getElementById('ai-ov').classList.remove('hidden');
   document.getElementById('ai-chip').textContent=label;
   const b=document.getElementById('ai-b');
-  b.innerHTML=`<div class="ai-load"><div class="ai-msg">Analyzing OSI + Dynamics data for ${label}...</div>${[88,72,80,60].map((w,i)=>`<div class="sk" style="width:${w}%;animation-delay:${i*.12}s"></div>`).join('')}</div>`;
-  clearInterval(typerT);
+  b.innerHTML=`<div class="ai-load"><div class="ai-msg">Analyzing OSI + Dynamics data...</div>${[88,72,80,60].map((w,i)=>`<div class="sk" style="width:${w}%;animation-delay:${i*.12}s"></div>`).join('')}</div>`;
+  clearInterval(tyT);
   if(live){
     try{
-      const r=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',headers:{'Content-Type':'application/json'},
+      const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
         body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,
-          system:'You are Signal AI inside AMP Signal, Sinclair Broadcast Group\'s AI sales intelligence platform. You have OSI traffic data and Microsoft Dynamics CRM access. Be sharp, specific, and action-oriented. Use SITUATION / IMPACT / MOVE structure. Reference specific Sinclair markets (Baltimore WBFF, Seattle KOMO, Columbus WSYX, etc.) where relevant. Keep it tight.',
+          system:'You are Signal AI inside AMP Signal, Sinclair Broadcast Group\'s sales intelligence platform. You have OSI traffic data and MS Dynamics CRM access. Be sharp and action-oriented. SITUATION / IMPACT / MOVE structure. Reference Sinclair markets (Baltimore WBFF, Seattle KOMO, Columbus WSYX, Salt Lake KUTV, etc.) where relevant.',
           messages:[{role:'user',content:prompt}]})});
       const d=await r.json();
       const txt=d.content?.[0]?.text||'Unable to generate analysis.';
@@ -373,18 +396,10 @@ async function openAI(key,label,live=false,prompt=''){
     setTimeout(()=>fallback(key,b),600+Math.random()*300);
   }
 }
-function fallback(key,b){
-  const txt=AI[key]||AI.talking;
-  b.innerHTML=`<div class="ai-out" id="ai-out"></div>`;
-  type(document.getElementById('ai-out'),txt);
-}
-function type(el,txt){
-  let i=0; clearInterval(typerT);
-  typerT=setInterval(()=>{if(i<txt.length){el.textContent=txt.slice(0,++i);}else clearInterval(typerT);},12);
-}
-function closeAI(){clearInterval(typerT);document.getElementById('ai-ov').classList.add('hidden');}
+function fallback(key,b){const txt=AI[key]||AI.talking;b.innerHTML=`<div class="ai-out" id="ai-out"></div>`;type(document.getElementById('ai-out'),txt);}
+function type(el,txt){let i=0;clearInterval(tyT);tyT=setInterval(()=>{if(i<txt.length){el.textContent=txt.slice(0,++i);}else clearInterval(tyT);},12);}
+function closeAI(){clearInterval(tyT);document.getElementById('ai-ov').classList.add('hidden');}
 
-// ── DRILL ─────────────────────────────────────────────────────────────────────
 function openDrill(ttl,sub,html){
   document.getElementById('dr-ttl').textContent=ttl;
   document.getElementById('dr-sub').textContent=sub;
@@ -403,37 +418,37 @@ function drillRegion(id){
           <div class="num-lg" style="color:${gc(r.pct)}">${r.pct}%</div>
           <div style="font-size:11px;color:var(--w3);margin-top:3px">${fmt(r.revenue)} of ${fmt(r.goal)}</div>
         </div>
-        ${r.pct<88?tag('INTERVENTION NEEDED','red'):r.pct>=100?tag('ABOVE GOAL','green'):tag('ON TRACK','amber')}
+        ${r.pct<88?tag('NEEDS INTERVENTION','red'):r.pct>=100?tag('ABOVE GOAL','green'):tag('ON TRACK','amber')}
       </div>
       ${bar(r.pct,null,8)}
     </div>
     <div class="g3">
       <div class="s-sm" style="text-align:center">
         <div class="lbl" style="margin-bottom:6px">Digital Mix</div>
-        <div class="num-md" style="color:${r.digital>=28?'var(--green)':'var(--amber)'}">${r.digital}%</div>
-        <div style="font-size:10px;color:var(--w3);margin-top:3px">Target 35%</div>
+        <div class="num-md" style="color:${r.digital>=28?'var(--teal)':'var(--amber)'}">${r.digital}%</div>
+        <div style="font-size:10px;color:var(--w4);margin-top:3px">Target 35%</div>
       </div>
       <div class="s-sm" style="text-align:center">
         <div class="lbl" style="margin-bottom:6px">Health Score</div>
-        <div class="num-md" style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</div>
-        <div style="font-size:10px;color:var(--w3);margin-top:3px">of 100</div>
+        <div class="num-md" style="color:${r.health>=80?'var(--teal)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</div>
+        <div style="font-size:10px;color:var(--w4);margin-top:3px">of 100</div>
       </div>
       <div class="s-sm" style="text-align:center">
         <div class="lbl" style="margin-bottom:6px">New Biz</div>
-        <div class="num-md" style="color:${r.newBiz>=8?'var(--green)':'var(--amber)'}">${r.newBiz}</div>
-        <div style="font-size:10px;color:var(--w3);margin-top:3px">this month</div>
+        <div class="num-md" style="color:${r.newBiz>=8?'var(--teal)':'var(--amber)'}">${r.newBiz}</div>
+        <div style="font-size:10px;color:var(--w4);margin-top:3px">this month</div>
       </div>
     </div>
     <div class="s">
-      <div class="lbl" style="margin-bottom:6px">Station Markets</div>
-      <div style="font-size:13px;font-weight:600;color:var(--lime)">${r.markets}</div>
+      <div class="lbl" style="margin-bottom:5px">Station Markets</div>
+      <div style="font-size:13px;font-weight:900;color:var(--teal)">${r.markets}</div>
     </div>
     <div class="s" style="border-left:3px solid var(--amber)">
       <div class="lbl" style="margin-bottom:5px">Top Signal</div>
       <div style="font-size:13px;color:var(--w2)">${r.topRisk}</div>
     </div>
     <div style="display:flex;gap:8px">
-      <button class="btn-ai" style="flex:1" onclick="openAI('intervention','${r.name}',true,'Region: ${r.name}. VP: ${r.vp}. Stations: ${r.markets}. Pacing: ${r.pct}% of goal. Revenue: ${fmt(r.revenue)} vs ${fmt(r.goal)} goal. Digital mix: ${r.digital}% vs 35% target. Health: ${r.health}/100. New biz: ${r.newBiz}. Top risk: ${r.topRisk}. Give me a specific action plan for this region.')">Signal AI Analysis</button>
+      <button class="btn-ai" style="flex:1" onclick="openAI('intervention','${r.name}',true,'Region: ${r.name}. VP: ${r.vp}. Stations: ${r.markets}. Pacing: ${r.pct}%. Revenue: ${fmt(r.revenue)} vs ${fmt(r.goal)}. Digital mix: ${r.digital}% vs 35% target. Health: ${r.health}/100. New biz: ${r.newBiz}. Top risk: ${r.topRisk}. Give me a specific action plan.')">Signal AI Analysis</button>
       <button class="btn-ghost" onclick="closeDrill()">Close</button>
     </div>`);
 }
@@ -450,31 +465,19 @@ function drillSeller(id){
         </div>
         <div style="text-align:right">
           <div class="lbl" style="margin-bottom:6px">Last Contact</div>
-          <div style="font-size:14px;font-weight:700;color:${s.lastContact==='Today'?'var(--green)':s.lastContact==='Yesterday'?'var(--amber)':'var(--red)'}">${s.lastContact}</div>
+          <div style="font-size:14px;font-weight:900;color:${s.lastContact==='Today'?'var(--teal)':s.lastContact==='Yesterday'?'var(--amber)':'var(--red)'}">${s.lastContact}</div>
         </div>
       </div>
       ${bar(s.pct,null,8)}
     </div>
     <div class="g3">
-      <div class="s-sm" style="text-align:center">
-        <div class="lbl" style="margin-bottom:6px">Digital</div>
-        <div class="num-md" style="color:${s.digital>=28?'var(--green)':'var(--amber)'}">${s.digital}%</div>
-      </div>
-      <div class="s-sm" style="text-align:center">
-        <div class="lbl" style="margin-bottom:6px">New Biz</div>
-        <div class="num-md" style="color:${s.newBiz>=4?'var(--green)':'var(--amber)'}">${s.newBiz}</div>
-      </div>
-      <div class="s-sm" style="text-align:center">
-        <div class="lbl" style="margin-bottom:6px">At Risk</div>
-        <div class="num-md" style="color:${s.risk>0?'var(--red)':'var(--green)'}">${s.risk}</div>
-      </div>
+      <div class="s-sm" style="text-align:center"><div class="lbl" style="margin-bottom:6px">Digital</div><div class="num-md" style="color:${s.digital>=28?'var(--teal)':'var(--amber)'}">${s.digital}%</div></div>
+      <div class="s-sm" style="text-align:center"><div class="lbl" style="margin-bottom:6px">New Biz</div><div class="num-md" style="color:${s.newBiz>=4?'var(--teal)':'var(--amber)'}">${s.newBiz}</div></div>
+      <div class="s-sm" style="text-align:center"><div class="lbl" style="margin-bottom:6px">At Risk</div><div class="num-md" style="color:${s.risk>0?'var(--red)':'var(--teal)'}">${s.risk}</div></div>
     </div>
-    <div class="s">
-      <div class="lbl" style="margin-bottom:5px">Active Accounts</div>
-      <div style="font-size:22px;font-weight:700">${s.accounts}</div>
-    </div>
+    <div class="s"><div class="lbl" style="margin-bottom:5px">Active Accounts</div><div style="font-size:22px;font-weight:900">${s.accounts}</div></div>
     <div style="display:flex;gap:8px">
-      <button class="btn-ai" style="flex:1" onclick="openAI('talking','Coach: ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital mix: ${s.digital}% vs 35% target. New biz: ${s.newBiz} accounts vs 4 target. At-risk renewals: ${s.risk}. Last CRM contact: ${s.lastContact}. Give me a coaching brief and 3 specific action items for today.')">Coach Brief</button>
+      <button class="btn-ai" style="flex:1" onclick="openAI('talking','Coach: ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital: ${s.digital}% vs 35% target. New biz: ${s.newBiz} vs 4 target. At-risk: ${s.risk}. Last contact: ${s.lastContact}. Coaching brief with 3 specific action items for today.')">Coach Brief</button>
       <button class="btn-ghost" onclick="closeDrill()">Close</button>
     </div>`);
 }
@@ -487,477 +490,201 @@ function drillQueue(id){
       <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;flex-wrap:wrap">
         ${tag(q.pri,q.pri==='P1'?'red':q.pri==='P2'?'amber':'dim')}
         ${tag(q.type.toUpperCase(),'blue')}
-        <span style="font-size:12px;font-weight:700;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--w3)'};margin-left:auto">${q.due}</span>
+        <span style="font-size:12px;font-weight:900;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--w3)'};margin-left:auto">${q.due}</span>
       </div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:8px">${q.account}</div>
+      <div style="font-size:15px;font-weight:900;margin-bottom:8px">${q.account}</div>
       <div style="font-size:12px;color:var(--w2);line-height:1.7">${q.action}</div>
-      ${q.revenue?`<div style="margin-top:10px"><div class="lbl" style="margin-bottom:4px">Est. Revenue</div><div class="num-sm" style="color:var(--lime)">${fmt(q.revenue)}</div></div>`:''}
+      ${q.revenue?`<div style="margin-top:10px"><div class="lbl" style="margin-bottom:4px">Est. Revenue</div><div class="num-sm" style="color:var(--teal)">${fmt(q.revenue)}</div></div>`:''}
     </div>
-    <div class="s">
-      <div class="lbl" style="margin-bottom:5px">Market</div>
-      <div style="font-size:13px;font-weight:600;color:var(--lime)">${q.market}</div>
-    </div>
+    <div class="s"><div class="lbl" style="margin-bottom:5px">Market</div><div style="font-size:13px;font-weight:900;color:var(--teal)">${q.market}</div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-ai" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Market: ${q.market}. Situation: ${q.action} Type: ${q.type}. Due: ${q.due}. Assigned to: ${q.seller}. Generate specific talking points and outreach approach for today.')">Talking Points</button>
-      ${q.type==='risk'?`<button class="btn-red" onclick="openAI('renewal','Rescue Plan',true,'Account: Sun Valley Toyota in Salt Lake City on KUTV. Situation: renewal at risk, 58% spend decline, renewal May 28, 11 days no CRM contact. Build a rescue plan with meeting agenda and fallback positions.')">Rescue Plan</button>`:''}
+      <button class="btn-ai" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Market: ${q.market}. Situation: ${q.action} Type: ${q.type}. Due: ${q.due}. Seller: ${q.seller}. Generate specific talking points for outreach today.')">Talking Points</button>
+      ${q.type==='risk'?`<button class="btn-red" onclick="openAI('renewal','Rescue Plan',true,'Account: Sun Valley Toyota, Salt Lake City KUTV market. Renewal at risk: 58% spend decline, May 28 deadline, 11 days no contact. Build rescue plan with meeting agenda and fallback positions.')">Rescue Plan</button>`:''}
       <button class="btn-ghost" onclick="closeDrill()">Close</button>
     </div>`);
 }
 
-// ── RENDER ────────────────────────────────────────────────────────────────────
 function render(){
   const cur=PERSONAS.find(p=>p.id===S.persona);
-  const navs=NAV[S.persona];
-
-  document.getElementById('ptabs').innerHTML=PERSONAS.map(p=>
-    `<button class="ptab${S.persona===p.id?' on':''}" onclick="switchP('${p.id}')">${p.label}</button>`
-  ).join('');
+  document.getElementById('ptabs').innerHTML=PERSONAS.map(p=>`<button class="ptab${S.persona===p.id?' on':''}" onclick="switchP('${p.id}')">${p.label}</button>`).join('');
   document.getElementById('ubox').textContent=cur.init;
   document.getElementById('brief-btn').onclick=()=>openAI(S.persona==='ae'?'briefae':'briefcro','Signal Brief');
-
-  document.getElementById('nb-list').innerHTML=navs.map(n=>
-    `<button class="nb${S.tab===n.l?' on':''}" onclick="switchT('${n.l}')"><span class="nb-ic">${n.ic}</span>${n.l}</button>`
-  ).join('');
-
+  document.getElementById('nb-list').innerHTML=NAV[S.persona].map(n=>`<button class="nb${S.tab===n.l?' on':''}" onclick="switchT('${n.l}')"><span class="nb-ic">${n.ic}</span>${n.l}</button>`).join('');
   document.getElementById('cf-sb').innerHTML=CF.map(cf=>{
-    const sc=cfC(cf.status);
-    const p=Math.round(cf.current/cf.target*100);
-    return `<div class="cfm">
-      <div class="cfm-row"><span class="cfm-n">${cf.title}</span><span class="cfm-v" style="color:${sc}">${cf.current}${cf.unit}</span></div>
-      <div class="mtrack"><div class="mfill" style="width:${p}%;background:${sc}"></div></div>
-    </div>`;
+    const sc=cfC(cf.status),p=Math.round(cf.current/cf.target*100);
+    return `<div class="cfm"><div class="cfm-row"><span class="cfm-n">${cf.title}</span><span class="cfm-v" style="color:${sc}">${cf.current}${cf.unit}</span></div><div class="mtrack"><div class="mfill" style="width:${p}%;background:${sc}"></div></div></div>`;
   }).join('');
-
-  document.getElementById('ci').innerHTML=`
-    <div class="ph" style="animation:fadeUp .25s ease">
-      <div>
-        <div class="pt">${S.tab}</div>
-        <div class="ps">${cur.name} · ${cur.label}</div>
-      </div>
-    </div>
-    <div id="tc" style="animation:fadeUp .3s ease"></div>`;
-
+  document.getElementById('ci').innerHTML=`<div class="ph" style="animation:fadeUp .25s ease"><div><div class="pt">${S.tab}</div><div class="ps">${cur.name} · ${cur.label}</div></div></div><div id="tc" style="animation:fadeUp .3s ease"></div>`;
   const tc=document.getElementById('tc');
-  const t=S.tab;
-  if(t==='Overview')     tc.innerHTML=rOverview();
-  else if(t==='Regions') tc.innerHTML=rRegions();
-  else if(t==='Critical Few') tc.innerHTML=rCF();
-  else if(t==='Margin')  tc.innerHTML=rMargin();
-  else if(t==='Pacing')  tc.innerHTML=rPacing();
-  else if(t==='Team')    tc.innerHTML=rTeam();
-  else if(t==='Action Queue') tc.innerHTML=rQueue();
+  if(S.tab==='Overview')         tc.innerHTML=rOverview();
+  else if(S.tab==='Regions')     tc.innerHTML=rRegions();
+  else if(S.tab==='Critical Few')tc.innerHTML=rCF();
+  else if(S.tab==='Margin')      tc.innerHTML=rMargin();
+  else if(S.tab==='Pacing')      tc.innerHTML=rPacing();
+  else if(S.tab==='Team')        tc.innerHTML=rTeam();
+  else if(S.tab==='Action Queue')tc.innerHTML=rQueue();
 }
 
-// ── OVERVIEW ──────────────────────────────────────────────────────────────────
 function rOverview(){
   if(S.persona==='cro'){
-    const tot=REGIONS.reduce((s,r)=>s+r.revenue,0);
-    const gol=REGIONS.reduce((s,r)=>s+r.goal,0);
-    const p=Math.round(tot/gol*100);
-    const above=REGIONS.filter(r=>r.pct>=100).length;
+    const tot=REGIONS.reduce((s,r)=>s+r.revenue,0),gol=REGIONS.reduce((s,r)=>s+r.goal,0),p=Math.round(tot/gol*100),above=REGIONS.filter(r=>r.pct>=100).length;
     return `<div class="col">
-      <div class="hero-lime">
+      <div class="hero-teal">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
           <div>
             <div class="lbl" style="margin-bottom:8px">AMP Signal · Enterprise Revenue</div>
-            <div style="display:flex;align-items:baseline;gap:16px">
+            <div style="display:flex;align-items:baseline;gap:14px">
               <span class="num-xl">${fmt(tot)}</span>
-              <span style="font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:700;opacity:.6">/ ${fmt(gol)}</span>
-              <span style="font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900">${p}%</span>
+              <span style="font-size:18px;font-weight:400;opacity:.6">/ ${fmt(gol)}</span>
+              <span style="font-size:28px;font-weight:900">${p}%</span>
             </div>
           </div>
-          <button class="btn-ai" style="background:var(--black);color:var(--lime);font-size:14px" onclick="openAI('briefcro','Signal Brief')">Signal Brief</button>
+          <button class="btn-ai" style="background:var(--navy);color:var(--teal)" onclick="openAI('briefcro','Signal Brief')">Signal Brief</button>
         </div>
-        <div style="background:rgba(0,0,0,.2);height:6px;margin-bottom:16px;border-radius:1px;overflow:hidden">
-          <div style="width:${p}%;height:100%;background:var(--black);border-radius:1px"></div>
+        <div style="background:rgba(10,22,52,.2);height:6px;margin-bottom:16px;overflow:hidden">
+          <div style="width:${p}%;height:100%;background:var(--navy)"></div>
         </div>
-        <div style="display:flex;gap:28px;flex-wrap:wrap">
-          ${[
-            {l:'GAP TO GOAL',v:fmt(gol-tot)},
-            {l:'ABOVE GOAL',v:`${above} of 8`},
-            {l:'SELLERS',v:'847'},
-            {l:'BLENDED MARGIN',v:`${MARGIN.current}%`},
-            {l:'MARGIN GAP',v:`${(MARGIN.target-MARGIN.current).toFixed(1)}pts`},
-          ].map(m=>`<div><div class="lbl" style="color:rgba(0,0,0,.55);margin-bottom:5px">${m.l}</div><div style="font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:var(--black)">${m.v}</div></div>`).join('')}
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          ${[{l:'GAP TO GOAL',v:fmt(gol-tot)},{l:'ABOVE GOAL',v:`${above} of 8`},{l:'SELLERS',v:'847'},{l:'BLENDED MARGIN',v:`${MARGIN.current}%`},{l:'MARGIN GAP',v:`${(MARGIN.target-MARGIN.current).toFixed(1)}pts`}].map(m=>`<div><div class="lbl" style="color:rgba(10,22,52,.5);margin-bottom:5px">${m.l}</div><div style="font-family:'Space Mono',monospace;font-size:15px;font-weight:700;color:var(--navy)">${m.v}</div></div>`).join('')}
         </div>
       </div>
-
       <div class="row">
-        <div style="flex:1;background:var(--b2);border:1px solid rgba(239,68,68,.3);border-left:3px solid var(--red);padding:14px 16px;display:flex;gap:12px;align-items:center">
-          <div style="flex:1">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">⚠ Intervention Required</div>
-            <div style="font-size:11px;color:var(--w2)">Columbus/Dayton 81% · Tulsa/Little Rock 81% — $6.9M combined gap</div>
-          </div>
+        <div style="flex:1;background:var(--navy2);border:1px solid rgba(255,77,106,.2);border-left:3px solid var(--red);padding:14px 16px;display:flex;gap:12px;align-items:center">
+          <div style="flex:1"><div style="font-size:11px;font-weight:900;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">⚠ Intervention Required</div><div style="font-size:11px;color:var(--w2)">Columbus/Dayton 81% · Tulsa/Little Rock 81% — $6.9M combined gap</div></div>
           <button class="btn-ai" onclick="openAI('intervention','Intervention')">Analyze</button>
         </div>
-        <div style="flex:1;background:var(--b2);border:1px solid rgba(197,241,53,.3);border-left:3px solid var(--lime);padding:14px 16px;display:flex;gap:12px;align-items:center">
-          <div style="flex:1">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;color:var(--lime);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">$558K Immediate</div>
-            <div style="font-size:11px;color:var(--w2)">$218K scatter returned Baltimore WBFF · Faber PAC $340K filing</div>
-          </div>
+        <div style="flex:1;background:var(--navy2);border:1px solid rgba(0,255,174,.2);border-left:3px solid var(--teal);padding:14px 16px;display:flex;gap:12px;align-items:center">
+          <div style="flex:1"><div style="font-size:11px;font-weight:900;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px">$558K Immediate Opportunity</div><div style="font-size:11px;color:var(--w2)">$218K scatter returned WBFF · Faber Senate PAC $340K in Baltimore</div></div>
           <button class="btn-ai" onclick="openAI('scatter','Capture Strategy')">Strategy</button>
         </div>
       </div>
-
-      <div class="g4">
-        ${REGIONS.map(r=>`
-        <div onclick="drillRegion('${r.id}')" style="background:var(--b2);border:1px solid ${r.pct<88?'rgba(239,68,68,.3)':r.pct>=100?'rgba(197,241,53,.25)':'var(--border)'};padding:14px;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--b3)'" onmouseout="this.style.background='var(--b2)'">
-          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
-            <div style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:800;line-height:1.2">${r.name}</div>
-            <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:${gc(r.pct)}">${r.pct}%</span>
-          </div>
-          ${bar(r.pct,null,5)}
-          <div style="display:flex;gap:10px;margin-top:8px">
-            <span style="font-size:10px;color:var(--w3)">Dig <b style="color:${r.digital>=28?'var(--green)':'var(--amber)'}">${r.digital}%</b></span>
-            <span style="font-size:10px;color:var(--w3)">H <b style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</b></span>
-          </div>
-        </div>`).join('')}
-      </div>
+      <div class="g4">${REGIONS.map(r=>`<div onclick="drillRegion('${r.id}')" style="background:var(--navy2);border:1px solid ${r.pct<88?'rgba(255,77,106,.2)':r.pct>=100?'rgba(0,255,174,.15)':'var(--border)'};padding:14px;cursor:pointer;transition:background .12s" onmouseover="this.style.background='var(--navy3)'" onmouseout="this.style.background='var(--navy2)'">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+          <div style="font-size:12px;font-weight:900;line-height:1.3">${r.name}</div>
+          <span style="font-family:'Space Mono',monospace;font-size:13px;font-weight:700;color:${gc(r.pct)}">${r.pct}%</span>
+        </div>
+        ${bar(r.pct,null,5)}
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <span style="font-size:10px;color:var(--w4)">Dig <b style="color:${r.digital>=28?'var(--teal)':'var(--amber)'}">${r.digital}%</b></span>
+          <span style="font-size:10px;color:var(--w4)">H <b style="color:${r.health>=80?'var(--teal)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</b></span>
+        </div>
+      </div>`).join('')}</div>
     </div>`;
   }
-
   if(S.persona==='ae'){
     const s=SELLERS[0];
     return `<div class="col">
-      <div class="s-hero">
+      <div class="s-dark">
         <div class="lbl" style="margin-bottom:12px">Your Scoreboard</div>
-        <div style="display:flex;gap:28px;flex-wrap:wrap">
-          ${[
-            {l:'REVENUE',v:fmt(s.revenue),sub:`${s.pct}% of ${fmt(s.goal)}`,c:gc(s.pct)},
-            {l:'DIGITAL MIX',v:`${s.digital}%`,sub:'Target 35%',c:'var(--amber)'},
-            {l:'NEW BIZ',v:s.newBiz,sub:'Target 4/mo',c:s.newBiz>=4?'var(--green)':'var(--w2)'},
-            {l:'RENEWAL RISKS',v:s.risk,sub:'accounts',c:'var(--red)'},
-          ].map(m=>`<div>
-            <div class="lbl" style="margin-bottom:6px">${m.l}</div>
-            <div class="num-lg" style="color:${m.c}">${m.v}</div>
-            <div style="font-size:10px;color:var(--w3);margin-top:3px">${m.sub}</div>
-          </div>`).join('')}
+        <div style="display:flex;gap:24px;flex-wrap:wrap">
+          ${[{l:'REVENUE',v:fmt(s.revenue),sub:`${s.pct}% of ${fmt(s.goal)}`,c:gc(s.pct)},{l:'DIGITAL MIX',v:`${s.digital}%`,sub:'Target 35%',c:'var(--amber)'},{l:'NEW BIZ',v:s.newBiz,sub:'Target 4/mo',c:s.newBiz>=4?'var(--teal)':'var(--w2)'},{l:'RENEWAL RISKS',v:s.risk,sub:'accounts',c:'var(--red)'}].map(m=>`<div><div class="lbl" style="margin-bottom:6px">${m.l}</div><div class="num-lg" style="color:${m.c}">${m.v}</div><div style="font-size:10px;color:var(--w4);margin-top:3px">${m.sub}</div></div>`).join('')}
         </div>
       </div>
       <div class="g21">
-        <div class="s">
-          <div class="sh"><span class="sh-t">Top Actions Today</span></div>
-          ${QUEUE.slice(0,3).map(q=>`
-          <div class="dr" onclick="drillQueue('${q.id}')">
-            <div class="pri-bar" style="background:${q.pri==='P1'?'var(--red)':'var(--amber)'}"></div>
-            <div style="flex:1">
-              <div style="font-size:12px;font-weight:700;margin-bottom:2px">${q.account}</div>
-              <div style="font-size:11px;color:var(--w3)">${q.action}</div>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:${q.due==='Today'?'var(--red)':'var(--amber)'};flex-shrink:0">${q.due}</div>
-          </div>`).join('')}
-        </div>
-        <div class="s">
-          <div class="sh"><span class="sh-t">Critical Few</span></div>
-          ${CF.map(cf=>{const sc=cfC(cf.status);return`<div style="margin-bottom:10px">
-            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-              <span style="font-size:10px;color:var(--w2)">${cf.title}</span>
-              <span class="num-xs" style="color:${sc}">${cf.current}${cf.unit}</span>
-            </div>${bar(Math.round(cf.current/cf.target*100),sc,5)}</div>`;}).join('')}
-        </div>
+        <div class="s"><div class="sh"><span class="sh-t">Top Actions Today</span></div>${QUEUE.slice(0,3).map(q=>`<div class="dr" onclick="drillQueue('${q.id}')"><div class="pri-bar" style="background:${q.pri==='P1'?'var(--red)':'var(--amber)'}"></div><div style="flex:1"><div style="font-size:12px;font-weight:900;margin-bottom:2px">${q.account}</div><div style="font-size:11px;color:var(--w3)">${q.action}</div></div><div style="font-size:11px;font-weight:900;color:${q.due==='Today'?'var(--red)':'var(--amber)'};flex-shrink:0">${q.due}</div></div>`).join('')}</div>
+        <div class="s"><div class="sh"><span class="sh-t">Critical Few</span></div>${CF.map(cf=>{const sc=cfC(cf.status);return`<div style="margin-bottom:10px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:10px;color:var(--w2)">${cf.title}</span><span class="num-xs" style="color:${sc}">${cf.current}${cf.unit}</span></div>${bar(Math.round(cf.current/cf.target*100),sc,5)}</div>`;}).join('')}</div>
       </div>
     </div>`;
   }
-
-  return `<div class="col">
-    <div class="g4">
-      ${[
-        {l:'MARKET REVENUE',v:fmt(16600000),sub:'97% of $17.2M goal',c:'var(--amber)'},
-        {l:'DIGITAL MIX',   v:'30%',        sub:'Target 35%',        c:'var(--amber)'},
-        {l:'TEAM SIZE',     v:'10',          sub:'active sellers',    c:'var(--white)'},
-        {l:'RENEWAL RISKS', v:'7',           sub:'this month',        c:'var(--red)'},
-      ].map(m=>`<div class="s-sm">
-        <div class="lbl" style="margin-bottom:7px">${m.l}</div>
-        <div class="num-md" style="color:${m.c}">${m.v}</div>
-        <div style="font-size:11px;color:var(--w3);margin-top:3px">${m.sub}</div>
-      </div>`).join('')}
-    </div>
-    <div class="g2">
-      <div class="s">
-        <div class="sh"><span class="sh-t">Critical Few Status</span></div>
-        ${CF.map(cf=>{const sc=cfC(cf.status);return`<div style="margin-bottom:14px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-            <span style="font-size:12px;font-weight:600">${cf.title}</span>
-            ${tag(cfL(cf.status),cfT(cf.status))}
-          </div>${bar(Math.round(cf.current/cf.target*100),sc,7)}</div>`;}).join('')}
-      </div>
-      <div class="s">
-        <div class="sh"><span class="sh-t">8 Regions</span></div>
-        ${REGIONS.map(r=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
-          <div style="width:5px;height:5px;background:${gc(r.pct)};flex-shrink:0"></div>
-          <div style="flex:1"><div style="font-size:11px;font-weight:600;margin-bottom:3px">${r.name}</div>${bar(r.pct,null,4)}</div>
-          <span class="num-xs" style="color:${gc(r.pct)}">${r.pct}%</span>
-        </div>`).join('')}
-      </div>
-    </div>
-  </div>`;
+  return `<div class="col"><div class="g4">${[{l:'MARKET REVENUE',v:fmt(16600000),sub:'97% of $17.2M',c:'var(--amber)'},{l:'DIGITAL MIX',v:'30%',sub:'Target 35%',c:'var(--amber)'},{l:'TEAM SIZE',v:'10',sub:'active sellers',c:'var(--white)'},{l:'RENEWAL RISKS',v:'7',sub:'this month',c:'var(--red)'}].map(m=>`<div class="s-sm"><div class="lbl" style="margin-bottom:7px">${m.l}</div><div class="num-md" style="color:${m.c}">${m.v}</div><div style="font-size:11px;color:var(--w4);margin-top:3px">${m.sub}</div></div>`).join('')}</div>
+  <div class="g2"><div class="s"><div class="sh"><span class="sh-t">Critical Few Status</span></div>${CF.map(cf=>{const sc=cfC(cf.status);return`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><span style="font-size:12px;font-weight:900">${cf.title}</span>${tag(cfL(cf.status),cfT(cf.status))}</div>${bar(Math.round(cf.current/cf.target*100),sc,7)}</div>`;}).join('')}</div>
+  <div class="s"><div class="sh"><span class="sh-t">8 Regions</span></div>${REGIONS.map(r=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><div style="width:5px;height:5px;background:${gc(r.pct)};flex-shrink:0"></div><div style="flex:1"><div style="font-size:11px;font-weight:900;margin-bottom:3px">${r.name}</div>${bar(r.pct,null,4)}</div><span class="num-xs" style="color:${gc(r.pct)}">${r.pct}%</span></div>`).join('')}</div></div></div>`;
 }
 
-// ── REGIONS ───────────────────────────────────────────────────────────────────
 function rRegions(){
-  return `<div class="col">
-    ${REGIONS.map(r=>`
-    <div onclick="drillRegion('${r.id}')" style="background:var(--b2);border:1px solid ${r.pct<88?'rgba(239,68,68,.3)':r.pct>=100?'rgba(197,241,53,.2)':'var(--border)'};padding:16px;cursor:pointer;display:flex;gap:16px;align-items:center;transition:background .12s" onmouseover="this.style.background='var(--b3)'" onmouseout="this.style.background='var(--b2)'">
-      <div style="width:56px;height:42px;background:${r.pct>=100?'var(--lime)':r.pct>=88?'var(--adim)':'var(--rdim)'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:900;color:${r.pct>=100?'var(--black)':gc(r.pct)}">${r.pct}%</span>
-      </div>
-      <div style="flex:1.5">
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;margin-bottom:2px">${r.name}</div>
-        <div style="font-size:11px;color:var(--w3)">${r.vp} · ${r.markets}</div>
-      </div>
-      <div style="flex:2">${bar(r.pct,null,7)}
-        <div style="display:flex;justify-content:space-between;margin-top:5px">
-          <span class="num-xs" style="color:var(--w3)">${fmt(r.revenue)}</span>
-          <span class="num-xs" style="color:var(--w3)">${fmt(r.goal)}</span>
-        </div>
-      </div>
-      <div style="display:flex;gap:18px;flex-shrink:0">
-        <div style="text-align:center"><div class="lbl" style="margin-bottom:4px">Digital</div><div class="num-sm" style="color:${r.digital>=28?'var(--green)':'var(--amber)'}">${r.digital}%</div></div>
-        <div style="text-align:center"><div class="lbl" style="margin-bottom:4px">Health</div><div class="num-sm" style="color:${r.health>=80?'var(--green)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</div></div>
-      </div>
-      ${r.pct<88?tag('INTERVENE','red'):r.pct>=100?tag('ABOVE GOAL','green'):''}
-      <span style="color:var(--w3);font-size:16px;flex-shrink:0">›</span>
-    </div>`).join('')}
-  </div>`;
+  return `<div class="col">${REGIONS.map(r=>`<div onclick="drillRegion('${r.id}')" style="background:var(--navy2);border:1px solid ${r.pct<88?'rgba(255,77,106,.2)':r.pct>=100?'rgba(0,255,174,.15)':'var(--border)'};padding:16px;cursor:pointer;display:flex;gap:16px;align-items:center;transition:background .12s" onmouseover="this.style.background='var(--navy3)'" onmouseout="this.style.background='var(--navy2)'">
+  <div style="width:54px;height:40px;background:${r.pct>=100?'var(--teal)':r.pct>=88?'var(--adim)':'var(--rdim)'};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <span style="font-family:'Space Mono',monospace;font-size:14px;font-weight:700;color:${r.pct>=100?'var(--navy)':gc(r.pct)}">${r.pct}%</span>
+  </div>
+  <div style="flex:1.5"><div style="font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.01em;margin-bottom:2px">${r.name}</div><div style="font-size:11px;color:var(--w3)">${r.vp} · ${r.markets}</div></div>
+  <div style="flex:2">${bar(r.pct,null,7)}<div style="display:flex;justify-content:space-between;margin-top:5px"><span class="num-xs" style="color:var(--w3)">${fmt(r.revenue)}</span><span class="num-xs" style="color:var(--w3)">${fmt(r.goal)}</span></div></div>
+  <div style="display:flex;gap:18px;flex-shrink:0">
+    <div style="text-align:center"><div class="lbl" style="margin-bottom:4px">Digital</div><div class="num-sm" style="color:${r.digital>=28?'var(--teal)':'var(--amber)'}">${r.digital}%</div></div>
+    <div style="text-align:center"><div class="lbl" style="margin-bottom:4px">Health</div><div class="num-sm" style="color:${r.health>=80?'var(--teal)':r.health>=65?'var(--amber)':'var(--red)'}">${r.health}</div></div>
+  </div>
+  ${r.pct<88?tag('INTERVENE','red'):r.pct>=100?tag('ABOVE GOAL','green'):''}
+  <span style="color:var(--w3);font-size:16px;flex-shrink:0">›</span>
+</div>`).join('')}</div>`;
 }
 
-// ── CRITICAL FEW ──────────────────────────────────────────────────────────────
 function rCF(){
-  return `<div class="col">
-    <div class="s" style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.04em">Critical Few Priority Tracker</div>
-        <div style="font-size:11px;color:var(--w3);margin-top:3px">Set by Ryan Moore, CRO · Cascaded to 847 sellers via OSI + Dynamics</div>
-      </div>
-      <button class="btn-ai" onclick="openAI('${S.persona==='ae'?'briefae':'briefcro'}','CF Analysis')">AI Analysis</button>
-    </div>
-    ${CF.map((cf,i)=>{
-      const sc=cfC(cf.status);
-      return `<div class="s" style="border-left:3px solid ${sc}">
-        <div style="display:flex;gap:16px;align-items:center">
-          <div style="flex:1">
-            <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px">
-              <span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--w3)">CF-${i+1}</span>
-              <span style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.04em">${cf.title}</span>
-              ${tag(cfL(cf.status),cfT(cf.status))}
-            </div>
-            ${bar(Math.round(cf.current/cf.target*100),sc,10)}
-            <div style="display:flex;justify-content:space-between;margin-top:5px">
-              <span style="font-size:10px;color:var(--w3)">0${cf.unit}</span>
-              <span style="font-size:10px;color:var(--w3)">Target: ${cf.target}${cf.unit}</span>
-            </div>
-          </div>
-          <div style="text-align:right;flex-shrink:0">
-            <div class="num-lg" style="color:${sc}">${cf.current}${cf.unit}</div>
-            <div style="font-size:11px;color:var(--w3);margin-top:4px">of ${cf.target}${cf.unit}</div>
-          </div>
-        </div>
-      </div>`;
-    }).join('')}
-  </div>`;
+  return `<div class="col"><div class="s" style="display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:16px;font-weight:900;text-transform:uppercase;letter-spacing:.04em">Critical Few Priority Tracker</div><div style="font-size:11px;color:var(--w3);margin-top:3px">Set by Ryan Moore, CRO · Cascaded to 847 sellers via OSI + Dynamics</div></div><button class="btn-ai" onclick="openAI('${S.persona==='ae'?'briefae':'briefcro'}','CF Analysis')">AI Analysis</button></div>
+  ${CF.map((cf,i)=>{const sc=cfC(cf.status);return`<div class="s" style="border-left:3px solid ${sc}"><div style="display:flex;gap:16px;align-items:center"><div style="flex:1"><div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><span style="font-family:'Space Mono',monospace;font-size:10px;color:var(--w4)">CF-${i+1}</span><span style="font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.03em">${cf.title}</span>${tag(cfL(cf.status),cfT(cf.status))}</div>${bar(Math.round(cf.current/cf.target*100),sc,10)}<div style="display:flex;justify-content:space-between;margin-top:5px"><span style="font-size:10px;color:var(--w4)">0${cf.unit}</span><span style="font-size:10px;color:var(--w4)">Target: ${cf.target}${cf.unit}</span></div></div><div style="text-align:right;flex-shrink:0"><div class="num-lg" style="color:${sc}">${cf.current}${cf.unit}</div><div style="font-size:11px;color:var(--w3);margin-top:4px">of ${cf.target}${cf.unit}</div></div></div></div>`;}).join('')}</div>`;
 }
 
-// ── PACING ────────────────────────────────────────────────────────────────────
 function rPacing(){
   const months=[{m:'Nov',a:5820,g:6200},{m:'Dec',a:7140,g:6800},{m:'Jan',a:5990,g:6100},{m:'Feb',a:6230,g:6300},{m:'Mar',a:7010,g:6900},{m:'Apr',a:6840,g:7100}];
-  const prods=[{n:'Linear TV',r:3820,g:3900,p:98,c:'var(--amber)'},{n:'CTV/OTT',r:1240,g:1300,p:95,c:'#a78bfa'},{n:'Digital',r:680,g:920,p:74,c:'var(--blue)'},{n:'Social',r:510,g:580,p:88,c:'#06b6d4'},{n:'Audio',r:380,g:320,p:119,c:'var(--green)'},{n:'Sports',r:210,g:280,p:75,c:'var(--w2)'}];
+  const prods=[{n:'Linear TV',r:3820,g:3900,p:98,c:'var(--amber)'},{n:'CTV/OTT',r:1240,g:1300,p:95,c:'#a78bfa'},{n:'Digital',r:680,g:920,p:74,c:'var(--blue)'},{n:'Social',r:510,g:580,p:88,c:'#06b6d4'},{n:'Audio',r:380,g:320,p:119,c:'var(--teal)'},{n:'Sports',r:210,g:280,p:75,c:'var(--w3)'}];
   const mx=Math.max(...months.flatMap(m=>[m.a,m.g]));
-  return `<div class="col">
-    <div class="s">
-      <div class="sh">
-        <span class="sh-t">Monthly Revenue vs. Goal</span>
-        <button class="btn-ai" style="font-size:12px;padding:5px 12px" onclick="openAI('briefcro','Pacing Analysis')">Analyze</button>
-      </div>
-      <div class="chart">
-        ${months.map(m=>`<div class="cc">
-          <div class="cpair" style="height:80px">
-            <div class="cb" style="background:var(--b5);height:${(m.g/mx)*80}px"></div>
-            <div class="cb" style="background:${m.a>=m.g?'var(--lime)':'var(--blue)'};height:${(m.a/mx)*80}px;${m.a>=m.g?'box-shadow:0 0 8px rgba(197,241,53,.3)':''}"></div>
-          </div>
-          <div class="clbl">${m.m}</div>
-        </div>`).join('')}
-      </div>
-      <div style="display:flex;gap:16px;margin-top:12px">
-        ${[['var(--b5)','Goal'],['var(--blue)','Actual'],['var(--lime)','Beat']].map(([c,l])=>`<div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;background:${c}"></div><span style="font-size:10px;color:var(--w3)">${l}</span></div>`).join('')}
-      </div>
-    </div>
-    <div class="s">
-      <div class="sh"><span class="sh-t">Sell-Through by Product — OSI Data</span></div>
-      ${prods.map(p=>`<div style="margin-bottom:13px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-          <div style="display:flex;gap:8px;align-items:center">
-            <div style="width:7px;height:7px;background:${p.c}"></div>
-            <span style="font-size:12px;font-weight:600">${p.n}</span>
-            ${p.p>=110?tag('BEATING GOAL','green'):''}
-            ${p.p<80?tag('NEEDS PUSH','red'):''}
-          </div>
-          <div style="display:flex;gap:12px;align-items:center">
-            <span class="num-xs" style="color:var(--w3)">$${p.r}K / $${p.g}K</span>
-            <span class="num-sm" style="color:${gc(p.p)};width:42px;text-align:right">${p.p}%</span>
-          </div>
-        </div>
-        ${bar(p.p,p.c,7)}
-      </div>`).join('')}
-    </div>
-  </div>`;
+  return `<div class="col"><div class="s"><div class="sh"><span class="sh-t">Monthly Revenue vs. Goal</span><button class="btn-ai" style="font-size:11px;padding:5px 12px" onclick="openAI('briefcro','Pacing Analysis')">Analyze</button></div>
+  <div class="chart">${months.map(m=>`<div class="cc"><div class="cpair" style="height:80px"><div class="cb" style="background:var(--navy4);height:${(m.g/mx)*80}px"></div><div class="cb" style="background:${m.a>=m.g?'var(--teal)':'var(--blue)'};height:${(m.a/mx)*80}px"></div></div><div class="clbl">${m.m}</div></div>`).join('')}</div>
+  <div style="display:flex;gap:16px;margin-top:12px">${[['var(--navy4)','Goal'],['var(--blue)','Actual'],['var(--teal)','Beat']].map(([c,l])=>`<div style="display:flex;gap:5px;align-items:center"><div style="width:10px;height:10px;background:${c}"></div><span style="font-size:10px;color:var(--w3)">${l}</span></div>`).join('')}</div></div>
+  <div class="s"><div class="sh"><span class="sh-t">Sell-Through by Product — OSI Data</span></div>
+  ${prods.map(p=>`<div style="margin-bottom:13px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><div style="display:flex;gap:8px;align-items:center"><div style="width:7px;height:7px;background:${p.c}"></div><span style="font-size:12px;font-weight:900">${p.n}</span>${p.p>=110?tag('BEATING GOAL','green'):''}${p.p<80?tag('NEEDS PUSH','red'):''}</div><div style="display:flex;gap:12px;align-items:center"><span class="num-xs" style="color:var(--w3)">$${p.r}K / $${p.g}K</span><span class="num-sm" style="color:${gc(p.p)};width:42px;text-align:right">${p.p}%</span></div></div>${bar(p.p,p.c,7)}</div>`).join('')}</div></div>`;
 }
 
-// ── MARGIN ────────────────────────────────────────────────────────────────────
 function rMargin(){
-  const m=MARGIN;
-  const mx=Math.max(...m.products.map(p=>p.margin));
-  return `<div class="col">
-    <div class="hero-lime">
-      <div style="display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap;margin-bottom:16px">
-        <div>
-          <div class="lbl" style="color:rgba(0,0,0,.5);margin-bottom:8px">Blended Margin</div>
-          <div class="num-xl" style="color:var(--black)">${m.current}%</div>
-          <div style="display:flex;gap:10px;align-items:center;margin-top:6px">
-            <span style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;color:rgba(0,0,0,.7)">+${(m.current-m.prior).toFixed(1)}pts YTD vs ${m.prior}%</span>
-          </div>
-        </div>
-        <div style="flex:1;min-width:180px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:rgba(0,0,0,.55)">PROGRESS TO ${m.target}% TARGET</span>
-            <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:rgba(0,0,0,.7)">${(m.target-m.current).toFixed(1)}pts to go</span>
-          </div>
-          <div style="background:rgba(0,0,0,.2);height:7px;overflow:hidden">
-            <div style="width:${(m.current/m.target)*100}%;height:100%;background:var(--black)"></div>
-          </div>
-        </div>
-        <div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;color:rgba(0,0,0,.5);letter-spacing:.1em;margin-bottom:6px">6-MONTH TREND</div>
-          <div style="display:flex;gap:4px;align-items:flex-end;height:36px">
-            ${m.trend.map((v,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:2px">
-              <div style="width:14px;height:${Math.max(3,((v-26)/16)*32)}px;background:${i===m.trend.length-1?'var(--black)':'rgba(0,0,0,.25)'}"></div>
-              <div style="font-size:8px;color:rgba(0,0,0,.5);font-weight:600">${m.labels[i]}</div>
-            </div>`).join('')}
-          </div>
-        </div>
-      </div>
-      <div style="background:rgba(0,0,0,.1);padding:10px 14px;font-size:12px;color:rgba(0,0,0,.6);line-height:1.6">
-        Every 1pt gain in digital mix adds ~0.8pts to blended margin. Linear TV is 41.6% of revenue at only 31% margin — the mix shift to digital and CTV is the highest-leverage improvement available.
-      </div>
+  const m=MARGIN,mx=Math.max(...m.products.map(p=>p.margin));
+  return `<div class="col"><div class="hero-teal">
+    <div style="display:flex;gap:28px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px">
+      <div><div class="lbl" style="color:rgba(10,22,52,.5);margin-bottom:8px">Blended Margin</div><div class="num-xl">${m.current}%</div><div style="font-size:13px;font-weight:900;color:rgba(10,22,52,.6);margin-top:6px">+${(m.current-m.prior).toFixed(1)}pts YTD vs ${m.prior}% prior year</div></div>
+      <div style="flex:1;min-width:180px"><div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-size:10px;font-weight:900;color:rgba(10,22,52,.5);text-transform:uppercase;letter-spacing:.08em">Progress to ${m.target}% target</span><span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:rgba(10,22,52,.6)">${(m.target-m.current).toFixed(1)}pts to go</span></div><div style="background:rgba(10,22,52,.2);height:7px;overflow:hidden"><div style="width:${(m.current/m.target)*100}%;height:100%;background:var(--navy)"></div></div></div>
+      <div><div style="font-size:10px;font-weight:900;color:rgba(10,22,52,.5);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">6-Month Trend</div><div style="display:flex;gap:4px;align-items:flex-end;height:36px">${m.trend.map((v,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:2px"><div style="width:14px;height:${Math.max(3,((v-26)/16)*32)}px;background:${i===m.trend.length-1?'var(--navy)':'rgba(10,22,52,.25)'}"></div><div style="font-size:8px;color:rgba(10,22,52,.5);font-weight:900">${m.labels[i]}</div></div>`).join('')}</div></div>
     </div>
-    <div class="g32">
-      <div class="s">
-        <div class="sh">
-          <span class="sh-t">Margin by Product Line</span>
-          <button class="btn-ai" style="font-size:12px;padding:5px 12px" onclick="openAI('margin','Margin Analysis')">AI Analysis</button>
-        </div>
-        ${m.products.map(p=>`<div style="margin-bottom:14px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px">
-            <div style="display:flex;gap:8px;align-items:center">
-              <div style="width:7px;height:7px;background:${p.color}"></div>
-              <span style="font-size:12px;font-weight:600">${p.name}</span>
-              <span style="font-size:10px;color:var(--w3)">($${p.rev}K)</span>
-            </div>
-            <div style="display:flex;gap:12px;align-items:center">
-              <span style="font-size:10px;color:var(--w3)">${p.contrib}% of total</span>
-              <span class="num-sm" style="color:${p.margin>=50?'var(--green)':p.margin>=35?'var(--amber)':'var(--w3)'};width:38px;text-align:right">${p.margin}%</span>
-              <span style="font-size:11px;color:${trc(p.trend)};width:12px">${tr(p.trend)}</span>
-            </div>
-          </div>
-          <div class="track" style="height:7px;border-radius:1px"><div class="fill" style="width:${(p.margin/mx)*100}%;background:${p.color};height:100%;border-radius:1px"></div></div>
-        </div>`).join('')}
-      </div>
-      <div class="s">
-        <div class="sh"><span class="sh-t">Margin by Region</span></div>
-        ${m.regions.map((r,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:11px">
-          <div style="width:22px;height:22px;background:var(--b4);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:var(--w3);flex-shrink:0">${i+1}</div>
-          <div style="flex:1">
-            <div style="display:flex;justify-content:space-between;margin-bottom:3px">
-              <span style="font-size:11px;font-weight:600">${r.name}</span>
-              <div style="display:flex;align-items:center;gap:6px">
-                <span style="color:${trc(r.trend)};font-size:11px">${tr(r.trend)}</span>
-                <span class="num-xs" style="color:${r.margin>=36?'var(--green)':r.margin>=32?'var(--amber)':'var(--red)'}">${r.margin}%</span>
-              </div>
-            </div>
-            <div class="track" style="height:5px;border-radius:1px"><div class="fill" style="width:${(r.margin/42)*100}%;background:${r.margin>=36?'var(--green)':r.margin>=32?'var(--amber)':'var(--red)'};height:100%;border-radius:1px"></div></div>
-          </div>
-        </div>`).join('')}
-        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--w3);line-height:1.6">
-          <b style="color:var(--red)">Watch:</b> Columbus/Dayton (28.4%) and Tulsa/Little Rock (27.1%) are margin drags.
-        </div>
-      </div>
-    </div>
-  </div>`;
+    <div style="background:rgba(10,22,52,.1);padding:10px 14px;font-size:12px;color:rgba(10,22,52,.6);line-height:1.6">Every 1pt gain in digital mix adds ~0.8pts to blended margin. Linear TV is 41.6% of revenue at only 31% margin.</div>
+  </div>
+  <div class="g32">
+    <div class="s"><div class="sh"><span class="sh-t">Margin by Product Line</span><button class="btn-ai" style="font-size:11px;padding:5px 12px" onclick="openAI('margin','Margin Analysis')">AI Analysis</button></div>
+    ${m.products.map(p=>`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:5px"><div style="display:flex;gap:8px;align-items:center"><div style="width:7px;height:7px;background:${p.color}"></div><span style="font-size:12px;font-weight:900">${p.name}</span><span style="font-size:10px;color:var(--w3)">($${p.rev}K)</span></div><div style="display:flex;gap:12px;align-items:center"><span style="font-size:10px;color:var(--w3)">${p.contrib}%</span><span class="num-sm" style="color:${p.margin>=50?'var(--teal)':p.margin>=35?'var(--amber)':'var(--w3)'};width:38px;text-align:right">${p.margin}%</span><span style="font-size:11px;color:${trc(p.trend)};width:12px">${tr(p.trend)}</span></div></div><div class="track" style="height:7px"><div class="fill" style="width:${(p.margin/mx)*100}%;background:${p.color};height:100%"></div></div></div>`).join('')}</div>
+    <div class="s"><div class="sh"><span class="sh-t">Margin by Region</span></div>
+    ${m.regions.map((r,i)=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:11px"><div style="width:22px;height:22px;background:var(--navy4);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:var(--w3);flex-shrink:0">${i+1}</div><div style="flex:1"><div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:11px;font-weight:900">${r.name}</span><div style="display:flex;align-items:center;gap:6px"><span style="color:${trc(r.trend)};font-size:11px">${tr(r.trend)}</span><span class="num-xs" style="color:${r.margin>=36?'var(--teal)':r.margin>=32?'var(--amber)':'var(--red)'}">${r.margin}%</span></div></div><div class="track" style="height:5px"><div class="fill" style="width:${(r.margin/42)*100}%;background:${r.margin>=36?'var(--teal)':r.margin>=32?'var(--amber)':'var(--red)'};height:100%"></div></div></div></div>`).join('')}
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);font-size:11px;color:var(--w3);line-height:1.6"><b style="color:var(--red)">Watch:</b> Columbus/Dayton (28.4%) and Tulsa/Little Rock (27.1%) are margin drags.</div></div>
+  </div></div>`;
 }
 
-// ── TEAM ──────────────────────────────────────────────────────────────────────
 function rTeam(){
   return `<div class="col">
-    <div style="background:var(--b2);border:1px solid rgba(239,68,68,.3);border-left:3px solid var(--red);padding:12px 16px;font-size:12px">
-      <span style="color:var(--red);font-weight:800;font-family:'Barlow Condensed',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.06em">Action Needed: </span>
-      <span style="color:var(--w2)">Sun Valley Toyota renewal May 28 — 11 days no contact in Dynamics, OSI shows 58% spend decline. Assign Jordan Patel urgent call today.</span>
+  <div class="s" style="border-left:3px solid var(--red)"><span style="font-size:11px;font-weight:900;color:var(--red);text-transform:uppercase;letter-spacing:.06em">Action Needed: </span><span style="font-size:12px;color:var(--w2)">Sun Valley Toyota renewal May 28 — 11 days no Dynamics contact, OSI shows 58% spend decline. Assign Jordan Patel urgent call today.</span></div>
+  ${SELLERS.map(s=>`<div class="s" style="opacity:${S.done['sl_'+s.id]?.5:1}">
+    <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
+      <div onclick="drillSeller('${s.id}')" style="width:38px;height:38px;background:var(--navy4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:${gc(s.pct)};flex-shrink:0;cursor:pointer">${s.name.split(' ').map(n=>n[0]).join('')}</div>
+      <div style="flex:1;cursor:pointer" onclick="drillSeller('${s.id}')"><div style="font-size:13px;font-weight:900">${s.name}</div><div style="font-size:11px;color:var(--w3)">${s.title}</div></div>
+      <div style="flex:1.5">${bar(s.pct,null,7)}<div style="display:flex;justify-content:space-between;margin-top:4px"><span class="num-xs" style="color:var(--w3)">${fmt(s.revenue)}</span><span class="num-xs" style="color:${gc(s.pct)}">${s.pct}%</span></div></div>
+      <div style="display:flex;gap:5px">${s.risk>0?tag(`${s.risk} risk`,'red'):''}${tag(`${s.digital}% dig`,s.digital>=28?'green':'amber')}</div>
+      <button class="btn-ai" style="font-size:11px;padding:6px 12px" onclick="openAI('talking','Coach: ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital: ${s.digital}% vs 35%. New biz: ${s.newBiz} vs 4 target. At-risk: ${s.risk}. Last contact: ${s.lastContact}. Coaching brief with 3 specific action items.')">Coach</button>
     </div>
-    ${SELLERS.map(s=>`
-    <div class="s" style="opacity:${S.done['sl_'+s.id]?.5:1}">
-      <div style="display:flex;gap:12px;align-items:center;margin-bottom:12px">
-        <div onclick="drillSeller('${s.id}')" style="width:38px;height:38px;background:var(--b4);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:${gc(s.pct)};flex-shrink:0;cursor:pointer">${s.name.split(' ').map(n=>n[0]).join('')}</div>
-        <div style="flex:1;cursor:pointer" onclick="drillSeller('${s.id}')">
-          <div style="font-size:13px;font-weight:700">${s.name}</div>
-          <div style="font-size:11px;color:var(--w3)">${s.title}</div>
-        </div>
-        <div style="flex:1.5">${bar(s.pct,null,7)}
-          <div style="display:flex;justify-content:space-between;margin-top:4px">
-            <span class="num-xs" style="color:var(--w3)">${fmt(s.revenue)}</span>
-            <span class="num-xs" style="color:${gc(s.pct)}">${s.pct}%</span>
-          </div>
-        </div>
-        <div style="display:flex;gap:5px">
-          ${s.risk>0?tag(`${s.risk} risk`,'red'):''}
-          ${tag(`${s.digital}% dig`,s.digital>=28?'green':'amber')}
-        </div>
-        <button class="btn-ai" style="font-size:12px;padding:6px 12px" onclick="openAI('talking','Coach: ${s.name}',true,'Seller: ${s.name}. Category: ${s.title}. Pacing: ${s.pct}% (${fmt(s.revenue)} vs ${fmt(s.goal)}). Digital mix: ${s.digital}% vs 35% target. New biz: ${s.newBiz} vs 4 target. At-risk: ${s.risk}. Last contact: ${s.lastContact}. Give me a coaching brief and 3 specific action items.')">Coach</button>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <span style="font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--w3);flex-shrink:0">Note</span>
-        <input class="note-in" placeholder="Add note for ${s.name.split(' ')[0]}..." value="${S.notes['sl_'+s.id]||''}" oninput="S.notes['sl_${s.id}']=this.value">
-        <button class="done-btn ${S.done['sl_'+s.id]?'done':''}" onclick="toggleD('sl_${s.id}')">${S.done['sl_'+s.id]?'Done ✓':'Mark Done'}</button>
-      </div>
-    </div>`).join('')}
-  </div>`;
+    <div style="display:flex;gap:8px;align-items:center">
+      <span style="font-size:9px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--w4);flex-shrink:0">Note</span>
+      <input class="note-in" placeholder="Add note for ${s.name.split(' ')[0]}..." value="${S.notes['sl_'+s.id]||''}" oninput="S.notes['sl_${s.id}']=this.value">
+      <button class="done-btn ${S.done['sl_'+s.id]?'done':''}" onclick="toggleD('sl_${s.id}')">${S.done['sl_'+s.id]?'Done ✓':'Mark Done'}</button>
+    </div>
+  </div>`).join('')}</div>`;
 }
 
-// ── QUEUE ─────────────────────────────────────────────────────────────────────
 function rQueue(){
   const tot=QUEUE.reduce((s,q)=>s+(q.revenue||0),0);
   return `<div class="col">
-    <div class="s-hero" style="display:flex;justify-content:space-between;align-items:center">
-      <div>
-        <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">Signal AI Action Queue</div>
-        <div style="font-size:11px;color:var(--w3)">Ranked by revenue + urgency · OSI + Dynamics · ${QUEUE.length} items · Est. impact: <span style="color:var(--lime)">${fmt(tot)}</span></div>
+  <div class="s-dark" style="display:flex;justify-content:space-between;align-items:center">
+    <div><div style="font-size:15px;font-weight:900;text-transform:uppercase;letter-spacing:.04em;margin-bottom:3px">Signal AI Action Queue</div><div style="font-size:11px;color:var(--w3)">Ranked by revenue + urgency · OSI + Dynamics · ${QUEUE.length} items · Est. impact: <span style="color:var(--teal)">${fmt(tot)}</span></div></div>
+  </div>
+  ${QUEUE.map(q=>`<div class="s" style="border-left:3px solid ${q.pri==='P1'?'var(--red)':q.pri==='P2'?'var(--amber)':'var(--border)'};opacity:${S.done['q_'+q.id]?.5:1}">
+    <div style="display:flex;gap:12px;margin-bottom:12px;cursor:pointer" onclick="drillQueue('${q.id}')">
+      <div style="flex:1">
+        <div style="display:flex;gap:7px;align-items:center;margin-bottom:7px;flex-wrap:wrap">${tag(q.pri,q.pri==='P1'?'red':q.pri==='P2'?'amber':'dim')}<span style="font-size:14px;font-weight:900;text-transform:uppercase;letter-spacing:.02em">${q.account}</span>${q.revenue?`<span class="num-xs" style="color:var(--teal);margin-left:auto">${fmt(q.revenue)}</span>`:''}</div>
+        <div style="font-size:12px;color:var(--w2);line-height:1.6">${q.action}</div>
+        <div style="font-size:10px;color:var(--w4);margin-top:5px">${q.market} · ${q.seller}</div>
       </div>
+      <div style="text-align:right;flex-shrink:0"><div class="lbl" style="margin-bottom:4px">Due</div><div style="font-size:13px;font-weight:900;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--w3)'}">${q.due}</div></div>
     </div>
-    ${QUEUE.map(q=>`
-    <div class="s" style="border-left:3px solid ${q.pri==='P1'?'var(--red)':q.pri==='P2'?'var(--amber)':'var(--border)'};opacity:${S.done['q_'+q.id]?.5:1}">
-      <div style="display:flex;gap:12px;margin-bottom:12px;cursor:pointer" onclick="drillQueue('${q.id}')">
-        <div style="flex:1">
-          <div style="display:flex;gap:7px;align-items:center;margin-bottom:7px;flex-wrap:wrap">
-            ${tag(q.pri,q.pri==='P1'?'red':q.pri==='P2'?'amber':'dim')}
-            <span style="font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.03em">${q.account}</span>
-            ${q.revenue?`<span class="num-xs" style="color:var(--lime);margin-left:auto">${fmt(q.revenue)}</span>`:''}
-          </div>
-          <div style="font-size:12px;color:var(--w2);line-height:1.6">${q.action}</div>
-          <div style="font-size:10px;color:var(--w3);margin-top:5px">${q.market} · ${q.seller}</div>
-        </div>
-        <div style="text-align:right;flex-shrink:0">
-          <div class="lbl" style="margin-bottom:4px">Due</div>
-          <div style="font-size:13px;font-weight:700;color:${q.due==='Today'?'var(--red)':q.due==='Tomorrow'?'var(--amber)':'var(--w3)'}">${q.due}</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn-ai" style="font-size:12px;padding:6px 12px" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Market: ${q.market}. Situation: ${q.action} Type: ${q.type}. Due: ${q.due}. Generate specific talking points for outreach today.')">Talking Points</button>
-        ${q.type==='risk'?`<button class="btn-red" onclick="openAI('renewal','Rescue Plan',true,'Account: Sun Valley Toyota, Salt Lake City KUTV market. Renewal at risk: 58% spend decline, renewal May 28, 11 days no contact in Dynamics. Build a rescue plan.')">Rescue Plan</button>`:''}
-        <input class="note-in" placeholder="Note..." value="${S.notes['q_'+q.id]||''}" oninput="S.notes['q_${q.id}']=this.value" style="font-size:11px">
-        <button class="done-btn ${S.done['q_'+q.id]?'done':''}" onclick="toggleD('q_${q.id}')">${S.done['q_'+q.id]?'Done ✓':'Mark Done'}</button>
-      </div>
-    </div>`).join('')}
-  </div>`;
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="btn-ai" style="font-size:11px;padding:6px 12px" onclick="openAI('talking','Talking Points',true,'Account: ${q.account}. Market: ${q.market}. Action: ${q.action} Type: ${q.type}. Due: ${q.due}. Generate specific talking points for outreach today.')">Talking Points</button>
+      ${q.type==='risk'?`<button class="btn-red" onclick="openAI('renewal','Rescue Plan',true,'Sun Valley Toyota, Salt Lake/KUTV. Renewal at risk: 58% decline, May 28 deadline, 11 days no contact. Build rescue plan with meeting agenda and fallbacks.')">Rescue Plan</button>`:''}
+      <input class="note-in" placeholder="Note..." value="${S.notes['q_'+q.id]||''}" oninput="S.notes['q_${q.id}']=this.value" style="font-size:11px">
+      <button class="done-btn ${S.done['q_'+q.id]?'done':''}" onclick="toggleD('q_${q.id}')">${S.done['q_'+q.id]?'Done ✓':'Mark Done'}</button>
+    </div>
+  </div>`).join('')}</div>`;
 }
 
-// ── ACTIONS ───────────────────────────────────────────────────────────────────
 function switchP(p){S.persona=p;S.tab=NAV[p][0].l;render()}
 function switchT(t){S.tab=t;render()}
 function toggleD(k){S.done[k]=!S.done[k];render()}
