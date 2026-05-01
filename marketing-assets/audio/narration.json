@@ -1,0 +1,50 @@
+{
+  "_comment": "OpenClaw reads this manifest, calls ElevenLabs /v1/text-to-speech/{voice_id}/stream for each section, writes {id}.mp3 to this directory, commits and pushes. Re-run regenerates only sections whose 'text' has changed (use sha1 of text as cache key).",
+  "voice_id": "REPLACE_WITH_SCOTT_TRAINED_VOICE_ID",
+  "model_id": "eleven_turbo_v2_5",
+  "output_format": "mp3_44100_128",
+  "settings": {
+    "stability": 0.45,
+    "similarity_boost": 0.85,
+    "style": 0.30,
+    "use_speaker_boost": true
+  },
+  "sections": [
+    {
+      "id": "01-open",
+      "text": "See the signal first. AMP Signal — an A.I. sales intelligence platform, built for Sinclair regional sales. One platform, every role, every market. This is a pilot proposal. One region, one quarter, one signal. Let me show you why we should build it."
+    },
+    {
+      "id": "02-noise",
+      "text": "Your top A.E. has fourteen tabs open right now. None of them are closing. Sixty-four percent of an A.E.'s week goes to non-selling work — tab-hopping, lookups, manual prep, internal process. The signal is in there somewhere. Buried in noise."
+    },
+    {
+      "id": "03-platform",
+      "text": "AMP Signal is one platform. Every role. Tuned to each seat. The A.E. sees their pipeline, their day. The Regional Sales Manager sees their team, their plan. The executive sees every region, one view. One ingest layer underneath — SASO inventory, Nielsen, Comscore, category and competitive spend, contact and trigger events. Centralized intelligence. Customized per role. One source of truth."
+    },
+    {
+      "id": "04-renewal",
+      "text": "Vignette one. Before the renewal. AMP Signal walks into the renewal already knowing the campaign overdelivered — and surfaces two adjacent inventory plays sized to the buyer's category. Renewals that would have run flat become the expansions buyers didn't know they wanted. Plus thirty percent expansion at renewal, conservatively. Know before they do."
+    },
+    {
+      "id": "05-call",
+      "text": "Vignette two. Before the call. AMP Signal builds the brief before you log in. Account history, current spend, recent activity, contacts, trigger events, the exact ask — ready when your call starts. Thirty minutes of prep becomes thirty seconds. Every meeting opens at \"we know you,\" not \"tell me about your business.\" Intel, in hand."
+    },
+    {
+      "id": "06-cycle",
+      "text": "Vignette three. Before the cycle. Every PAC, every candidate, every market — mapped before the buy lands somewhere else. One hundred eighty markets, twenty-four months out. Sinclair's political franchise, on rails. Built into the platform, not bolted on. When you know first, you win first."
+    },
+    {
+      "id": "07-math",
+      "text": "Net lift, conservatively. Plus thirty percent composite. Three independent buckets, roughly ten percent each. Push back on any one and the math still works. Increased sales — cross-property upsell, renewal expansion, political-window timing. Loss mitigation — earlier at-risk signal, save plays, fewer late-stage surprises. Cost efficiency — five hours per A.E. per week recovered, redirected to selling. Modeled. Defensible. Pending pilot validation. Not promises."
+    },
+    {
+      "id": "08-pilot",
+      "text": "Here's the ask. One region. One quarter. One signal. One regional sales group, twenty-five to forty A.E.s under one Regional Sales Manager. Twelve weeks — long enough to capture a renewal cycle and a meaningful pipeline movement. A small cross-functional pod — engineering, data, product, design — embedded with the regional cohort. Sized to the budget envelope you set. We come back with modeled-versus-actual on all three buckets. Decision-grade evidence to scale across regions, or to stop. Greenlight the pilot."
+    },
+    {
+      "id": "09-signoff",
+      "text": "See it first. Win it first."
+    }
+  ]
+}

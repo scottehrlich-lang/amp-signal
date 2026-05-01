@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMP Signal — Sell-in Pitch</title>
+<meta name="description" content="One region. One quarter. One signal. AMP Signal is the AI sales intelligence platform built for Sinclair regional sales — a funded pilot proposal.">
+<meta property="og:title" content="See the signal first.">
+<meta property="og:description" content="AMP Signal — pilot proposal for Sinclair regional sales.">
+<meta property="og:image" content="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0a1634;
+  --navy2:   #0d1c3f;
+  --navy-lt: #1a2d5a;
+  --white:   #ffffff;
+  --off:     #f7f8fc;
+  --off2:    #eef0f7;
+  --off3:    #e2e6f0;
+  --text:    #0a1634;
+  --text2:   #3d4f6e;
+  --text3:   #7a8fa8;
+  --text4:   #b0bfd0;
+  --green:   #00a86b;
+  --red:     #e03450;
+  --amber:   #e07b00;
+  --border:  #e4e8f2;
+  --hairline: rgba(10,22,52,.08);
+  --hairline-w: rgba(255,255,255,.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--navy); color: var(--white); }
+
+/* ==================== NAV RAIL ==================== */
+.nav-rail {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  mix-blend-mode: difference;
+}
+.nav-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  border: 1px solid rgba(255,255,255,.6);
+  cursor: pointer;
+  transition: all .25s ease;
+  position: relative;
+}
+.nav-dot:hover { background: rgba(255,255,255,.7); transform: scale(1.3); }
+.nav-dot.active { background: var(--white); border-color: var(--white); transform: scale(1.4); }
+.nav-dot::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+.nav-dot:hover::after, .nav-dot.active::after { opacity: 1; }
+
+/* ==================== AUDIO TOGGLE ==================== */
+.audio-toggle {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 101;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(10,22,52,.18);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .25s ease;
+  font-size: 18px;
+  color: var(--navy);
+}
+.audio-toggle:hover { background: var(--navy); color: var(--white); transform: scale(1.05); }
+.audio-toggle.on { background: var(--navy); color: var(--white); }
+.audio-toggle .pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid var(--navy);
+  opacity: 0;
+  animation: pulse 2s ease-out infinite;
+  pointer-events: none;
+}
+.audio-toggle.on .pulse { opacity: 1; }
+@keyframes pulse {
+  0% { transform: scale(.9); opacity: .8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* ==================== SECTION COUNTER ==================== */
+.section-counter {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 99;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--text3);
+  mix-blend-mode: difference;
+  color: rgba(255,255,255,.7);
+}
+.section-counter .num {
+  font-weight: 700;
+  color: var(--white);
+  font-size: 14px;
+}
+
+/* ==================== SECTION BASE ==================== */
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 80px 5vw;
+  overflow: hidden;
+}
+.inner { max-width: 1320px; width: 100%; margin: 0 auto; }
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8vw;
+  align-items: center;
+  flex: 1;
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.grid.media-first > *:first-child { order: 1; }
+.grid.media-first > *:last-child  { order: 2; }
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: 40px; }
+  .grid.media-first > *:first-child { order: 2; }
+  .grid.media-first > *:last-child  { order: 1; }
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 28px;
+  display: inline-block;
+}
+.eyebrow.dim { color: rgba(255,255,255,.5); }
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.giga {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(56px, 11vw, 188px);
+  line-height: .88;
+  letter-spacing: -.04em;
+}
+.huge {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: .95;
+  letter-spacing: -.03em;
+}
+.large {
+  font-weight: 900;
+  font-size: clamp(28px, 3.6vw, 52px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+.body-text {
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.55;
+  color: var(--text2);
+  max-width: 38ch;
+}
+.body-text.large { font-size: clamp(17px, 1.35vw, 22px); }
+.body-text.dim { color: rgba(255,255,255,.7); }
+
+/* ==================== REVEAL ANIMATION ==================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+.r-1 { transition-delay: .1s; }
+.r-2 { transition-delay: .25s; }
+.r-3 { transition-delay: .4s; }
+.r-4 { transition-delay: .55s; }
+.r-5 { transition-delay: .7s; }
+
+/* ==================== SECTION 01: OPEN ==================== */
+.s-open {
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  align-items: stretch;
+  padding: 0;
+}
+.s-open .pitchman-frame {
+  background: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+.s-open .pitchman-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.s-open .pitchman-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(10,22,52,.3));
+  pointer-events: none;
+}
+.s-open .copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 6vw;
+}
+.s-open .meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.s-open .meta .dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--navy);
+  margin: 0 12px;
+  vertical-align: middle;
+}
+.s-open h1 { color: var(--navy); }
+.s-open .signoff-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--text3);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.s-open .signoff-meta .scroll-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.s-open .signoff-meta .arrow {
+  width: 18px; height: 1px;
+  background: var(--navy);
+  position: relative;
+  animation: arrow-pulse 1.6s ease-in-out infinite;
+}
+.s-open .signoff-meta .arrow::after {
+  content: "";
+  position: absolute;
+  right: -1px; top: -3px;
+  width: 7px; height: 7px;
+  border-right: 1px solid var(--navy);
+  border-bottom: 1px solid var(--navy);
+  transform: rotate(-45deg);
+}
+@keyframes arrow-pulse {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(6px); opacity: .5; }
+}
+@media (max-width: 900px) {
+  .s-open { grid-template-columns: 1fr; grid-template-rows: 40vh 60vh; }
+  .s-open .copy { padding: 40px 6vw; }
+}
+
+/* ==================== SECTION 02: NOISE ==================== */
+.s-noise {
+  background: var(--off);
+  justify-content: center;
+}
+.s-noise .stat-block {
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 2px solid var(--navy);
+  max-width: 32ch;
+}
+.s-noise .stat-num {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(56px, 8vw, 112px);
+  line-height: .9;
+  color: var(--navy);
+  letter-spacing: -.03em;
+  font-feature-settings: "tnum" 1;
+}
+.s-noise .stat-desc {
+  font-size: 15px;
+  color: var(--text2);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+.s-noise .stat-source {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: var(--text3);
+  text-transform: uppercase;
+  margin-top: 16px;
+}
+.tab-stack {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  transform: rotate(-1.5deg);
+  perspective: 1000px;
+}
+.tab {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+  box-shadow: 0 8px 28px rgba(10,22,52,.08), 0 2px 6px rgba(10,22,52,.04);
+  aspect-ratio: 4/3;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tab:nth-child(2) { margin-top: 24px; }
+.tab:nth-child(3) { margin-top: -16px; }
+.tab:nth-child(4) { margin-top: 40px; }
+.tab:nth-child(5) { margin-top: 8px; }
+.tab:nth-child(6) { margin-top: -24px; }
+.tab-bar {
+  display: flex;
+  gap: 5px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--off3);
+}
+.tab-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--off3);
+}
+.tab-line {
+  height: 5px;
+  background: var(--off2);
+  border-radius: 2px;
+}
+.tab-line.short { width: 50%; }
+.tab-line.medium { width: 70%; }
+.tab-line.long { width: 90%; }
+
+/* ==================== SECTION 03: PLATFORM ==================== */
+.s-platform {
+  background: var(--white);
+  justify-content: center;
+}
+.s-platform .header-row {
+  margin-bottom: 64px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 32px;
+  border-bottom: 2px solid var(--navy);
+}
+.s-platform h2 { color: var(--navy); max-width: 14ch; }
+.s-platform .header-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: right;
+  line-height: 1.8;
+}
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+.role-card {
+  position: relative;
+  padding: 36px 28px 32px;
+  background: var(--off);
+  border-radius: 4px;
+  transition: all .35s cubic-bezier(.2,.7,.2,1);
+}
+.role-card:hover {
+  background: var(--navy);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(10,22,52,.18);
+}
+.role-card:hover .role-name,
+.role-card:hover .role-tag,
+.role-card:hover .role-list li,
+.role-card:hover .role-num { color: var(--white); }
+.role-card:hover .role-list li { border-color: rgba(255,255,255,.12); }
+.role-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--text3);
+  margin-bottom: 24px;
+  transition: color .3s;
+}
+.role-name {
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: -.01em;
+  margin-bottom: 4px;
+  color: var(--navy);
+  transition: color .3s;
+}
+.role-tag {
+  font-size: 13px;
+  color: var(--text2);
+  margin-bottom: 28px;
+  transition: color .3s;
+}
+.role-list { list-style: none; }
+.role-list li {
+  font-size: 14px;
+  color: var(--text2);
+  padding: 11px 0;
+  border-bottom: 1px solid var(--hairline);
+  transition: color .3s, border-color .3s;
+  line-height: 1.4;
+}
+.role-list li:last-child { border-bottom: none; }
+.platform-foot {
+  margin-top: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text3);
+  letter-spacing: .04em;
+  line-height: 1.7;
+  max-width: 86ch;
+}
+.platform-foot strong { color: var(--navy); font-weight: 700; }
+@media (max-width: 900px) {
+  .role-grid { grid-template-columns: 1fr; gap: 16px; }
+  .s-platform .header-row { grid-template-columns: 1fr; }
+  .s-platform .header-meta { text-align: left; }
+}
+
+/* ==================== VIGNETTES ==================== */
+.s-vignette {
+  background: var(--white);
+  justify-content: center;
+}
+.s-vignette.dark { background: var(--navy); }
+.s-vignette .vignette-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.s-vignette.dark .vignette-num { color: rgba(255,255,255,.5); }
+.s-vignette .vignette-num .accent {
+  width: 32px;
+  height: 2px;
+  background: var(--navy);
+}
+.s-vignette.dark .vignette-num .accent { background: var(--white); }
+.s-vignette h2 {
+  color: var(--navy);
+  margin-bottom: 32px;
+  max-width: 14ch;
+}
+.s-vignette.dark h2 { color: var(--white); }
+.feature-tag {
+  display: inline-block;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  border: 1px solid var(--navy);
+  border-radius: 100px;
+  color: var(--navy);
+  margin-bottom: 36px;
+}
+.s-vignette.dark .feature-tag {
+  border-color: rgba(255,255,255,.4);
+  color: var(--white);
+}
+.metric {
+  font-weight: 900;
+  font-size: clamp(64px, 9vw, 144px);
+  line-height: .9;
+  letter-spacing: -.04em;
+  color: var(--navy);
+  margin-bottom: 28px;
+  font-feature-settings: "tnum" 1;
+}
+.s-vignette.dark .metric { color: var(--white); }
+.metric .small {
+  font-size: .35em;
+  font-weight: 400;
+  color: var(--text3);
+  letter-spacing: -.01em;
+  margin-left: 12px;
+  vertical-align: middle;
+}
+.s-vignette.dark .metric .small { color: rgba(255,255,255,.6); }
+.metric .arrow {
+  display: inline-block;
+  margin: 0 18px;
+  font-weight: 400;
+  color: var(--text3);
+  font-size: .55em;
+  vertical-align: middle;
+}
+.s-vignette.dark .metric .arrow { color: rgba(255,255,255,.5); }
+.s-vignette p { color: var(--text2); }
+.s-vignette.dark p { color: rgba(255,255,255,.75); }
+.media-frame {
+  aspect-ratio: 4/5;
+  background: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-vignette.dark .media-frame {
+  background: var(--navy2);
+  border-color: rgba(255,255,255,.1);
+}
+.media-frame video, .media-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.media-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.s-vignette.dark .media-placeholder { color: rgba(255,255,255,.4); }
+.media-placeholder .big {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text2);
+  letter-spacing: -.01em;
+  text-transform: none;
+}
+.s-vignette.dark .media-placeholder .big { color: rgba(255,255,255,.7); }
+.media-frame::after {
+  content: "PLACEHOLDER";
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: var(--text4);
+  background: rgba(255,255,255,.9);
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.s-vignette.dark .media-frame::after {
+  background: rgba(10,22,52,.7);
+  color: rgba(255,255,255,.4);
+}
+
+/* ==================== SECTION 07: MATH ==================== */
+.s-math {
+  background: var(--navy);
+  color: var(--white);
+  justify-content: center;
+}
+.s-math .header-row {
+  margin-bottom: 64px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--hairline-w);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+.s-math h2 {
+  color: var(--white);
+  max-width: 16ch;
+}
+.s-math .modeled-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  text-align: right;
+  line-height: 1.8;
+}
+.composite-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 64px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--hairline-w);
+}
+.composite-num {
+  font-weight: 900;
+  font-size: clamp(120px, 18vw, 280px);
+  line-height: .82;
+  letter-spacing: -.05em;
+  color: var(--white);
+  font-feature-settings: "tnum" 1;
+}
+.composite-label {
+  font-size: 18px;
+  color: rgba(255,255,255,.75);
+  max-width: 38ch;
+  line-height: 1.5;
+}
+.composite-label strong {
+  color: var(--white);
+  font-weight: 900;
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+.bucket-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.bucket {
+  border-top: 2px solid var(--white);
+  padding-top: 28px;
+}
+.bucket-num {
+  font-weight: 900;
+  font-size: clamp(48px, 6vw, 88px);
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--white);
+  font-feature-settings: "tnum" 1;
+}
+.bucket-name {
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: var(--white);
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+.bucket-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,.7);
+  line-height: 1.5;
+  max-width: 28ch;
+}
+.math-stamp {
+  margin-top: 56px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--hairline-w);
+  padding-top: 20px;
+}
+@media (max-width: 900px) {
+  .composite-row { grid-template-columns: 1fr; gap: 24px; }
+  .bucket-grid { grid-template-columns: 1fr; gap: 24px; }
+  .s-math .header-row { grid-template-columns: 1fr; }
+  .s-math .modeled-tag { text-align: left; }
+}
+
+/* ==================== SECTION 08: PILOT ==================== */
+.s-pilot {
+  background: var(--off);
+  justify-content: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+.s-pilot .ask-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.s-pilot .ask-banner .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+}
+.s-pilot h2 {
+  color: var(--navy);
+  margin-bottom: 56px;
+  max-width: 18ch;
+}
+.s-pilot h2 .accent { color: var(--text3); }
+.pilot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 56px;
+  padding: 40px 0;
+  border-top: 2px solid var(--navy);
+  border-bottom: 1px solid var(--hairline);
+}
+.pilot-cell h4 {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 16px;
+}
+.pilot-cell .head {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--navy);
+  letter-spacing: -.01em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.pilot-cell p {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.pilot-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 18px 30px;
+  font-weight: 900;
+  font-size: 16px;
+  letter-spacing: .02em;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all .25s ease;
+}
+.pilot-cta:hover { background: var(--navy-lt); transform: translateX(4px); }
+.pilot-cta .arrow { font-size: 20px; }
+@media (max-width: 900px) {
+  .pilot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .pilot-grid { grid-template-columns: 1fr; }
+}
+
+/* ==================== SECTION 09: SIGNOFF ==================== */
+.s-signoff {
+  background: var(--navy);
+  color: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  padding: 0;
+}
+.s-signoff .pitchman-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--navy2);
+}
+.s-signoff .pitchman-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.s-signoff .pitchman-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(225deg, transparent 60%, rgba(10,22,52,.4));
+  pointer-events: none;
+}
+.s-signoff .copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 80px 6vw;
+}
+.s-signoff .lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.s-signoff .lines .giga { color: var(--white); }
+.s-signoff .lines .giga.dim { color: rgba(255,255,255,.35); }
+.s-signoff .footer-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: rgba(255,255,255,.4);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .s-signoff { grid-template-columns: 1fr; grid-template-rows: 50vh 50vh; }
+  .s-signoff .copy { padding: 40px 6vw; }
+  .s-signoff .pitchman-frame { order: 2; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== AUDIO TOGGLE ==================== -->
+<button class="audio-toggle" id="audioToggle" aria-label="Toggle narration">
+  <span class="pulse"></span>
+  <span class="icon">🔇</span>
+</button>
+
+<!-- ==================== NAV RAIL ==================== -->
+<nav class="nav-rail" id="navRail">
+  <a class="nav-dot" data-target="01" data-label="Open" href="#sec-01"></a>
+  <a class="nav-dot" data-target="02" data-label="Noise" href="#sec-02"></a>
+  <a class="nav-dot" data-target="03" data-label="Platform" href="#sec-03"></a>
+  <a class="nav-dot" data-target="04" data-label="Renewal" href="#sec-04"></a>
+  <a class="nav-dot" data-target="05" data-label="Call" href="#sec-05"></a>
+  <a class="nav-dot" data-target="06" data-label="Cycle" href="#sec-06"></a>
+  <a class="nav-dot" data-target="07" data-label="Math" href="#sec-07"></a>
+  <a class="nav-dot" data-target="08" data-label="Pilot" href="#sec-08"></a>
+  <a class="nav-dot" data-target="09" data-label="Signoff" href="#sec-09"></a>
+</nav>
+
+<!-- ==================== SECTION COUNTER ==================== -->
+<div class="section-counter"><span class="num" id="secNum">01</span> / 09</div>
+
+<!-- ==================== 01 · OPEN ==================== -->
+<section class="s-open" data-num="01" id="sec-01" data-audio="01-open">
+  <div class="pitchman-frame">
+    <img class="reveal" src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg" alt="AMP Signal pitchman">
+  </div>
+  <div class="copy">
+    <div class="meta reveal r-1">AMP Signal<span class="dot"></span>Sinclair Innovation<span class="dot"></span>Pilot Proposal</div>
+    <div>
+      <h1 class="giga reveal r-2">See the<br>signal first.</h1>
+      <p class="body-text large reveal r-3" style="margin-top:32px;max-width:46ch">An AI sales intelligence platform — built for Sinclair regional sales. One platform. Every role. Every market.</p>
+    </div>
+    <div class="signoff-meta reveal r-4">
+      <span>One region · One quarter · One signal</span>
+      <span class="scroll-cue">Scroll<span class="arrow"></span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 02 · NOISE ==================== -->
+<section class="s-noise" data-num="02" id="sec-02" data-audio="02-noise">
+  <div class="grid">
+    <div>
+      <div class="eyebrow reveal">The signal in the noise.</div>
+      <h2 class="huge reveal r-1">Your top AE has<br>14 tabs open.</h2>
+      <h2 class="huge reveal r-2" style="opacity:.4;margin-top:8px">None of them<br>are closing.</h2>
+      <div class="stat-block reveal r-3">
+        <div class="stat-num"><span class="counter" data-target="64" data-suffix="%">0</span></div>
+        <div class="stat-desc">of an AE's week is spent on non-selling work — tab-hopping, lookups, manual prep, internal process.</div>
+        <div class="stat-source">Source · Salesforce State of Sales</div>
+      </div>
+    </div>
+    <div class="tab-stack reveal r-2">
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line"></div><div class="tab-line short"></div><div class="tab-line medium"></div><div class="tab-line"></div></div>
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line medium"></div><div class="tab-line"></div><div class="tab-line short"></div></div>
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line"></div><div class="tab-line"></div><div class="tab-line short"></div><div class="tab-line medium"></div></div>
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line short"></div><div class="tab-line"></div><div class="tab-line medium"></div></div>
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line"></div><div class="tab-line medium"></div><div class="tab-line short"></div></div>
+      <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-line medium"></div><div class="tab-line"></div><div class="tab-line"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 03 · PLATFORM (CENTRALIZATION + CUSTOMIZATION) ==================== -->
+<section class="s-platform" data-num="03" id="sec-03" data-audio="03-platform">
+  <div class="inner">
+    <div class="header-row">
+      <div>
+        <div class="eyebrow reveal">The platform</div>
+        <h2 class="huge reveal r-1">One platform.<br>Every role.<br>Tuned to each seat.</h2>
+      </div>
+      <div class="header-meta reveal r-2">
+        Centralized intelligence<br>
+        Customized per role<br>
+        One source of truth
+      </div>
+    </div>
+    <div class="role-grid">
+      <div class="role-card reveal r-2">
+        <div class="role-num">01 / Field</div>
+        <div class="role-name">Account Executive</div>
+        <div class="role-tag">Their pipeline. Their day.</div>
+        <ul class="role-list">
+          <li>Pre-meeting briefs, auto-built</li>
+          <li>At-risk deal alerts &amp; save plays</li>
+          <li>Cross-property upsell prompts</li>
+          <li>QBR portfolio narratives</li>
+        </ul>
+      </div>
+      <div class="role-card reveal r-3">
+        <div class="role-num">02 / Region</div>
+        <div class="role-name">Regional Sales Manager</div>
+        <div class="role-tag">Their team. Their plan.</div>
+        <ul class="role-list">
+          <li>Team pacing vs. plan, leading indicators</li>
+          <li>Coaching surfaces by rep</li>
+          <li>Pipeline health, not pipeline noise</li>
+          <li>Rollups built for them, not by them</li>
+        </ul>
+      </div>
+      <div class="role-card reveal r-4">
+        <div class="role-num">03 / Enterprise</div>
+        <div class="role-name">Executive</div>
+        <div class="role-tag">Every region. One view.</div>
+        <ul class="role-list">
+          <li>Division revenue posture, real-time</li>
+          <li>Political-window exposure mapped</li>
+          <li>Category momentum across markets</li>
+          <li>One access model, one source of truth</li>
+        </ul>
+      </div>
+    </div>
+    <div class="platform-foot reveal r-5">
+      <strong>One ingest layer →</strong> SASO inventory · Nielsen · Comscore · category &amp; competitive spend · contact &amp; trigger events · plus other Sinclair-resident data sources. Replaces the patchwork of tools and spreadsheets currently holding the workflow together.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 04 · VIGNETTE 1 — UPSELL + PACING ==================== -->
+<section class="s-vignette" data-num="04" id="sec-04" data-audio="04-renewal">
+  <div class="grid">
+    <div>
+      <div class="vignette-num reveal"><span class="accent"></span>Vignette 01 · Before the renewal</div>
+      <h2 class="huge reveal r-1">Know before<br>they do.</h2>
+      <span class="feature-tag reveal r-2">Cross-property upsell · Pacing &amp; delivery</span>
+      <div class="metric reveal r-3">
+        +<span class="counter" data-target="30" data-suffix="%">0</span>
+        <span class="small">expansion at renewal</span>
+      </div>
+      <p class="body-text reveal r-4">AMP Signal walks into the renewal already knowing the campaign overdelivered — and surfaces two adjacent inventory plays sized to the buyer's category. Renewals that would have run flat become the expansions buyers didn't know they wanted.</p>
+    </div>
+    <div class="reveal r-2">
+      <div class="media-frame">
+        <div class="media-placeholder">
+          <span class="big">Before the renewal</span>
+          <span>AE persona · 5–7s loop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 05 · VIGNETTE 2 — PRE-MEETING BRIEF ==================== -->
+<section class="s-vignette dark" data-num="05" id="sec-05" data-audio="05-call">
+  <div class="grid media-first">
+    <div class="reveal">
+      <div class="media-frame">
+        <div class="media-placeholder">
+          <span class="big">Before the call</span>
+          <span>AE persona · 5–7s loop</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="vignette-num reveal r-1"><span class="accent"></span>Vignette 02 · Before the call</div>
+      <h2 class="huge reveal r-2">Intel,<br>in hand.</h2>
+      <span class="feature-tag reveal r-3">Pre-meeting brief · Account 360</span>
+      <div class="metric reveal r-4">
+        <span class="counter" data-target="30" data-suffix="">0</span><span class="small">min</span>
+        <span class="arrow">→</span>
+        <span class="counter" data-target="30" data-suffix="">0</span><span class="small">sec</span>
+      </div>
+      <p class="body-text reveal r-5">AMP Signal builds the brief before you log in. Account history, current spend, recent activity, contacts, trigger events, the exact ask — ready when your call starts. Every meeting opens at "we know you," not "tell me about your business."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 06 · VIGNETTE 3 — POLITICAL WINDOW ==================== -->
+<section class="s-vignette" data-num="06" id="sec-06" data-audio="06-cycle">
+  <div class="grid">
+    <div>
+      <div class="vignette-num reveal"><span class="accent"></span>Vignette 03 · Before the cycle</div>
+      <h2 class="huge reveal r-1">When you know first,<br>you win first.</h2>
+      <span class="feature-tag reveal r-2">Political window planner</span>
+      <div class="metric reveal r-3" style="font-size:clamp(48px,7vw,112px)">
+        <span class="counter" data-target="180" data-suffix="">0</span><span class="small">markets</span><br>
+        <span class="counter" data-target="24" data-suffix="">0</span><span class="small">months out</span>
+      </div>
+      <p class="body-text reveal r-4">Every PAC, every candidate, every market — mapped before the buy lands somewhere else. Sinclair's political franchise, on rails. Built into the platform, not bolted on.</p>
+    </div>
+    <div class="reveal r-2">
+      <div class="media-frame">
+        <div class="media-placeholder">
+          <span class="big">Before the cycle</span>
+          <span>Manager view · 5–7s loop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 07 · MATH (LOSS-MIT + UPSELL LEAD) ==================== -->
+<section class="s-math" data-num="07" id="sec-07" data-audio="07-math">
+  <div class="inner">
+    <div class="header-row">
+      <div>
+        <div class="eyebrow dim reveal">Modeled impact</div>
+        <h2 class="huge reveal r-1">Net lift,<br>conservatively.</h2>
+      </div>
+      <div class="modeled-tag reveal r-2">
+        Three independent buckets<br>
+        Decompose · Defend · Validate
+      </div>
+    </div>
+    <div class="composite-row reveal r-2">
+      <div class="composite-num">+<span class="counter" data-target="30" data-suffix="%">0</span></div>
+      <div class="composite-label">
+        <strong>Composite net lift.</strong>
+        Three independent buckets, ~10% each. Push back on any one and the math still works. Validated quarter-by-quarter through the pilot.
+      </div>
+    </div>
+    <div class="bucket-grid">
+      <div class="bucket reveal r-3">
+        <div class="bucket-num">~<span class="counter" data-target="10" data-suffix="%">0</span></div>
+        <div class="bucket-name">INCREASED SALES</div>
+        <div class="bucket-desc">Cross-property upsell capture, renewal expansion, political-window timing — revenue that wasn't on the table.</div>
+      </div>
+      <div class="bucket reveal r-4">
+        <div class="bucket-num">~<span class="counter" data-target="10" data-suffix="%">0</span></div>
+        <div class="bucket-name">LOSS MITIGATION</div>
+        <div class="bucket-desc">Earlier at-risk signal, recommended save plays, fewer late-stage surprises, tighter forecasting.</div>
+      </div>
+      <div class="bucket reveal r-5">
+        <div class="bucket-num">~<span class="counter" data-target="10" data-suffix="%">0</span></div>
+        <div class="bucket-name">COST EFFICIENCY</div>
+        <div class="bucket-desc">~5 hrs/AE/week recovered from prep, reporting, rollups — redirected to selling.</div>
+      </div>
+    </div>
+    <div class="math-stamp reveal r-5">Modeled · Pending pilot validation · Defensible ranges, not promises</div>
+  </div>
+</section>
+
+<!-- ==================== 08 · PILOT ==================== -->
+<section class="s-pilot" data-num="08" id="sec-08" data-audio="08-pilot">
+  <div class="inner">
+    <div class="ask-banner reveal"><span class="dot"></span>The Ask · Greenlight a funded pilot</div>
+    <h2 class="huge reveal r-1">One region.<br>One quarter. <span class="accent">One signal.</span></h2>
+    <div class="pilot-grid">
+      <div class="pilot-cell reveal r-2">
+        <h4>Scope</h4>
+        <div class="head">1 region · 25–40 AEs</div>
+        <p>One regional sales group under one Regional Sales Manager. Real pipeline, real accounts, real outcomes. Phased onboarding to protect rep workflows.</p>
+      </div>
+      <div class="pilot-cell reveal r-3">
+        <h4>Duration</h4>
+        <div class="head">12 weeks</div>
+        <p>One full quarter — long enough to capture a renewal cycle, a meaningful pipeline movement, and adoption signal. Bounded so the bet is small.</p>
+      </div>
+      <div class="pilot-cell reveal r-4">
+        <h4>Team</h4>
+        <div class="head">Cross-functional pod</div>
+        <p>Engineering, data, product, design — embedded with the regional cohort. Sized to the budget envelope you set, not the other way around.</p>
+      </div>
+      <div class="pilot-cell reveal r-5">
+        <h4>What we'll learn</h4>
+        <div class="head">Modeled vs. actual</div>
+        <p>Lift on each of the three buckets. Adoption patterns. What breaks at scale. Decision-grade evidence to scale across regions or stop.</p>
+      </div>
+    </div>
+    <a href="#" class="pilot-cta reveal r-5">Greenlight the pilot <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- ==================== 09 · SIGNOFF ==================== -->
+<section class="s-signoff" data-num="09" id="sec-09" data-audio="09-signoff">
+  <div class="copy">
+    <div class="footer-meta reveal">
+      <span>AMP Signal</span>
+      <span>Pilot Proposal v2</span>
+    </div>
+    <div class="lines">
+      <div class="giga reveal r-1">See it first.</div>
+      <div class="giga dim reveal r-2">Win it first.</div>
+    </div>
+    <div class="footer-meta reveal r-3">
+      <span>Sinclair Innovation</span>
+      <span>amp-signal</span>
+    </div>
+  </div>
+  <div class="pitchman-frame">
+    <img class="reveal" src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg" alt="">
+  </div>
+</section>
+
+<script>
+// ==================== REVEAL OBSERVER ====================
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => revealObs.observe(el));
+
+// ==================== COUNTERS ====================
+const counters = document.querySelectorAll('.counter');
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = +el.dataset.target;
+      const suffix = el.dataset.suffix || '';
+      const dur = 1400;
+      const start = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObs.observe(c));
+
+// ==================== SECTION TRACKER (counter + nav rail) ====================
+const sections = document.querySelectorAll('section[data-num]');
+const navDots = document.querySelectorAll('.nav-dot');
+const secNum = document.getElementById('secNum');
+const secObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && e.intersectionRatio > 0.5) {
+      const num = e.target.dataset.num;
+      secNum.textContent = num;
+      navDots.forEach(d => d.classList.toggle('active', d.dataset.target === num));
+      // Trigger audio for this section
+      audio.playForSection(e.target.dataset.audio);
+    }
+  });
+}, { threshold: [0.5] });
+sections.forEach(s => secObs.observe(s));
+
+// ==================== AUDIO ENGINE ====================
+const audio = (() => {
+  const cache = {};
+  let enabled = false;
+  let current = null;
+  const base = '../marketing-assets/audio/';
+
+  const get = (id) => {
+    if (cache[id]) return cache[id];
+    const a = new Audio(base + id + '.mp3');
+    a.preload = 'none';
+    cache[id] = a;
+    return a;
+  };
+
+  const playForSection = (id) => {
+    if (!enabled || !id) return;
+    if (current && !current.paused) { current.pause(); current.currentTime = 0; }
+    const a = get(id);
+    a.play().catch(() => {/* missing/blocked — silent */});
+    current = a;
+  };
+
+  const setEnabled = (v) => {
+    enabled = v;
+    if (!v && current && !current.paused) current.pause();
+  };
+
+  return { playForSection, setEnabled };
+})();
+
+const audioBtn = document.getElementById('audioToggle');
+const audioIcon = audioBtn.querySelector('.icon');
+audioBtn.addEventListener('click', () => {
+  const on = audioBtn.classList.toggle('on');
+  audio.setEnabled(on);
+  audioIcon.textContent = on ? '🔊' : '🔇';
+  // If enabling, immediately play the current section's audio
+  if (on) {
+    const visible = [...sections].find(s => {
+      const r = s.getBoundingClientRect();
+      return r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.5;
+    });
+    if (visible) audio.playForSection(visible.dataset.audio);
+  }
+});
+
+// ==================== KEYBOARD NAV (live-pitch friendly) ====================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+    e.preventDefault();
+    const cur = +secNum.textContent;
+    if (cur < 9) document.getElementById('sec-' + String(cur + 1).padStart(2, '0')).scrollIntoView({behavior:'smooth'});
+  } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+    e.preventDefault();
+    const cur = +secNum.textContent;
+    if (cur > 1) document.getElementById('sec-' + String(cur - 1).padStart(2, '0')).scrollIntoView({behavior:'smooth'});
+  }
+});
+</script>
+
+</body>
+</html>
