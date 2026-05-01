@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMP Signal — See the Signal First</title>
+<meta name="description" content="An AI sales intelligence platform, built for Sinclair AEs. Pilot proposal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0a1634;
+  --navy2:   #0d1c3f;
+  --navy-lt: #1a2d5a;
+  --white:   #ffffff;
+  --off:     #f7f8fc;
+  --off2:    #eef0f7;
+  --off3:    #e2e6f0;
+  --text:    #0a1634;
+  --text2:   #3d4f6e;
+  --text3:   #7a8fa8;
+  --text4:   #b0bfd0;
+  --green:   #00a86b;
+  --red:     #e03450;
+  --amber:   #e07b00;
+  --border:  #e4e8f2;
+  --hairline: rgba(10,22,52,.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+/* SCROLL CONTAINER */
+.scroller {
+  scroll-snap-type: y proximity;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 768px) {
+  .scroller { scroll-snap-type: none; }
+}
+
+/* PROGRESS LINE */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--navy);
+  width: 0%;
+  z-index: 100;
+  transition: width .12s ease-out;
+}
+
+/* PERSISTENT BRAND BAR */
+.brandbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 40px;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+.brandbar .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+.brandbar .logo-sq {
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 11px;
+  color: var(--navy);
+  letter-spacing: .02em;
+}
+.brandbar .logo-name {
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.brandbar .pilot-tag {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: right;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .brandbar { padding: 16px 20px; }
+  .brandbar .pilot-tag { font-size: 8px; }
+}
+
+/* SECTION BASE */
+section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  padding: 100px 40px 80px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 20px 60px; }
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 24px;
+}
+
+.giant {
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 128px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+}
+
+.huge {
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+
+.large {
+  font-weight: 900;
+  font-size: clamp(28px, 3.6vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--navy);
+}
+
+.body-text {
+  font-weight: 400;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.55;
+  color: var(--text2);
+  max-width: 56ch;
+}
+
+.tiny {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  color: var(--text3);
+  font-family: 'Space Mono', monospace;
+}
+
+/* REVEAL ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .12s; }
+.reveal-delay-2 { transition-delay: .24s; }
+.reveal-delay-3 { transition-delay: .36s; }
+.reveal-delay-4 { transition-delay: .48s; }
+
+/* ==================== SECTION 1: COLD OPEN ==================== */
+.s-open {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--white);
+}
+.s-open .pitchman-hero {
+  width: clamp(220px, 28vw, 360px);
+  height: auto;
+  margin: 0 auto 36px;
+  display: block;
+}
+.s-open .giant { margin-bottom: 20px; }
+.s-open .body-text { margin: 0 auto; text-align: center; }
+
+/* ==================== SECTION 2: THE NOISE ==================== */
+.s-noise {
+  background: var(--off);
+  justify-content: center;
+}
+.s-noise .grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.s-noise h2 { margin-bottom: 8px; }
+.s-noise h2.smaller { color: var(--text3); }
+.s-noise .stat-line {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.s-noise .stat-num {
+  font-weight: 900;
+  font-size: clamp(36px, 4.5vw, 64px);
+  color: var(--navy);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.s-noise .stat-desc {
+  font-size: 14px;
+  color: var(--text2);
+  max-width: 40ch;
+}
+.s-noise .stat-source {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--text3);
+  margin-top: 6px;
+}
+.tab-stack {
+  position: relative;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab {
+  position: absolute;
+  width: 280px;
+  height: 180px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 16px rgba(10,22,52,.06);
+  display: flex;
+  flex-direction: column;
+}
+.tab-bar {
+  height: 22px;
+  background: var(--off2);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.tab-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--off3); }
+.tab-content {
+  flex: 1;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tab-line {
+  height: 8px;
+  background: var(--off2);
+  border-radius: 2px;
+}
+.tab-line.short { width: 60%; }
+.tab-line.medium { width: 80%; }
+.tab:nth-child(1) { transform: rotate(-8deg) translate(-90px, -40px); }
+.tab:nth-child(2) { transform: rotate(4deg) translate(-30px, 20px); }
+.tab:nth-child(3) { transform: rotate(-3deg) translate(60px, -20px); z-index: 2; }
+.tab:nth-child(4) { transform: rotate(7deg) translate(110px, 40px); }
+
+@media (max-width: 768px) {
+  .s-noise .grid { grid-template-columns: 1fr; gap: 32px; }
+  .tab-stack { height: 240px; }
+  .tab { width: 220px; height: 140px; }
+}
+
+/* ==================== SECTION 3: THE SIGNAL ==================== */
+.s-signal {
+  background: var(--white);
+  justify-content: center;
+}
+.s-signal .inner { max-width: 1280px; margin: 0 auto; width: 100%; }
+.s-signal .huge { margin-bottom: 64px; max-width: 14ch; }
+.signal-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  border-top: 2px solid var(--navy);
+  padding-top: 40px;
+}
+.signal-col h3 {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 20px;
+}
+.signal-col ul { list-style: none; }
+.signal-col li {
+  font-size: 15px;
+  color: var(--text);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-weight: 400;
+}
+.signal-col li:last-child { border-bottom: none; }
+
+@media (max-width: 768px) {
+  .signal-cols { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ==================== VIGNETTE SECTIONS (4, 5, 6) ==================== */
+.s-vignette {
+  background: var(--off);
+  justify-content: center;
+}
+.s-vignette.alt { background: var(--white); }
+.s-vignette .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+.s-vignette .number {
+  font-weight: 900;
+  font-size: clamp(48px, 7vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.025em;
+  color: var(--navy);
+  margin: 16px 0 24px;
+}
+.s-vignette .number .arrow {
+  display: inline-block;
+  margin: 0 14px;
+  color: var(--text4);
+  font-weight: 400;
+}
+.s-vignette .body-text { margin-bottom: 24px; }
+.s-vignette .feature-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+}
+.media-frame {
+  aspect-ratio: 4/3;
+  background: var(--white);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.s-vignette.alt .media-frame { background: var(--off); }
+.media-placeholder {
+  text-align: center;
+  color: var(--text3);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-family: 'Space Mono', monospace;
+}
+.media-placeholder .label {
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+  color: var(--text4);
+  letter-spacing: .08em;
+}
+
+@media (max-width: 768px) {
+  .s-vignette .grid { grid-template-columns: 1fr; gap: 32px; }
+  .s-vignette .grid.media-first .media-col { order: -1; }
+  .s-vignette .number .arrow { margin: 0 8px; }
+}
+
+/* ==================== SECTION 7: THE MATH ==================== */
+.s-math {
+  background: var(--navy);
+  color: var(--white);
+  justify-content: center;
+}
+.s-math .eyebrow { color: rgba(255,255,255,.4); }
+.s-math .inner { max-width: 1280px; margin: 0 auto; width: 100%; }
+.s-math h2 {
+  font-weight: 900;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 64px;
+  max-width: 16ch;
+}
+.math-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-bottom: 48px;
+}
+.math-cell {
+  border-top: 2px solid var(--white);
+  padding-top: 32px;
+}
+.math-num {
+  font-weight: 900;
+  font-size: clamp(56px, 8vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  font-feature-settings: "tnum" 1;
+}
+.math-num .unit {
+  font-size: 0.4em;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  margin-left: 4px;
+  color: rgba(255,255,255,.7);
+}
+.math-label {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255,255,255,.7);
+  margin-top: 16px;
+  max-width: 24ch;
+  line-height: 1.5;
+}
+.math-stamp {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,.4);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(255,255,255,.15);
+  padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .math-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ==================== SECTION 8: THE PILOT ==================== */
+.s-pilot {
+  background: var(--white);
+  justify-content: center;
+}
+.s-pilot .inner { max-width: 1280px; margin: 0 auto; width: 100%; }
+.s-pilot .pitchman-side {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+.s-pilot .pitchman-side img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  flex-shrink: 0;
+}
+.s-pilot .pitchman-side .label {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  line-height: 1.5;
+}
+.s-pilot .pitchman-side .label strong {
+  display: block;
+  color: var(--navy);
+  font-weight: 900;
+}
+.s-pilot h2 {
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 56px;
+}
+.pilot-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 2px solid var(--navy);
+  margin-bottom: 48px;
+}
+.pilot-cell {
+  padding: 32px;
+  border-right: 1px solid var(--border);
+}
+.pilot-cell:last-child { border-right: none; }
+.pilot-cell h4 {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+.pilot-cell p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.pilot-cell p strong {
+  font-weight: 900;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+.pilot-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--navy);
+  color: var(--white);
+  padding: 20px 36px;
+  font-weight: 900;
+  font-size: 14px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.pilot-cta .arrow {
+  font-size: 16px;
+  transition: transform .2s;
+}
+.pilot-cta:hover .arrow { transform: translateX(4px); }
+
+@media (max-width: 768px) {
+  .pilot-card { grid-template-columns: 1fr; }
+  .pilot-cell { border-right: none; border-bottom: 1px solid var(--border); }
+  .pilot-cell:last-child { border-bottom: none; }
+}
+
+/* ==================== SECTION 9: SIGN-OFF ==================== */
+.s-signoff {
+  background: var(--white);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.s-signoff img {
+  width: clamp(180px, 22vw, 280px);
+  margin-bottom: 48px;
+  display: block;
+}
+.s-signoff .signoff-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.s-signoff .signoff-lines .giant {
+  letter-spacing: -0.025em;
+}
+.s-signoff .signoff-lines .giant.dim {
+  color: var(--text3);
+}
+.s-signoff .footer {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--text4);
+  letter-spacing: .12em;
+}
+
+/* SECTION COUNTER (decorative, fixed) */
+.section-counter {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  z-index: 80;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: rgba(255,255,255,.5);
+}
+.section-counter .num {
+  color: rgba(255,255,255,.9);
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .section-counter { bottom: 16px; left: 16px; font-size: 9px; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<div class="brandbar">
+  <div class="logo">
+    <div class="logo-sq">A</div>
+    <div class="logo-name">AMP Signal</div>
+  </div>
+  <div class="pilot-tag">
+    Pilot proposal<br>
+    Sinclair Sales · 1 division · 1 quarter
+  </div>
+</div>
+
+<div class="section-counter"><span class="num" id="secNum">01</span> / 09</div>
+
+<div class="scroller" id="scroller">
+
+  <!-- ================= SECTION 1: COLD OPEN ================= -->
+  <section class="s-open" data-num="01">
+    <img class="pitchman-hero reveal"
+         src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg"
+         alt="AMP Signal pitchman">
+    <h1 class="giant reveal reveal-delay-1">See the signal first.</h1>
+    <p class="body-text reveal reveal-delay-2">An AI sales intelligence platform, built for Sinclair AEs.</p>
+  </section>
+
+  <!-- ================= SECTION 2: THE NOISE ================= -->
+  <section class="s-noise" data-num="02">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal">The problem</div>
+        <h2 class="giant reveal reveal-delay-1">Your top AE has 14 tabs open.</h2>
+        <h2 class="giant smaller reveal reveal-delay-2">None of them are closing.</h2>
+        <div class="stat-line reveal reveal-delay-3">
+          <div class="stat-num"><span class="counter" data-target="64" data-suffix="%">0</span></div>
+          <div class="stat-desc">of an AE's week is spent on non-selling work — tab-hopping, lookups, manual prep, internal process.</div>
+          <div class="stat-source">Source · Salesforce State of Sales</div>
+        </div>
+      </div>
+      <div class="tab-stack reveal reveal-delay-2">
+        <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-content"><div class="tab-line"></div><div class="tab-line short"></div><div class="tab-line medium"></div><div class="tab-line"></div></div></div>
+        <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-content"><div class="tab-line medium"></div><div class="tab-line"></div><div class="tab-line short"></div></div></div>
+        <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-content"><div class="tab-line"></div><div class="tab-line"></div><div class="tab-line short"></div><div class="tab-line medium"></div></div></div>
+        <div class="tab"><div class="tab-bar"><div class="tab-dot"></div><div class="tab-dot"></div></div><div class="tab-content"><div class="tab-line short"></div><div class="tab-line"></div><div class="tab-line medium"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3: THE SIGNAL ================= -->
+  <section class="s-signal" data-num="03">
+    <div class="inner">
+      <div class="eyebrow reveal">The platform</div>
+      <h2 class="huge reveal reveal-delay-1">AMP Signal cuts through it.</h2>
+      <div class="signal-cols">
+        <div class="signal-col reveal reveal-delay-2">
+          <h3>Ingests</h3>
+          <ul>
+            <li>WideOrbit · OneDomain · IBMS</li>
+            <li>Nielsen · Comscore</li>
+            <li>Category & competitive spend</li>
+            <li>Contact & trigger events</li>
+          </ul>
+        </div>
+        <div class="signal-col reveal reveal-delay-3">
+          <h3>Surfaces</h3>
+          <ul>
+            <li>Pre-meeting account briefs</li>
+            <li>At-risk deal alerts &amp; save plays</li>
+            <li>Political window forecasts</li>
+            <li>QBR portfolio narratives</li>
+          </ul>
+        </div>
+        <div class="signal-col reveal reveal-delay-4">
+          <h3>For</h3>
+          <ul>
+            <li>Account Executives</li>
+            <li>Sales Managers</li>
+            <li>Division Presidents</li>
+            <li>Sinclair C-suite</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 4: VIGNETTE 1 — BEFORE THE CALL ================= -->
+  <section class="s-vignette" data-num="04">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal">Intel, in hand.</div>
+        <span class="feature-tag reveal reveal-delay-1">Pre-meeting brief</span>
+        <div class="number reveal reveal-delay-2">
+          <span class="counter" data-target="30" data-suffix="">0</span>
+          <span style="font-size:0.5em;color:var(--text3);font-weight:400">min</span>
+          <span class="arrow">→</span>
+          <span class="counter" data-target="30" data-suffix="">0</span>
+          <span style="font-size:0.5em;color:var(--text3);font-weight:400">sec</span>
+        </div>
+        <p class="body-text reveal reveal-delay-3">AMP Signal builds the pre-meeting brief before you log in. Account history, current spend, recent activity, the exact ask — ready when your call starts.</p>
+      </div>
+      <div class="media-col reveal reveal-delay-2">
+        <div class="media-frame">
+          <div class="media-placeholder">
+            <div>VIGNETTE 01</div>
+            <span class="label">Pre-meeting brief · video clip placeholder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 5: VIGNETTE 2 — BEFORE THE LOSS ================= -->
+  <section class="s-vignette alt" data-num="05">
+    <div class="grid media-first">
+      <div class="media-col reveal">
+        <div class="media-frame">
+          <div class="media-placeholder">
+            <div>VIGNETTE 02</div>
+            <span class="label">At-risk deal alert · video clip placeholder</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="eyebrow reveal reveal-delay-1">Know before they do.</div>
+        <span class="feature-tag reveal reveal-delay-2">At-risk deal alert</span>
+        <div class="number reveal reveal-delay-3">
+          +<span class="counter" data-target="18" data-suffix="%">0</span>
+          <span style="font-size:0.5em;color:var(--text3);font-weight:400;margin-left:8px">saved</span>
+        </div>
+        <p class="body-text reveal reveal-delay-4">Early signal a deal is cooling, with the recommended save play. The renewal you would have lost — quietly retained.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 6: VIGNETTE 3 — POLITICAL WINDOW ================= -->
+  <section class="s-vignette" data-num="06">
+    <div class="grid">
+      <div>
+        <div class="eyebrow reveal">When you know first, you win first.</div>
+        <span class="feature-tag reveal reveal-delay-1">Political window planner</span>
+        <div class="number reveal reveal-delay-2">
+          <span class="counter" data-target="180" data-suffix="">0</span>
+          <span style="font-size:0.4em;color:var(--text3);font-weight:400;margin-left:8px">markets</span>
+          <br>
+          <span class="counter" data-target="24" data-suffix="">0</span>
+          <span style="font-size:0.4em;color:var(--text3);font-weight:400;margin-left:8px">months out</span>
+        </div>
+        <p class="body-text reveal reveal-delay-3">Every PAC, every candidate, every market — mapped before the buy lands somewhere else. Sinclair's political franchise, on rails.</p>
+      </div>
+      <div class="media-col reveal reveal-delay-2">
+        <div class="media-frame">
+          <div class="media-placeholder">
+            <div>VIGNETTE 03</div>
+            <span class="label">Political window planner · video clip placeholder</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7: THE MATH ================= -->
+  <section class="s-math" data-num="07">
+    <div class="inner">
+      <div class="eyebrow reveal">Modeled impact</div>
+      <h2 class="reveal reveal-delay-1">What the pilot will validate.</h2>
+      <div class="math-grid">
+        <div class="math-cell reveal reveal-delay-2">
+          <div class="math-num">+<span class="counter" data-target="1" data-suffix="">0</span><span class="unit">day/week</span></div>
+          <div class="math-label">reclaimed per AE — selling time recovered from non-selling work</div>
+        </div>
+        <div class="math-cell reveal reveal-delay-3">
+          <div class="math-num">−<span class="counter" data-target="12" data-suffix="%">0</span></div>
+          <div class="math-label">time-to-close — earlier intel, faster cycles, fewer stalls</div>
+        </div>
+        <div class="math-cell reveal reveal-delay-4">
+          <div class="math-num">+<span class="counter" data-target="18" data-suffix="%">0</span></div>
+          <div class="math-label">renewal save rate — early at-risk signal + recommended play</div>
+        </div>
+      </div>
+      <div class="math-stamp reveal reveal-delay-4">Modeled · Pending pilot validation · Defensible ranges, not promises</div>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 8: THE PILOT ================= -->
+  <section class="s-pilot" data-num="08">
+    <div class="inner">
+      <div class="pitchman-side reveal">
+        <img src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg" alt="">
+        <div class="label">
+          The Ask<br>
+          <strong>Greenlight a funded pilot</strong>
+        </div>
+      </div>
+      <h2 class="reveal reveal-delay-1">One division.<br>One quarter.<br>One signal.</h2>
+      <div class="pilot-card reveal reveal-delay-2">
+        <div class="pilot-cell">
+          <h4>Scope</h4>
+          <p><strong>1 division · 1 quarter</strong>~25–40 AEs, real pipeline, real accounts, real outcomes. Phased onboarding to protect current rep workflows.</p>
+        </div>
+        <div class="pilot-cell">
+          <h4>Investment</h4>
+          <p><strong>To be sized with you</strong>Build cost is modest vs. the productivity at stake. We'll right-size scope and team to the budget envelope you set.</p>
+        </div>
+        <div class="pilot-cell">
+          <h4>What we'll learn</h4>
+          <p><strong>Modeled vs. actual</strong>Rep adoption, lift on the three KPIs, manager satisfaction, integration patterns. Decision-grade evidence to scale or stop.</p>
+        </div>
+      </div>
+      <a href="#" class="pilot-cta reveal reveal-delay-3">Greenlight the pilot <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 9: SIGN-OFF ================= -->
+  <section class="s-signoff" data-num="09">
+    <img class="reveal"
+         src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg"
+         alt="">
+    <div class="signoff-lines">
+      <div class="giant reveal reveal-delay-1">See it first.</div>
+      <div class="giant dim reveal reveal-delay-2">Win it first.</div>
+    </div>
+    <div class="footer">AMP Signal · Sinclair Innovation · Pilot Proposal v1</div>
+  </section>
+
+</div>
+
+<script>
+// ===== SCROLL PROGRESS + SECTION COUNTER =====
+const scroller = document.getElementById('scroller');
+const progress = document.getElementById('progress');
+const secNum = document.getElementById('secNum');
+const sections = document.querySelectorAll('section[data-num]');
+
+scroller.addEventListener('scroll', () => {
+  const max = scroller.scrollHeight - scroller.clientHeight;
+  const pct = (scroller.scrollTop / max) * 100;
+  progress.style.width = pct + '%';
+});
+
+// ===== INTERSECTION OBSERVER FOR REVEALS + SECTION COUNTER =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+    }
+  });
+}, { root: scroller, threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+      const num = entry.target.getAttribute('data-num');
+      if (num) secNum.textContent = num;
+    }
+  });
+}, { root: scroller, threshold: [0.5] });
+
+sections.forEach(s => sectionObserver.observe(s));
+
+// ===== NUMBER COUNTERS =====
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.fired) {
+      entry.target.dataset.fired = '1';
+      animateCounter(entry.target);
+    }
+  });
+}, { root: scroller, threshold: 0.5 });
+
+document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now) {
+    const elapsed = now - start;
+    const t = Math.min(elapsed / duration, 1);
+    // ease-out cubic
+    const eased = 1 - Math.pow(1 - t, 3);
+    const val = target * eased;
+    el.textContent = (target < 10 ? val.toFixed(1).replace(/\.0$/, '') : Math.round(val)) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+    else el.textContent = target + suffix;
+  }
+  requestAnimationFrame(tick);
+}
+</script>
+
+</body>
+</html>
