@@ -603,6 +603,14 @@ section {
   height: 100%;
   object-fit: cover;
 }
+.vignette-video {
+  display: block;
+  animation: kenburns 12s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  0%   { transform: scale(1.00); }
+  100% { transform: scale(1.05); }
+}
 .media-placeholder {
   display: flex;
   flex-direction: column;
@@ -623,23 +631,6 @@ section {
   text-transform: none;
 }
 .s-vignette.dark .media-placeholder .big { color: rgba(255,255,255,.7); }
-.media-frame::after {
-  content: "PLACEHOLDER";
-  position: absolute;
-  bottom: 14px;
-  right: 14px;
-  font-family: 'Space Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .2em;
-  color: var(--text4);
-  background: rgba(255,255,255,.9);
-  padding: 4px 8px;
-  border-radius: 2px;
-}
-.s-vignette.dark .media-frame::after {
-  background: rgba(10,22,52,.7);
-  color: rgba(255,255,255,.4);
-}
 
 /* ==================== SECTION 07: MATH ==================== */
 .s-math {
@@ -1026,10 +1017,9 @@ section {
     </div>
     <div class="reveal r-2">
       <div class="media-frame">
-        <div class="media-placeholder">
-          <span class="big">Before the renewal</span>
-          <span>AE persona · 5–7s loop</span>
-        </div>
+        <video class="vignette-video" autoplay muted loop playsinline preload="auto">
+          <source src="../marketing-assets/video/04-renewal.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -1040,10 +1030,9 @@ section {
   <div class="grid media-first">
     <div class="reveal">
       <div class="media-frame">
-        <div class="media-placeholder">
-          <span class="big">Before the call</span>
-          <span>AE persona · 5–7s loop</span>
-        </div>
+        <video class="vignette-video" autoplay muted loop playsinline preload="auto">
+          <source src="../marketing-assets/video/05-call.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
     <div>
@@ -1075,10 +1064,9 @@ section {
     </div>
     <div class="reveal r-2">
       <div class="media-frame">
-        <div class="media-placeholder">
-          <span class="big">Before the cycle</span>
-          <span>Manager view · 5–7s loop</span>
-        </div>
+        <video class="vignette-video" autoplay muted loop playsinline preload="auto">
+          <source src="../marketing-assets/video/06-cycle.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
