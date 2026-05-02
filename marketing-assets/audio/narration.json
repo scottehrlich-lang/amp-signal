@@ -1,46 +1,46 @@
 {
-  "_comment": "v2 narration: complementary to visuals, not duplicative. Audio = why-this-matters + transitions; Visuals = what + metrics. Run via OpenClaw → ElevenLabs.",
+  "_comment": "v3 narration: natural-cadence rewrite. 'Amp Signal' lowercase forces single-word read (avoids letter-by-letter A-M-P). Punctuation reworked for conversational delivery — em-dashes, ellipses, fragment rhythm. Style bumped to 0.50 + stability lowered to 0.40 for more emotional variation. Run via OpenClaw → ElevenLabs.",
   "voice_id": "EV4R1ZIcLtNYU4JyFxOe",
   "model_id": "eleven_turbo_v2_5",
   "output_format": "mp3_44100_128",
   "settings": {
-    "stability": 0.45,
+    "stability": 0.40,
     "similarity_boost": 0.85,
-    "style": 0.30,
+    "style": 0.50,
     "use_speaker_boost": true
   },
   "sections": [
     {
       "id": "01-open",
-      "text": "Every quarter, we leave revenue on the table that we never knew was there. Not because our sellers aren't good \u2014 they are. Because the signal got buried before they could see it. This is a proposal to fix that."
+      "text": "Every quarter, we leave revenue on the table that we never knew was there. Not because our sellers aren't good — they are. It's because the signal got buried before they could see it. So... this is a proposal to fix that."
     },
     {
       "id": "02-noise",
-      "text": "Two thirds of an A.E.'s week isn't selling. It's hunting. Across systems, across spreadsheets, across the gaps between them. The intelligence is in there. It just isn't reaching the seller in time to matter."
+      "text": "Two-thirds of an A.E.'s week isn't selling. It's hunting. Across systems, across spreadsheets, across the gaps between them. The intelligence is in there somewhere... it just isn't reaching the seller in time to matter."
     },
     {
       "id": "03-platform",
-      "text": "What changes the math is one platform underneath all of it. Same data, different surface for each seat. The seller sees the next move on their account. The manager sees the leading indicators across the team. The executive sees the posture of the whole region. One source of truth, three lenses."
+      "text": "What changes the math is one platform underneath all of it. Same data — different surface for each seat. The seller sees the next move on their account. The manager sees the leading indicators across the team. The executive sees the posture of the whole region. One source of truth... three lenses."
     },
     {
       "id": "04-renewal",
-      "text": "This is where the platform earns its keep. The renewal conversation isn't a renewal anymore \u2014 it's an expansion. The pacing data and the upsell logic are already there before the meeting starts. The seller walks in, and the room shifts."
+      "text": "This is where the platform earns its keep. The renewal conversation isn't a renewal anymore — it's an expansion. The pacing data, the upsell logic — already there before the meeting starts. The seller walks in... and the room shifts."
     },
     {
       "id": "05-call",
-      "text": "Every meeting our sellers take begins one of two ways. Tell me about your business. Or, we know your business. AMP Signal makes the second one the default."
+      "text": "Every meeting our sellers take begins one of two ways. \"Tell me about your business.\" Or — \"we know your business.\" Amp Signal makes the second one the default."
     },
     {
       "id": "06-cycle",
-      "text": "Sinclair's political franchise is one of the most valuable assets in our portfolio. Right now, planning around it lives in spreadsheets and tribal knowledge. AMP Signal puts it on rails \u2014 every market, every cycle, two years out."
+      "text": "Sinclair's political franchise is one of the most valuable assets in our portfolio. And right now? Planning around it lives in spreadsheets and tribal knowledge. Amp Signal puts it on rails — every market, every cycle, two years out."
     },
     {
       "id": "07-math",
-      "text": "I'm being deliberately conservative here. Three independent buckets, ten percent each. Even if you don't believe one of them, the math still clears the bar. We won't know the real numbers until we run the pilot. That's the point of running it."
+      "text": "I'm being deliberately conservative here. Three independent buckets, ten percent each. Even if you don't believe one of them... the math still clears the bar. We won't know the real numbers until we run the pilot. That's the point of running it."
     },
     {
       "id": "08-pilot",
-      "text": "One region. Twelve weeks. A small embedded pod. Bounded enough that the bet is small \u2014 long enough that the evidence is real. We come back with modeled-versus-actual on every claim in this deck. And then you decide whether we scale it, or whether we stop."
+      "text": "One region. Twelve weeks. A small embedded pod. Bounded enough that the bet is small — long enough that the evidence is real. We come back with modeled-versus-actual on every claim in this deck. And then... you decide whether we scale it, or whether we stop."
     },
     {
       "id": "09-signoff",
