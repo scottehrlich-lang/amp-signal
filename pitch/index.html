@@ -593,6 +593,131 @@ section {
   .s-platform .header-meta { text-align: left; }
 }
 
+/* ==================== SECTION 03b: WHAT IT LOOKS LIKE ==================== */
+.s-whatlooks {
+  background: var(--off);
+  justify-content: center;
+}
+.s-whatlooks .header-row {
+  margin-bottom: 56px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--navy);
+}
+.s-whatlooks h2 { color: var(--navy); max-width: 14ch; }
+.s-whatlooks .header-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: right;
+  line-height: 1.8;
+}
+.screen-stack {
+  display: grid;
+  grid-template-columns: 1.6fr .9fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 32px;
+}
+.screen-hero, .screen-aside {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(10,22,52,.06);
+  display: flex;
+  flex-direction: column;
+}
+.screen-frame {
+  position: relative;
+  background: var(--off2);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.screen-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.screen-meta {
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.screen-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--navy);
+  padding: 4px 10px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.screen-cap {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.4;
+  font-weight: 700;
+}
+.screen-aside .screen-frame { aspect-ratio: 4/3; }
+.screen-secondary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.screen-secondary .screen-frame { aspect-ratio: 16/10; }
+.callouts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--hairline);
+}
+.callout {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.callout strong {
+  color: var(--navy);
+  font-weight: 900;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.callout .key {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+  display: block;
+}
+@media (max-width: 900px) {
+  .s-whatlooks .header-row { grid-template-columns: 1fr; }
+  .s-whatlooks .header-meta { text-align: left; }
+  .screen-stack { grid-template-columns: 1fr; }
+  .screen-secondary { grid-template-columns: 1fr; }
+  .callouts-row { grid-template-columns: 1fr; gap: 24px; }
+}
+
 /* ==================== VIGNETTES ==================== */
 .s-vignette {
   background: var(--white);
@@ -997,6 +1122,7 @@ section {
   <a class="nav-dot" data-target="01" data-label="Open" href="#sec-01"></a>
   <a class="nav-dot" data-target="02" data-label="Noise" href="#sec-02"></a>
   <a class="nav-dot" data-target="03" data-label="Platform" href="#sec-03"></a>
+  <a class="nav-dot" data-target="03b" data-label="In Flight" href="#sec-03b"></a>
   <a class="nav-dot" data-target="04" data-label="Renewal" href="#sec-04"></a>
   <a class="nav-dot" data-target="05" data-label="Call" href="#sec-05"></a>
   <a class="nav-dot" data-target="06" data-label="Cycle" href="#sec-06"></a>
@@ -1006,7 +1132,7 @@ section {
 </nav>
 
 <!-- ==================== SECTION COUNTER ==================== -->
-<div class="section-counter"><span class="num" id="secNum">01</span> / 09</div>
+<div class="section-counter"><span class="num" id="secNum">01</span> / 10</div>
 
 <!-- ==================== 01 · OPEN ==================== -->
 <section class="s-open" data-num="01" id="sec-01" data-audio="01-open">
@@ -1101,6 +1227,74 @@ section {
     </div>
     <div class="platform-foot reveal r-5">
       <strong>One ingest layer →</strong> SASO inventory · Nielsen · Comscore · category &amp; competitive spend · contact &amp; trigger events · plus other Sinclair-resident data sources. Replaces the patchwork of tools and spreadsheets currently holding the workflow together.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 03b · WHAT IT LOOKS LIKE ==================== -->
+<section class="s-whatlooks" data-num="03b" id="sec-03b" data-audio="03b-whatlooks">
+  <div class="inner">
+    <div class="header-row">
+      <div>
+        <div class="eyebrow reveal">What it looks like</div>
+        <h2 class="huge reveal r-1">The platform,<br>in flight.</h2>
+      </div>
+      <div class="header-meta reveal r-2">
+        Live POC · v6 build<br>
+        Pilot-ready interface
+      </div>
+    </div>
+
+    <div class="screen-stack">
+      <div class="screen-hero reveal r-2">
+        <div class="screen-frame">
+          <img src="../marketing-assets/screenshots/01-cro-overview.png" alt="AMP Signal — CRO Overview">
+        </div>
+        <div class="screen-meta">
+          <span class="screen-tag">CRO View</span>
+          <span class="screen-cap">Enterprise revenue posture · 8 regions · live signal alerts</span>
+        </div>
+      </div>
+      <div class="screen-aside reveal r-3">
+        <div class="screen-frame">
+          <img src="../marketing-assets/screenshots/03-regional-critical-few.png" alt="AMP Signal — Regional Critical Few">
+        </div>
+        <div class="screen-meta">
+          <span class="screen-tag">Regional</span>
+          <span class="screen-cap">Critical Few drill-down</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="screen-secondary">
+      <div class="screen-hero reveal r-3">
+        <div class="screen-frame">
+          <img src="../marketing-assets/screenshots/02-ae-action-queue.png" alt="AMP Signal — AE Action Queue">
+        </div>
+        <div class="screen-meta">
+          <span class="screen-tag">AE View</span>
+          <span class="screen-cap">Signal AI Action Queue — ranked by revenue + urgency</span>
+        </div>
+      </div>
+      <div class="reveal r-4" style="display:flex;align-items:center;padding:24px 0">
+        <div>
+          <div class="callout">
+            <span class="key">01 · Signal alerts</span>
+            <strong>Surfaced in real time.</strong>
+            Scatter alerts, intervention flags, and immediate opportunities — pushed to the right seat the moment they're detectable.
+          </div>
+          <div class="callout" style="margin-top:24px">
+            <span class="key">02 · Action Queue</span>
+            <strong>Ranked by revenue + urgency.</strong>
+            AEs walk in to a list that already knows what matters today. Talking points and rescue plays one click away.
+          </div>
+          <div class="callout" style="margin-top:24px">
+            <span class="key">03 · Sourced</span>
+            <strong>OSI traffic + MS Dynamics.</strong>
+            Built on the data Sinclair already runs on — no parallel system, no swivel-chair workflow.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1431,26 +1625,36 @@ autoplayBtn.addEventListener('click', () => {
 // When audio ends, if autoplay is on, scroll to next section after a short beat
 window._onAudioEnded = (sectionId) => {
   if (!autoplay) return;
-  // Map "04-renewal" -> 4
-  const num = parseInt((sectionId || '').split('-')[0], 10);
-  if (!num || num >= 9) return;
-  const nextId = 'sec-' + String(num + 1).padStart(2, '0');
-  const nextEl = document.getElementById(nextId);
+  // sectionId is like "03-platform" or "03b-whatlooks" — strip the suffix to get the section key
+  const key = (sectionId || '').split('-')[0];
+  const sectionDomId = 'sec-' + key;
+  const idx = sectionIds.indexOf(sectionDomId);
+  if (idx < 0 || idx >= sectionIds.length - 1) return;
+  const nextEl = document.getElementById(sectionIds[idx + 1]);
   if (nextEl) {
     setTimeout(() => nextEl.scrollIntoView({ behavior: 'smooth' }), 1500);
   }
 };
 
 // ==================== KEYBOARD NAV (live-pitch friendly) ====================
+const sectionIds = [...sections].map(s => s.id);
+const currentIdx = () => {
+  const num = secNum.textContent;
+  return sectionIds.findIndex(id => id === 'sec-' + num);
+};
 document.addEventListener('keydown', (e) => {
   if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
     e.preventDefault();
-    const cur = +secNum.textContent;
-    if (cur < 9) document.getElementById('sec-' + String(cur + 1).padStart(2, '0')).scrollIntoView({behavior:'smooth'});
+    const i = currentIdx();
+    if (i >= 0 && i < sectionIds.length - 1) {
+      document.getElementById(sectionIds[i + 1]).scrollIntoView({behavior:'smooth'});
+    }
   } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
     e.preventDefault();
-    const cur = +secNum.textContent;
-    if (cur > 1) document.getElementById('sec-' + String(cur - 1).padStart(2, '0')).scrollIntoView({behavior:'smooth'});
+    const i = currentIdx();
+    if (i > 0) {
+      document.getElementById(sectionIds[i - 1]).scrollIntoView({behavior:'smooth'});
+    }
   }
 });
 </script>
