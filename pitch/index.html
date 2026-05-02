@@ -593,129 +593,271 @@ section {
   .s-platform .header-meta { text-align: left; }
 }
 
-/* ==================== SECTION 03b: WHAT IT LOOKS LIKE ==================== */
+/* ==================== SECTION 03b: WHAT IT IS ==================== */
 .s-whatlooks {
-  background: var(--off);
+  background: var(--white);
   justify-content: center;
 }
-.s-whatlooks .header-row {
-  margin-bottom: 56px;
+.s-whatlooks .vision-row {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 40px;
-  align-items: end;
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--navy);
+  grid-template-columns: 1fr 1.6fr;
+  gap: 8vw;
+  align-items: start;
+  padding-bottom: 56px;
+  margin-bottom: 64px;
+  border-bottom: 1px solid var(--hairline);
 }
-.s-whatlooks h2 { color: var(--navy); max-width: 14ch; }
-.s-whatlooks .header-meta {
+.s-whatlooks .vision-label {
   font-family: 'Space Mono', monospace;
   font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  line-height: 1.8;
+}
+.s-whatlooks .vision-label::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--navy);
+  margin-bottom: 18px;
+}
+.s-whatlooks .vision-text {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--navy);
+}
+.s-whatlooks .vision-text em {
+  font-style: normal;
+  color: var(--text3);
+}
+.principles-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  margin-bottom: 72px;
+}
+.principle {
+  border-top: 2px solid var(--navy);
+  padding-top: 20px;
+}
+.principle-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--text3);
+  margin-bottom: 14px;
+}
+.principle-name {
+  font-weight: 900;
+  font-size: 18px;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.principle-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text2);
+}
+.modules-section {
+  margin-bottom: 72px;
+}
+.modules-head {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 32px;
+  align-items: end;
+  padding-bottom: 20px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--hairline);
+}
+.modules-head h3 {
+  font-weight: 900;
+  font-size: clamp(24px, 3vw, 36px);
+  letter-spacing: -.015em;
+  color: var(--navy);
+}
+.modules-head .meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
   color: var(--text3);
   text-align: right;
-  line-height: 1.8;
+  line-height: 1.7;
 }
-.screen-stack {
+.modules-grid {
   display: grid;
-  grid-template-columns: 1.6fr .9fr;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.module {
+  padding: 24px 22px;
+  background: var(--off);
+  border-radius: 4px;
+  transition: all .3s ease;
+}
+.module:hover {
+  background: var(--navy);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+.module:hover .module-num,
+.module:hover .module-name,
+.module:hover .module-body { color: var(--white); }
+.module:hover .module-num { opacity: .65; }
+.module-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--text3);
+  margin-bottom: 10px;
+  transition: color .3s, opacity .3s;
+}
+.module-name {
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  margin-bottom: 8px;
+  line-height: 1.2;
+  transition: color .3s;
+}
+.module-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text2);
+  transition: color .3s;
+}
+.proof-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   gap: 32px;
-  align-items: stretch;
+  align-items: center;
+  padding: 24px 28px;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: 6px;
   margin-bottom: 32px;
 }
-.screen-hero, .screen-aside {
+.proof-bar .proof-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+}
+.proof-bar .proof-headline {
+  font-weight: 900;
+  font-size: clamp(18px, 2.2vw, 26px);
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+.proof-bar .proof-cta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.7);
+  white-space: nowrap;
+}
+.proof-screens {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 16px;
+}
+.proof-screen {
   position: relative;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(10,22,52,.06);
-  display: flex;
-  flex-direction: column;
+  border: 1px solid var(--border);
 }
-.screen-frame {
-  position: relative;
-  background: var(--off2);
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.screen-frame img {
+.proof-screen img {
   width: 100%;
   height: auto;
   display: block;
 }
-.screen-meta {
-  padding: 14px 18px;
-  border-top: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-.screen-tag {
+.proof-screen .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
   font-family: 'Space Mono', monospace;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--white);
   background: var(--navy);
-  padding: 4px 10px;
+  color: var(--white);
+  padding: 5px 10px;
   border-radius: 100px;
-  white-space: nowrap;
 }
-.screen-cap {
-  font-size: 13px;
-  color: var(--text2);
-  line-height: 1.4;
-  font-weight: 700;
-}
-.screen-aside .screen-frame { aspect-ratio: 4/3; }
-.screen-secondary {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-}
-.screen-secondary .screen-frame { aspect-ratio: 16/10; }
-.callouts-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 40px;
+.agents-strip {
+  margin-top: 56px;
   padding-top: 32px;
   border-top: 1px solid var(--hairline);
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  gap: 48px;
+  align-items: start;
 }
-.callout {
-  font-size: 14px;
-  color: var(--text2);
-  line-height: 1.55;
-}
-.callout strong {
-  color: var(--navy);
-  font-weight: 900;
-  display: block;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-.callout .key {
+.agents-strip .label {
   font-family: 'Space Mono', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .18em;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 10px;
-  display: block;
 }
-@media (max-width: 900px) {
-  .s-whatlooks .header-row { grid-template-columns: 1fr; }
-  .s-whatlooks .header-meta { text-align: left; }
-  .screen-stack { grid-template-columns: 1fr; }
-  .screen-secondary { grid-template-columns: 1fr; }
-  .callouts-row { grid-template-columns: 1fr; gap: 24px; }
+.agents-strip .label::before {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--navy);
+  margin-bottom: 16px;
+}
+.agents-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.agent-chip {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  padding: 8px 14px;
+  border: 1px solid var(--navy);
+  border-radius: 100px;
+  color: var(--navy);
+  white-space: nowrap;
+}
+.agents-list .between {
+  align-self: center;
+  font-size: 11px;
+  color: var(--text3);
+  margin: 0 4px;
+}
+@media (max-width: 1100px) {
+  .principles-row, .modules-grid { grid-template-columns: repeat(2, 1fr); }
+  .proof-screens { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .s-whatlooks .vision-row { grid-template-columns: 1fr; gap: 24px; }
+  .principles-row, .modules-grid { grid-template-columns: 1fr; }
+  .agents-strip { grid-template-columns: 1fr; gap: 16px; }
+  .proof-bar { grid-template-columns: 1fr; gap: 12px; }
 }
 
 /* ==================== VIGNETTES ==================== */
@@ -1231,69 +1373,115 @@ section {
   </div>
 </section>
 
-<!-- ==================== 03b · WHAT IT LOOKS LIKE ==================== -->
+<!-- ==================== 03b · WHAT IT IS ==================== -->
 <section class="s-whatlooks" data-num="03b" id="sec-03b" data-audio="03b-whatlooks">
   <div class="inner">
-    <div class="header-row">
-      <div>
-        <div class="eyebrow reveal">What it looks like</div>
-        <h2 class="huge reveal r-1">The platform,<br>in flight.</h2>
-      </div>
-      <div class="header-meta reveal r-2">
-        Live POC · v6 build<br>
-        Pilot-ready interface
+    <!-- VISION -->
+    <div class="vision-row reveal">
+      <div class="vision-label">What it is</div>
+      <div class="vision-text">
+        AMP Signal makes every Sinclair seller — regardless of experience, market size, or role — operate with the intelligence, focus, and strategic clarity of <em>a 20-year media veteran with a team of analysts working for them around the clock.</em>
       </div>
     </div>
 
-    <div class="screen-stack">
-      <div class="screen-hero reveal r-2">
-        <div class="screen-frame">
-          <img src="../marketing-assets/screenshots/01-cro-overview.png" alt="AMP Signal — CRO Overview">
-        </div>
-        <div class="screen-meta">
-          <span class="screen-tag">CRO View</span>
-          <span class="screen-cap">Enterprise revenue posture · 8 regions · live signal alerts</span>
+    <!-- PRINCIPLES -->
+    <div class="principles-row">
+      <div class="principle reveal">
+        <div class="principle-num">01 · Principle</div>
+        <div class="principle-name">Bespoke over broadcast.</div>
+        <div class="principle-body">No two users see the same view. Every surface is built for that person's role, market, and accounts.</div>
+      </div>
+      <div class="principle reveal r-1">
+        <div class="principle-num">02 · Principle</div>
+        <div class="principle-name">Push over pull.</div>
+        <div class="principle-body">Intelligence comes to the user, not the other way around. A briefing — not a search engine.</div>
+      </div>
+      <div class="principle reveal r-2">
+        <div class="principle-num">03 · Principle</div>
+        <div class="principle-name">Agents do the work.</div>
+        <div class="principle-body">Specialized agents — not one model. Each owns a domain. Users see output, not machinery.</div>
+      </div>
+      <div class="principle reveal r-3">
+        <div class="principle-num">04 · Principle</div>
+        <div class="principle-name">Clarity at every level.</div>
+        <div class="principle-body">Where do I stand? What needs me now? What's my move? Three answers, every view, every role.</div>
+      </div>
+    </div>
+
+    <!-- MODULES -->
+    <div class="modules-section">
+      <div class="modules-head reveal">
+        <h3>Six modules. One platform.</h3>
+        <div class="meta">
+          Each module rendered<br>differently per role
         </div>
       </div>
-      <div class="screen-aside reveal r-3">
-        <div class="screen-frame">
-          <img src="../marketing-assets/screenshots/03-regional-critical-few.png" alt="AMP Signal — Regional Critical Few">
+      <div class="modules-grid">
+        <div class="module reveal">
+          <div class="module-num">Module 01</div>
+          <div class="module-name">The Critical Few</div>
+          <div class="module-body">Sinclair's strategic priorities — surfaced live across every market and role. From CRO to AE, everyone knows what counts this quarter.</div>
         </div>
-        <div class="screen-meta">
-          <span class="screen-tag">Regional</span>
-          <span class="screen-cap">Critical Few drill-down</span>
+        <div class="module reveal r-1">
+          <div class="module-num">Module 02</div>
+          <div class="module-name">Opportunity Intelligence</div>
+          <div class="module-body">New business signals, lapsed-account reactivation, scatter alerts, political-window timing — surfaced before the AE has to look.</div>
+        </div>
+        <div class="module reveal r-2">
+          <div class="module-num">Module 03</div>
+          <div class="module-name">Client Intelligence</div>
+          <div class="module-body">Pre-meeting briefs, account history, contact and trigger events — every meeting opens with "we know you," not "tell me about your business."</div>
+        </div>
+        <div class="module reveal r-3">
+          <div class="module-num">Module 04</div>
+          <div class="module-name">Pacing &amp; Sell-Through</div>
+          <div class="module-body">Real-time pacing across every daypart and product, from individual rep up to enterprise — with leading indicators, not just lagging totals.</div>
+        </div>
+        <div class="module reveal r-4">
+          <div class="module-num">Module 05</div>
+          <div class="module-name">Action Queue</div>
+          <div class="module-body">A daily ranked list — by revenue, by urgency, by what closes today. Talking points and rescue plays one click away.</div>
+        </div>
+        <div class="module reveal r-5">
+          <div class="module-num">Module 06</div>
+          <div class="module-name">Competitive Intelligence</div>
+          <div class="module-body">Category momentum, competitor spend, displacement opportunities — where to lean in and where to defend.</div>
         </div>
       </div>
     </div>
 
-    <div class="screen-secondary">
-      <div class="screen-hero reveal r-3">
-        <div class="screen-frame">
-          <img src="../marketing-assets/screenshots/02-ae-action-queue.png" alt="AMP Signal — AE Action Queue">
-        </div>
-        <div class="screen-meta">
-          <span class="screen-tag">AE View</span>
-          <span class="screen-cap">Signal AI Action Queue — ranked by revenue + urgency</span>
-        </div>
+    <!-- PROOF: THE LIVE POC -->
+    <div class="proof-bar reveal">
+      <div class="proof-label">Proof of build</div>
+      <div class="proof-headline">A working v6 POC. Three role-views. Already running.</div>
+      <div class="proof-cta">scottehrlich-lang.github.io/amp-signal</div>
+    </div>
+    <div class="proof-screens">
+      <div class="proof-screen reveal">
+        <span class="badge">CRO</span>
+        <img src="../marketing-assets/screenshots/01-cro-overview.png" alt="AMP Signal CRO Overview">
       </div>
-      <div class="reveal r-4" style="display:flex;align-items:center;padding:24px 0">
-        <div>
-          <div class="callout">
-            <span class="key">01 · Signal alerts</span>
-            <strong>Surfaced in real time.</strong>
-            Scatter alerts, intervention flags, and immediate opportunities — pushed to the right seat the moment they're detectable.
-          </div>
-          <div class="callout" style="margin-top:24px">
-            <span class="key">02 · Action Queue</span>
-            <strong>Ranked by revenue + urgency.</strong>
-            AEs walk in to a list that already knows what matters today. Talking points and rescue plays one click away.
-          </div>
-          <div class="callout" style="margin-top:24px">
-            <span class="key">03 · Sourced</span>
-            <strong>OSI traffic + MS Dynamics.</strong>
-            Built on the data Sinclair already runs on — no parallel system, no swivel-chair workflow.
-          </div>
-        </div>
+      <div class="proof-screen reveal r-1">
+        <span class="badge">AE</span>
+        <img src="../marketing-assets/screenshots/02-ae-action-queue.png" alt="AMP Signal AE Action Queue">
+      </div>
+      <div class="proof-screen reveal r-2">
+        <span class="badge">Regional</span>
+        <img src="../marketing-assets/screenshots/03-regional-critical-few.png" alt="AMP Signal Regional Critical Few">
+      </div>
+    </div>
+
+    <!-- AGENT ARCHITECTURE -->
+    <div class="agents-strip reveal r-2">
+      <div class="label">Powered by specialized AI agents</div>
+      <div class="agents-list">
+        <span class="agent-chip">Pacing</span>
+        <span class="agent-chip">Client Intelligence</span>
+        <span class="agent-chip">Opportunity</span>
+        <span class="agent-chip">Coaching</span>
+        <span class="agent-chip">Competitive</span>
+        <span class="agent-chip">Critical Few</span>
+        <span class="agent-chip">Synthesis</span>
       </div>
     </div>
   </div>
