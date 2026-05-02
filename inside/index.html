@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside the Signal — AMP Signal Adoption Campaign</title>
+<meta name="description" content="The 12-week internal marketing campaign driving AMP Signal adoption across Sinclair regional sales.">
+<meta property="og:title" content="Inside the Signal">
+<meta property="og:description" content="The adoption plan, in motion. AMP Signal × Sinclair regional sales.">
+<meta property="og:image" content="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/pitchman.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:    #0a1634;
+  --navy2:   #0d1c3f;
+  --navy-lt: #1a2d5a;
+  --white:   #ffffff;
+  --off:     #f7f8fc;
+  --off2:    #eef0f7;
+  --off3:    #e2e6f0;
+  --text:    #0a1634;
+  --text2:   #3d4f6e;
+  --text3:   #7a8fa8;
+  --text4:   #b0bfd0;
+  --green:   #00a86b;
+  --red:     #e03450;
+  --amber:   #e07b00;
+  --border:  #e4e8f2;
+  --hairline: rgba(10,22,52,.08);
+  --hairline-w: rgba(255,255,255,.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection { background: var(--navy); color: var(--white); }
+
+/* ==================== TOP NAV ==================== */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--hairline);
+  padding: 18px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.topnav .brand {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topnav .brand .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: .35; }
+}
+.topnav .links {
+  display: flex;
+  gap: 28px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.topnav .links a {
+  color: var(--text2);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.topnav .links a:hover { color: var(--navy); }
+.topnav .pitch-link {
+  color: var(--navy) !important;
+  position: relative;
+}
+.topnav .pitch-link::after {
+  content: "↗";
+  margin-left: 4px;
+  font-family: 'Lato', sans-serif;
+}
+@media (max-width: 700px) {
+  .topnav .links { display: none; }
+}
+
+/* ==================== TYPOGRAPHY ==================== */
+.eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 24px;
+  display: inline-block;
+}
+.eyebrow.dim { color: rgba(255,255,255,.5); }
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.giga {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(56px, 10vw, 168px);
+  line-height: .9;
+  letter-spacing: -.04em;
+}
+.huge {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: clamp(36px, 6vw, 80px);
+  line-height: .96;
+  letter-spacing: -.025em;
+}
+.large {
+  font-weight: 900;
+  font-size: clamp(24px, 3.2vw, 44px);
+  line-height: 1.05;
+  letter-spacing: -.015em;
+}
+.body-text {
+  font-size: clamp(16px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: var(--text2);
+  max-width: 60ch;
+}
+
+/* ==================== HERO ==================== */
+.hero {
+  padding: 100px 5vw 80px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 6vw;
+  align-items: end;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+.hero h1 .accent { color: var(--text3); }
+.hero .meta-card {
+  border: 1px solid var(--border);
+  background: var(--off);
+  padding: 28px;
+  border-radius: 4px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .04em;
+  line-height: 1.8;
+  color: var(--text2);
+}
+.hero .meta-card strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+.hero .meta-card .row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.hero .meta-card .row:last-child { border-bottom: none; }
+.hero .meta-card .label {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  font-weight: 700;
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+}
+
+/* ==================== POSTAMBLE / TEASER ==================== */
+.teaser {
+  background: var(--navy);
+  color: var(--white);
+  padding: 80px 5vw;
+  text-align: center;
+}
+.teaser-inner { max-width: 1200px; margin: 0 auto; }
+.teaser h2 {
+  font-weight: 900;
+  font-size: clamp(40px, 6vw, 92px);
+  line-height: 1.0;
+  letter-spacing: -.025em;
+  color: var(--white);
+}
+.teaser h2 .breath { display: block; }
+.teaser h2 .punch {
+  display: block;
+  color: rgba(255,255,255,.5);
+  margin-top: 12px;
+}
+.teaser .credit {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-top: 40px;
+}
+.teaser .audio-cue {
+  margin-top: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+  transition: all .25s ease;
+}
+.teaser .audio-cue:hover {
+  background: rgba(255,255,255,.18);
+}
+.teaser .audio-cue.playing {
+  background: var(--white);
+  color: var(--navy);
+}
+.teaser .audio-cue .speaker { font-size: 14px; }
+
+/* ==================== SECTION FRAME ==================== */
+section.block {
+  padding: 100px 5vw;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+section.block.alt { background: var(--off); max-width: none; padding-left: 5vw; padding-right: 5vw; }
+section.block.alt .alt-inner { max-width: 1480px; margin: 0 auto; }
+
+/* ==================== CAST ==================== */
+.cast-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-top: 56px;
+}
+.cast-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all .35s cubic-bezier(.2,.7,.2,1);
+}
+.cast-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(10,22,52,.12);
+  border-color: var(--navy);
+}
+.cast-portrait {
+  aspect-ratio: 4/5;
+  background: var(--off);
+  position: relative;
+  overflow: hidden;
+}
+.cast-portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cast-portrait .placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: var(--text3);
+  text-transform: uppercase;
+  text-align: center;
+}
+.cast-meta { padding: 18px 16px 20px; }
+.cast-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.cast-name {
+  font-weight: 900;
+  font-size: 19px;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.cast-role {
+  font-size: 12px;
+  color: var(--text2);
+  margin-bottom: 10px;
+  letter-spacing: .01em;
+}
+.cast-arc {
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text3);
+  border-top: 1px solid var(--hairline);
+  padding-top: 10px;
+  line-height: 1.5;
+}
+@media (max-width: 1100px) {
+  .cast-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .cast-grid { grid-template-columns: 1fr; }
+}
+
+/* ==================== CALENDAR ==================== */
+.cal-table {
+  margin-top: 56px;
+  border-top: 2px solid var(--navy);
+}
+.cal-row {
+  display: grid;
+  grid-template-columns: 80px 110px 1.2fr 1fr 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--hairline);
+  align-items: start;
+}
+.cal-row.head {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  padding: 14px 0;
+}
+.cal-row.live {
+  background: linear-gradient(90deg, rgba(0,168,107,.06), transparent 80%);
+  margin: 0 -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 4px;
+}
+.cal-week {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: .04em;
+}
+.cal-status {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  display: inline-block;
+}
+.cal-status.live    { background: var(--green); color: var(--white); }
+.cal-status.queued  { background: var(--off2); color: var(--text2); }
+.cal-status.draft   { background: var(--off); color: var(--text3); }
+.cal-status.tease   { background: var(--navy); color: var(--white); }
+.cal-theme {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+}
+.cal-theme .sub {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--text3);
+  display: block;
+  margin-top: 4px;
+}
+.cal-hero, .cal-drops {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.55;
+}
+.cal-hero strong, .cal-drops strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+.cal-hero .nope, .cal-drops .nope {
+  color: var(--text4);
+  font-style: italic;
+}
+@media (max-width: 900px) {
+  .cal-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+  .cal-row.head { display: none; }
+}
+
+/* ==================== DROPS GRID ==================== */
+.drops-section { background: var(--off); }
+.drops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 56px;
+}
+.drop-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+.drop-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(10,22,52,.1);
+}
+.drop-thumb {
+  aspect-ratio: 4/5;
+  background: var(--off2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drop-thumb .ph {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: var(--text3);
+  text-transform: uppercase;
+  text-align: center;
+  padding: 16px;
+}
+.drop-thumb .ph .big {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: none;
+  letter-spacing: -.01em;
+  display: block;
+  margin-bottom: 6px;
+}
+.drop-meta { padding: 14px 16px 18px; }
+.drop-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--navy);
+  padding: 3px 8px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+.drop-tag.h { background: var(--navy); }
+.drop-tag.d { background: var(--text2); }
+.drop-tag.live { background: var(--green); }
+.drop-name {
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: -.01em;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.drop-desc {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.45;
+}
+.drop-formats {
+  margin-top: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.drop-formats .fmt {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border: 1px solid var(--hairline);
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+/* ==================== STATS BAR ==================== */
+.stats {
+  background: var(--navy);
+  color: var(--white);
+  padding: 80px 5vw;
+}
+.stats-inner {
+  max-width: 1480px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.stat {
+  border-top: 2px solid var(--white);
+  padding-top: 20px;
+}
+.stat-num {
+  font-weight: 900;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-feature-settings: "tnum" 1;
+}
+.stat-label {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+.stat-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.5;
+}
+@media (max-width: 800px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  padding: 60px 5vw;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+footer a { color: var(--navy); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* ==================== UTILITY ==================== */
+.section-title {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--navy);
+}
+.section-title h2 { color: var(--navy); }
+.section-title .meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: right;
+  line-height: 1.8;
+}
+@media (max-width: 700px) {
+  .section-title { grid-template-columns: 1fr; }
+  .section-title .meta { text-align: left; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== TOP NAV ==================== -->
+<nav class="topnav">
+  <div class="brand">
+    <span class="dot"></span>
+    <span>Inside the Signal · Adoption Campaign</span>
+  </div>
+  <div class="links">
+    <a href="#cast">Cast</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#drops">Drops</a>
+    <a href="#stats">Plan</a>
+    <a href="../pitch/" class="pitch-link">Pitch deck</a>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+  <div>
+    <div class="eyebrow">The adoption plan</div>
+    <h1 class="giga">Inside<br><span class="accent">the</span> Signal.</h1>
+    <p class="body-text" style="margin-top:32px;font-size:20px;max-width:48ch">A 12-week internal marketing campaign engineered to drive AMP Signal adoption across one Sinclair regional sales group — and architected to scale to every region after the pilot.</p>
+  </div>
+  <aside class="meta-card">
+    <div class="row">
+      <span class="label">Status</span>
+      <span><strong>Active · Pre-pilot</strong></span>
+    </div>
+    <div class="row">
+      <span class="label">Window</span>
+      <span>3 phases · Pre / Pilot / Post</span>
+    </div>
+    <div class="row">
+      <span class="label">Cast</span>
+      <span>5 recurring characters</span>
+    </div>
+    <div class="row">
+      <span class="label">Drops</span>
+      <span>26 across 12 weeks</span>
+    </div>
+    <div class="row">
+      <span class="label">Channels</span>
+      <span>Slack · email · intranet · all-hands · vertical social</span>
+    </div>
+    <div class="row">
+      <span class="label">Mix</span>
+      <span>~60% static · ~40% motion</span>
+    </div>
+  </aside>
+</header>
+
+<!-- ==================== TEASER (first live drop) ==================== -->
+<section class="teaser">
+  <div class="teaser-inner">
+    <div class="eyebrow dim">Pre-pilot · drop 01 · live</div>
+    <h2>
+      <span class="breath">Something is coming.</span>
+      <span class="breath">It changes the way you sell.</span>
+      <span class="punch">Unless you like wasting time.</span>
+    </h2>
+    <button class="audio-cue" id="teaserAudioBtn" aria-label="Play teaser narration">
+      <span class="speaker">🔇</span>
+      <span>Hear the pitchman</span>
+    </button>
+    <div class="credit">Pre-pilot teaser · pitchman · static + 9:16 motion variant</div>
+    <audio id="teaserAudio" preload="none">
+      <source src="../marketing-assets/audio/teaser-01.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+</section>
+
+<!-- ==================== CAST ==================== -->
+<section class="block" id="cast">
+  <div class="section-title">
+    <div>
+      <div class="eyebrow">Cast</div>
+      <h2 class="huge">Five characters,<br>one campaign arc.</h2>
+    </div>
+    <div class="meta">
+      Recurring across all 26 drops<br>
+      Each character carries a stakeholder POV
+    </div>
+  </div>
+
+  <div class="cast-grid">
+    <div class="cast-card">
+      <div class="cast-portrait">
+        <img src="../marketing-assets/pitchman.jpg" alt="Pitchman">
+      </div>
+      <div class="cast-meta">
+        <div class="cast-num">01 · Host</div>
+        <div class="cast-name">The Pitchman</div>
+        <div class="cast-role">Frames every hero piece. The CIO voice.</div>
+        <div class="cast-arc">Arc: confident throughout — the one who knew this would work.</div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="cast-portrait">
+        <img src="../marketing-assets/character/maya-base.jpg" alt="Maya"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">Maya · base portrait pending</div>
+      </div>
+      <div class="cast-meta">
+        <div class="cast-num">02 · Believer</div>
+        <div class="cast-name">Maya</div>
+        <div class="cast-role">First AE to get it. The early evangelist.</div>
+        <div class="cast-arc">Arc: skeptical → first win → mentor.</div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="cast-portrait">
+        <img src="../marketing-assets/character/marcus-base.jpg" alt="Marcus"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">Marcus · in production</div>
+      </div>
+      <div class="cast-meta">
+        <div class="cast-num">03 · Skeptic</div>
+        <div class="cast-name">Marcus</div>
+        <div class="cast-role">Veteran AE. Burned by every rollout he's seen.</div>
+        <div class="cast-arc">Arc: resistant → grudging trial → outspoken champion.</div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="cast-portrait">
+        <img src="../marketing-assets/character/diane-base.jpg" alt="Diane"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none">Diane · in production</div>
+      </div>
+      <div class="cast-meta">
+        <div class="cast-num">04 · Manager</div>
+        <div class="cast-name">Diane</div>
+        <div class="cast-role">Regional Sales Manager. Battle-tested.</div>
+        <div class="cast-arc">Arc: cautious → coaching better → can't go back.</div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="cast-portrait">
+        <div class="placeholder" style="display:flex">The Dashboard · UI as character</div>
+      </div>
+      <div class="cast-meta">
+        <div class="cast-num">05 · Surface</div>
+        <div class="cast-name">The Dashboard</div>
+        <div class="cast-role">The AMP Signal UI itself. Recurring on-screen presence.</div>
+        <div class="cast-arc">Arc: from "what's this?" → "I check it first."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STATS ==================== -->
+<section class="stats" id="stats">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-num">26</div>
+      <div class="stat-label">DROPS</div>
+      <div class="stat-desc">5 hero pieces, 21 reusable format drops across 12 weeks.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">CHARACTERS</div>
+      <div class="stat-desc">Recurring cast representing every stakeholder POV in the rollout.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">PHASES</div>
+      <div class="stat-desc">Pre-pilot tease, in-pilot adoption, post-pilot expansion.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">6</div>
+      <div class="stat-label">CHANNELS</div>
+      <div class="stat-desc">Slack, email, intranet, all-hands, regional meetings, vertical social.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CALENDAR ==================== -->
+<section class="block alt" id="calendar">
+  <div class="alt-inner">
+    <div class="section-title">
+      <div>
+        <div class="eyebrow">12-week calendar</div>
+        <h2 class="huge">The drop schedule.</h2>
+      </div>
+      <div class="meta">
+        Pilot phase shown<br>
+        Pre-pilot teasers run weeks &minus;6 to 0
+      </div>
+    </div>
+
+    <div class="cal-table">
+      <div class="cal-row head">
+        <div>Week</div>
+        <div>Status</div>
+        <div>Theme</div>
+        <div>Hero</div>
+        <div>Drops</div>
+      </div>
+
+      <div class="cal-row live">
+        <div class="cal-week">Pre</div>
+        <div><span class="cal-status live">● Live</span></div>
+        <div class="cal-theme">"Something is coming"<span class="sub">Pitchman teaser, no platform reveal</span></div>
+        <div class="cal-hero"><strong>Teaser 01</strong> · pitchman</div>
+        <div class="cal-drops"><strong>D6</strong> Sources Say</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W1</div>
+        <div><span class="cal-status queued">● Day 1</span></div>
+        <div class="cal-theme">Day one<span class="sub">Platform launch in pilot region</span></div>
+        <div class="cal-hero"><strong>H1</strong> Launch Film</div>
+        <div class="cal-drops"><strong>D6</strong> Sources Say</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W2</div>
+        <div><span class="cal-status queued">Queued</span></div>
+        <div class="cal-theme">First impressions<span class="sub">Maya's onboarding moments</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D1</strong> Tab Count · <strong>D3</strong> AE Diary</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W3</div>
+        <div><span class="cal-status queued">Queued</span></div>
+        <div class="cal-theme">Early signal<span class="sub">First week patterns surfacing</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D5</strong> Leaderboard · <strong>D4</strong> Before/After</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W4</div>
+        <div><span class="cal-status queued">Queued</span></div>
+        <div class="cal-theme">First win<span class="sub">A real deal closed with Signal intel</span></div>
+        <div class="cal-hero"><strong>H2</strong> Win Story #1</div>
+        <div class="cal-drops"><strong>D6</strong> Sources Say</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W5</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">Wait, this works?<span class="sub">Marcus accidentally engages</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D2</strong> Marcus Says/Does · <strong>D5</strong> Leaderboard</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W6</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">Diane levels up<span class="sub">Manager view at work</span></div>
+        <div class="cal-hero"><strong>H3</strong> Manager Moment</div>
+        <div class="cal-drops"><strong>D3</strong> AE Diary · <strong>D7</strong> Reaction Frame</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W7</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">Habit forming<span class="sub">Workflow integration becomes natural</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D1</strong> Tab Count v2 · <strong>D5</strong> Leaderboard</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W8</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">The reckoning<span class="sub">Marcus's conversion arc paid off</span></div>
+        <div class="cal-hero"><strong>H4</strong> The Reckoning</div>
+        <div class="cal-drops"><strong>D6</strong> Sources Say</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W9</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">It just works<span class="sub">Compounding signal quality</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D3</strong> AE Diary · <strong>D4</strong> Before/After</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W10</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">Compounding<span class="sub">Second hero win story</span></div>
+        <div class="cal-hero"><strong>H2</strong> Win Story #2</div>
+        <div class="cal-drops"><strong>D5</strong> Leaderboard · <strong>D7</strong> Reaction Frame</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W11</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">Marcus the believer<span class="sub">Convert becomes evangelist</span></div>
+        <div class="cal-hero"><span class="nope">—</span></div>
+        <div class="cal-drops"><strong>D2</strong> Marcus v2 · <strong>D3</strong> AE Diary</div>
+      </div>
+
+      <div class="cal-row">
+        <div class="cal-week">W12</div>
+        <div><span class="cal-status draft">Draft</span></div>
+        <div class="cal-theme">What 12 weeks looks like<span class="sub">Modeled vs. actual recap</span></div>
+        <div class="cal-hero"><strong>H5</strong> The Recap</div>
+        <div class="cal-drops"><strong>D5</strong> Final Leaderboard</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== DROP FORMATS LIBRARY ==================== -->
+<section class="block drops-section" id="drops">
+  <div class="section-title">
+    <div>
+      <div class="eyebrow">Drop format library</div>
+      <h2 class="huge">12 reusable formats.</h2>
+    </div>
+    <div class="meta">
+      ~60% static · ~40% motion<br>
+      Each format ships static AND motion variants where relevant
+    </div>
+  </div>
+
+  <div class="drops-grid">
+    <!-- HERO PIECES -->
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">H1</span>The Launch Film</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag h">Hero</span>
+        <div class="drop-name">The Launch Film</div>
+        <div class="drop-desc">2:30 polished announcement. Pitchman + full cast intro.</div>
+        <div class="drop-formats"><span class="fmt">9:16</span><span class="fmt">16:9</span><span class="fmt">poster</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">H2</span>The Win Story</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag h">Hero · ×3-4</span>
+        <div class="drop-name">The Win Story</div>
+        <div class="drop-desc">60-90s. A real AE win, dramatized in illustrated style.</div>
+        <div class="drop-formats"><span class="fmt">9:16</span><span class="fmt">16:9</span><span class="fmt">email</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">H3</span>Manager Moment</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag h">Hero · ×2</span>
+        <div class="drop-name">Manager Moment</div>
+        <div class="drop-desc">Diane solving a real coaching problem with the manager view.</div>
+        <div class="drop-formats"><span class="fmt">16:9</span><span class="fmt">all-hands</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">H4</span>The Reckoning</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag h">Hero · once</span>
+        <div class="drop-name">The Reckoning</div>
+        <div class="drop-desc">2:00 — Marcus's conversion. The campaign's emotional pivot.</div>
+        <div class="drop-formats"><span class="fmt">9:16</span><span class="fmt">16:9</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">H5</span>The Recap</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag h">Hero · once</span>
+        <div class="drop-name">The Recap</div>
+        <div class="drop-desc">2:30 final episode. Modeled vs. actual. The mic drop.</div>
+        <div class="drop-formats"><span class="fmt">16:9</span><span class="fmt">all-hands</span><span class="fmt">PDF</span></div>
+      </div>
+    </div>
+
+    <!-- DROPS -->
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D1</span>Tab Count</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop</span>
+        <div class="drop-name">Tab Count</div>
+        <div class="drop-desc">14 tabs → 2. Maya. Memeable counter, Slack-ready.</div>
+        <div class="drop-formats"><span class="fmt">static</span><span class="fmt">15s loop</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D2</span>Marcus Says vs Does</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop</span>
+        <div class="drop-name">Marcus Says vs Does</div>
+        <div class="drop-desc">Side-by-side. Marcus dismissing AMP Signal vs. secretly using it.</div>
+        <div class="drop-formats"><span class="fmt">static</span><span class="fmt">20s</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D3</span>AE Diary</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop · weekly</span>
+        <div class="drop-name">AE Diary</div>
+        <div class="drop-desc">First-person voiceover from a real AE about a moment in their week.</div>
+        <div class="drop-formats"><span class="fmt">30s</span><span class="fmt">pull-quote card</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D4</span>Before / After</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop</span>
+        <div class="drop-name">Before / After</div>
+        <div class="drop-desc">Same meeting prep, with vs. without Signal. Wordless. Title cards only.</div>
+        <div class="drop-formats"><span class="fmt">static</span><span class="fmt">15s</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D5</span>The Leaderboard</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop · weekly</span>
+        <div class="drop-name">The Leaderboard</div>
+        <div class="drop-desc">Pilot region engagement-ranked stats. Static-native, email-ready.</div>
+        <div class="drop-formats"><span class="fmt">static</span><span class="fmt">PDF</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D6</span>Sources Say</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop</span>
+        <div class="drop-name">Sources Say</div>
+        <div class="drop-desc">Pitchman teasing what's coming next week. Builds episodic rhythm.</div>
+        <div class="drop-formats"><span class="fmt">15s</span><span class="fmt">static</span></div>
+      </div>
+    </div>
+    <div class="drop-card">
+      <div class="drop-thumb"><div class="ph"><span class="big">D7</span>Reaction Frame</div></div>
+      <div class="drop-meta">
+        <span class="drop-tag d">Drop</span>
+        <div class="drop-name">Reaction Frame</div>
+        <div class="drop-desc">Shareable image with negative space — AEs caption their own.</div>
+        <div class="drop-formats"><span class="fmt">static</span><span class="fmt">template</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+  <span>AMP Signal · Inside the Signal · Adoption Plan v1</span>
+  <span><a href="../pitch/">View executive pitch ↗</a></span>
+</footer>
+
+<script>
+// ==================== TEASER AUDIO ====================
+(() => {
+  const btn = document.getElementById('teaserAudioBtn');
+  const audio = document.getElementById('teaserAudio');
+  const speaker = btn.querySelector('.speaker');
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => {/* missing/blocked */});
+      btn.classList.add('playing');
+      speaker.textContent = '🔊';
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      btn.classList.remove('playing');
+      speaker.textContent = '🔇';
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    btn.classList.remove('playing');
+    speaker.textContent = '🔇';
+  });
+})();
+</script>
+
+</body>
+</html>
