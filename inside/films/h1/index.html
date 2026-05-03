@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H1 Launch Film · Inside the Signal</title>
+<meta name="description" content="The launch announcement.">
+<meta property="og:title" content="Inside the Signal · H1 Launch Film">
+<meta property="og:description" content="The campaign begins.">
+<meta property="og:image" content="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/character/cast-composite.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1634;
+  --white: #fff;
+  --off: #f7f8fc;
+  --text2: #3d4f6e;
+  --text3: #7a8fa8;
+  --border: #e4e8f2;
+  --green: #00a86b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: #000;
+  color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* SLIDES — all stacked, opacity-cycled */
+.stage {
+  position: fixed;
+  inset: 0;
+  background: var(--white);
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+  background: var(--white);
+  color: var(--navy);
+  padding: 40px;
+}
+.slide.active { opacity: 1; z-index: 2; }
+
+/* TITLE SLIDES */
+.title-slide {
+  flex-direction: column;
+  text-align: center;
+}
+.title-slide .eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 32px;
+}
+.title-slide h1 {
+  font-weight: 900;
+  font-size: clamp(56px, 11vw, 180px);
+  line-height: .92;
+  letter-spacing: -.04em;
+  color: var(--navy);
+}
+.title-slide h1 .accent { color: var(--text3); }
+
+/* CHARACTER SLIDES (full-bleed character w/ caption) */
+.char-slide {
+  flex-direction: row;
+  background: var(--white);
+}
+.char-slide .portrait {
+  height: 90%;
+  max-width: 50%;
+  object-fit: contain;
+  object-position: center bottom;
+  animation: kenburns 12s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  0%   { transform: scale(1.00); }
+  100% { transform: scale(1.05); }
+}
+.char-slide .copy {
+  flex: 1;
+  max-width: 520px;
+  padding-left: 60px;
+}
+.char-slide .copy .name-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+.char-slide .copy h2 {
+  font-weight: 900;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -.025em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.char-slide .copy .quote {
+  font-size: clamp(16px, 1.5vw, 22px);
+  color: var(--text2);
+  line-height: 1.5;
+  font-style: italic;
+  max-width: 36ch;
+}
+
+/* CAST SLIDE — composite full bleed */
+.cast-slide {
+  background: var(--white);
+  flex-direction: column;
+  padding: 0;
+}
+.cast-slide img {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  animation: kenburns 14s ease-in-out infinite alternate;
+}
+.cast-slide .caption {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* SIGN-OFF */
+.signoff-slide {
+  background: var(--navy);
+  color: var(--white);
+  flex-direction: column;
+  text-align: center;
+}
+.signoff-slide h1 {
+  font-weight: 900;
+  font-size: clamp(48px, 9vw, 144px);
+  line-height: .92;
+  letter-spacing: -.04em;
+  color: var(--white);
+}
+.signoff-slide h1 .dim { color: rgba(255,255,255,.4); }
+.signoff-slide .url {
+  margin-top: 40px;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+}
+
+/* CONTROLS */
+.controls {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(0,0,0,.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 18px;
+  border-radius: 100px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.controls button {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.3);
+  color: var(--white);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+}
+.controls button:hover {
+  background: var(--white);
+  color: var(--navy);
+}
+.controls .progress {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,.2);
+  border-radius: 1px;
+  overflow: hidden;
+}
+.controls .progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--white);
+  transition: width .15s linear;
+}
+.controls .slide-num {
+  color: rgba(255,255,255,.5);
+}
+
+/* HUB LINK */
+.hub-link {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(0,0,0,.7);
+  backdrop-filter: blur(8px);
+  padding: 10px 16px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+.hub-link:hover { background: var(--navy); }
+
+/* START OVERLAY (because of audio autoplay restrictions) */
+.start-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  cursor: pointer;
+}
+.start-overlay.gone {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .8s ease;
+}
+.start-overlay .eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 32px;
+}
+.start-overlay h1 {
+  font-weight: 900;
+  font-size: clamp(56px, 10vw, 168px);
+  line-height: .92;
+  letter-spacing: -.04em;
+  color: var(--white);
+  text-align: center;
+  margin-bottom: 48px;
+}
+.start-overlay .play-btn {
+  background: var(--white);
+  color: var(--navy);
+  border: none;
+  padding: 18px 32px;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all .2s ease;
+}
+.start-overlay .play-btn:hover { transform: scale(1.05); }
+.start-overlay .duration {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: rgba(255,255,255,.4);
+  margin-top: 24px;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<a href="../../" class="hub-link">← Hub</a>
+
+<div class="stage" id="stage">
+
+  <!-- Slide 1: Cold open title -->
+  <div class="slide title-slide">
+    <div class="eyebrow">Inside the Signal · Episode One</div>
+    <h1>See the<br>signal first.</h1>
+  </div>
+
+  <!-- Slide 2: Cast composite -->
+  <div class="slide cast-slide">
+    <img src="../../../marketing-assets/character/cast-composite.png" alt="The cast: Maya, Pitchman, Marcus, Diane">
+    <div class="caption">Four characters. One campaign. Twelve weeks.</div>
+  </div>
+
+  <!-- Slide 3: Maya -->
+  <div class="slide char-slide">
+    <img class="portrait" src="../../../marketing-assets/character/maya-base.jpg" alt="Maya">
+    <div class="copy">
+      <div class="name-tag">Maya · Account Executive · Pilot Region</div>
+      <h2>The early believer.</h2>
+      <div class="quote">"I had fourteen tabs open last quarter. This quarter I have two. I'm not back in my email at midnight anymore."</div>
+    </div>
+  </div>
+
+  <!-- Slide 4: Marcus -->
+  <div class="slide char-slide">
+    <img class="portrait" src="../../../marketing-assets/character/marcus-base.jpg" alt="Marcus">
+    <div class="copy">
+      <div class="name-tag">Marcus · Account Executive · Pilot Region</div>
+      <h2>The skeptic.</h2>
+      <div class="quote">"Six tools in five years. None of them got out of beta. Get to the point — what's different this time?"</div>
+    </div>
+  </div>
+
+  <!-- Slide 5: Diane -->
+  <div class="slide char-slide">
+    <img class="portrait" src="../../../marketing-assets/character/diane-base.jpg" alt="Diane">
+    <div class="copy">
+      <div class="name-tag">Diane · Regional Sales Manager</div>
+      <h2>The battle-tested manager.</h2>
+      <div class="quote">"I don't care about the dashboard. I care if it gets us cash. Show me the cash."</div>
+    </div>
+  </div>
+
+  <!-- Slide 6: The thesis -->
+  <div class="slide title-slide">
+    <div class="eyebrow">The platform</div>
+    <h1>One platform.<br><span class="accent">Every role.</span></h1>
+  </div>
+
+  <!-- Slide 7: The pilot ask -->
+  <div class="slide title-slide">
+    <div class="eyebrow">The Ask</div>
+    <h1>One region.<br>Twelve weeks.<br><span class="accent">Real pipeline.</span></h1>
+  </div>
+
+  <!-- Slide 8: Sign-off -->
+  <div class="slide signoff-slide">
+    <h1>See it first.<br><span class="dim">Win it first.</span></h1>
+    <div class="url">scottehrlich-lang.github.io/amp-signal</div>
+  </div>
+
+</div>
+
+<div class="controls" id="controls" style="display:none">
+  <button id="prevBtn" aria-label="Previous">‹</button>
+  <span class="slide-num"><span id="curNum">1</span> / 8</span>
+  <div class="progress"><div class="progress-fill" id="progFill"></div></div>
+  <button id="playBtn" aria-label="Play/Pause">⏸</button>
+  <button id="nextBtn" aria-label="Next">›</button>
+</div>
+
+<div class="start-overlay" id="startOverlay">
+  <div class="eyebrow">Inside the Signal · Episode One</div>
+  <h1>See the<br>signal first.</h1>
+  <button class="play-btn" id="startBtn">
+    <span>▶</span><span>Play with sound</span>
+  </button>
+  <div class="duration">~2 minutes</div>
+</div>
+
+<audio id="narration" preload="auto">
+  <source src="../../../marketing-assets/audio/01-open.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const SLIDE_DURATION = 12000; // ms per slide if no audio control
+const TOTAL_SLIDES = slides.length;
+
+let current = 0;
+let playing = true;
+let advanceTimer = null;
+let progressTimer = null;
+
+const controls = document.getElementById('controls');
+const startOverlay = document.getElementById('startOverlay');
+const startBtn = document.getElementById('startBtn');
+const audio = document.getElementById('narration');
+const playBtn = document.getElementById('playBtn');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const progFill = document.getElementById('progFill');
+const curNum = document.getElementById('curNum');
+
+function showSlide(i) {
+  slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
+  curNum.textContent = i + 1;
+  resetProgress();
+}
+
+function resetProgress() {
+  progFill.style.width = '0%';
+  if (progressTimer) clearInterval(progressTimer);
+  if (!playing) return;
+  const start = Date.now();
+  progressTimer = setInterval(() => {
+    const pct = Math.min(100, (Date.now() - start) / SLIDE_DURATION * 100);
+    progFill.style.width = pct + '%';
+    if (pct >= 100) clearInterval(progressTimer);
+  }, 50);
+}
+
+function nextSlide() {
+  if (current < TOTAL_SLIDES - 1) {
+    current++;
+    showSlide(current);
+    if (playing) scheduleNext();
+  } else {
+    pause();
+  }
+}
+
+function prevSlide() {
+  if (current > 0) {
+    current--;
+    showSlide(current);
+    if (playing) scheduleNext();
+  }
+}
+
+function scheduleNext() {
+  if (advanceTimer) clearTimeout(advanceTimer);
+  advanceTimer = setTimeout(nextSlide, SLIDE_DURATION);
+}
+
+function play() {
+  playing = true;
+  playBtn.textContent = '⏸';
+  scheduleNext();
+  resetProgress();
+  if (audio.paused && current === 0) {
+    audio.play().catch(() => {});
+  }
+}
+
+function pause() {
+  playing = false;
+  playBtn.textContent = '▶';
+  if (advanceTimer) clearTimeout(advanceTimer);
+  if (progressTimer) clearInterval(progressTimer);
+  audio.pause();
+}
+
+playBtn.addEventListener('click', () => playing ? pause() : play());
+prevBtn.addEventListener('click', () => prevSlide());
+nextBtn.addEventListener('click', () => nextSlide());
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+  if (e.key === 'Escape') pause();
+});
+
+// Start sequence — required for audio autoplay permission
+startBtn.addEventListener('click', () => {
+  startOverlay.classList.add('gone');
+  controls.style.display = 'flex';
+  showSlide(0);
+  audio.play().catch(() => {});
+  scheduleNext();
+});
+</script>
+
+</body>
+</html>

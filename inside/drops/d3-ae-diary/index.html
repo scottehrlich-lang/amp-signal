@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AE Diary · Maya · Week 02 · Inside the Signal</title>
+<meta name="description" content="A real moment from a real AE's week.">
+<meta property="og:title" content="AE Diary · Maya · Week 02">
+<meta property="og:description" content="Inside the Signal · Drop · AE Diary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0a1634;
+  --white: #fff;
+  --off: #f7f8fc;
+  --text2: #3d4f6e;
+  --text3: #7a8fa8;
+  --border: #e4e8f2;
+  --green: #00a86b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--white);
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.topnav {
+  padding: 18px 5vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.topnav .brand { display: flex; align-items: center; gap: 12px; }
+.topnav .brand .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.topnav a { color: var(--text2); text-decoration: none; }
+
+.stage {
+  flex: 1;
+  display: grid;
+  grid-template-columns: .8fr 1.4fr;
+  gap: 6vw;
+  align-items: center;
+  padding: 5vw;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.portrait {
+  aspect-ratio: 2/3;
+  background-image: url('../../../marketing-assets/character/maya-base.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-color: var(--off);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  position: relative;
+}
+.portrait::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,.4));
+}
+
+.diary {
+  position: relative;
+}
+.diary .meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 32px;
+}
+.diary .meta .badge {
+  background: var(--navy);
+  color: var(--white);
+  padding: 5px 11px;
+  border-radius: 100px;
+}
+
+.diary .openquote {
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  font-size: 120px;
+  color: var(--navy);
+  line-height: .5;
+  margin-bottom: 8px;
+  opacity: .15;
+  letter-spacing: -.05em;
+}
+
+.diary blockquote {
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.4;
+  letter-spacing: -.005em;
+  color: var(--navy);
+  margin-bottom: 32px;
+  max-width: 26ch;
+}
+.diary blockquote .em {
+  font-weight: 900;
+}
+
+.diary .attribution {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  max-width: 36ch;
+}
+.diary .attribution .who { color: var(--navy); }
+
+footer {
+  padding: 24px 5vw;
+  border-top: 1px solid var(--border);
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: flex;
+  justify-content: space-between;
+}
+footer a { color: var(--navy); text-decoration: none; }
+
+@media (max-width: 800px) {
+  .stage { grid-template-columns: 1fr; gap: 32px; }
+  .portrait { aspect-ratio: 4/3; background-position: center 20%; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="brand"><span class="dot"></span><span>Inside the Signal</span></div>
+  <div><a href="../../">← Hub</a></div>
+</nav>
+
+<div class="stage">
+  <div class="portrait" role="img" aria-label="Maya, AE in the pilot region"></div>
+  <div class="diary">
+    <div class="meta">
+      <span class="badge">AE Diary</span>
+      <span>Week 02 · Pilot Region</span>
+    </div>
+    <div class="openquote">&ldquo;</div>
+    <blockquote>
+      Walked into a renewal meeting last Tuesday already knowing the campaign overdelivered. <span class="em">The customer didn't.</span> Closed an extra forty-three thousand on the spot.
+    </blockquote>
+    <div class="attribution">
+      <span class="who">Maya · Account Executive</span>
+      <span>02 of 12</span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Inside the Signal · AE Diary · 02</span>
+  <span><a href="../../">← Back to hub</a></span>
+</footer>
+
+</body>
+</html>

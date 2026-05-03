@@ -472,10 +472,19 @@ section.block.alt .alt-inner { max-width: 1480px; margin: 0 auto; }
   overflow: hidden;
   transition: all .3s ease;
   cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 .drop-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(10,22,52,.1);
+}
+.drop-card.live {
+  border-color: var(--green);
+}
+.drop-card.live:hover {
+  border-color: var(--navy);
 }
 .drop-thumb {
   aspect-ratio: 4/5;
@@ -964,15 +973,15 @@ footer a:hover { text-decoration: underline; }
 
   <div class="drops-grid">
     <!-- HERO PIECES -->
-    <div class="drop-card">
+    <a class="drop-card live" href="films/h1/">
       <div class="drop-thumb"><div class="ph"><span class="big">H1</span>The Launch Film</div></div>
       <div class="drop-meta">
-        <span class="drop-tag h">Hero</span>
+        <span class="drop-tag live">Live · v1</span>
         <div class="drop-name">The Launch Film</div>
-        <div class="drop-desc">2:30 polished announcement. Pitchman + full cast intro.</div>
+        <div class="drop-desc">~2:00 polished announcement. Pitchman + full cast intro.</div>
         <div class="drop-formats"><span class="fmt">9:16</span><span class="fmt">16:9</span><span class="fmt">poster</span></div>
       </div>
-    </div>
+    </a>
     <div class="drop-card">
       <div class="drop-thumb"><div class="ph"><span class="big">H2</span>The Win Story</div></div>
       <div class="drop-meta">
@@ -1011,15 +1020,15 @@ footer a:hover { text-decoration: underline; }
     </div>
 
     <!-- DROPS -->
-    <div class="drop-card">
+    <a class="drop-card live" href="drops/d1-tab-count/">
       <div class="drop-thumb"><div class="ph"><span class="big">D1</span>Tab Count</div></div>
       <div class="drop-meta">
-        <span class="drop-tag d">Drop</span>
+        <span class="drop-tag live">Live · Drop 01</span>
         <div class="drop-name">Tab Count</div>
         <div class="drop-desc">14 tabs → 2. Maya. Memeable counter, Slack-ready.</div>
         <div class="drop-formats"><span class="fmt">static</span><span class="fmt">15s loop</span></div>
       </div>
-    </div>
+    </a>
     <div class="drop-card">
       <div class="drop-thumb"><div class="ph"><span class="big">D2</span>Marcus Says vs Does</div></div>
       <div class="drop-meta">
@@ -1029,15 +1038,15 @@ footer a:hover { text-decoration: underline; }
         <div class="drop-formats"><span class="fmt">static</span><span class="fmt">20s</span></div>
       </div>
     </div>
-    <div class="drop-card">
+    <a class="drop-card live" href="drops/d3-ae-diary/">
       <div class="drop-thumb"><div class="ph"><span class="big">D3</span>AE Diary</div></div>
       <div class="drop-meta">
-        <span class="drop-tag d">Drop · weekly</span>
+        <span class="drop-tag live">Live · Drop 02</span>
         <div class="drop-name">AE Diary</div>
         <div class="drop-desc">First-person voiceover from a real AE about a moment in their week.</div>
         <div class="drop-formats"><span class="fmt">30s</span><span class="fmt">pull-quote card</span></div>
       </div>
-    </div>
+    </a>
     <div class="drop-card">
       <div class="drop-thumb"><div class="ph"><span class="big">D4</span>Before / After</div></div>
       <div class="drop-meta">
