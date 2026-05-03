@@ -1,0 +1,1892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sonny's Car Wash — Fall River, MA. Est. 1996.</title>
+<meta name="description" content="Family-owned car wash in Fall River, Massachusetts. Honest pricing, unlimited monthly memberships, free vacuums. Open 7am to 8pm every day at 122 Rhode Island Ave.">
+
+<!-- LocalBusiness schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoWash",
+  "name": "Sonny's Car Wash, Inc.",
+  "image": "https://sonnyscarwash.com/og.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "122 Rhode Island Ave",
+    "addressLocality": "Fall River",
+    "addressRegion": "MA",
+    "postalCode": "02724",
+    "addressCountry": "US"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 41.6819351, "longitude": -71.1634591 },
+  "telephone": "+1-508-678-6000",
+  "openingHours": "Mo-Su 07:00-20:00",
+  "priceRange": "$$",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.3", "reviewCount": "268" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --navy:        #0a2540;
+    --navy-deep:   #061a30;
+    --ink:         #14181f;
+    --cream:       #f6f1e7;
+    --cream-deep:  #ece4d3;
+    --paper:       #fbf8f1;
+    --aqua:        #1ab2c5;
+    --aqua-bright: #45d6e7;
+    --amber:       #e8a02b;
+    --rule:        rgba(10, 37, 64, 0.16);
+    --rule-strong: rgba(10, 37, 64, 0.5);
+
+    --serif: "Fraunces", "Times New Roman", serif;
+    --sans:  "DM Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    --mono:  "DM Mono", ui-monospace, "SF Mono", monospace;
+
+    --pad-x: clamp(20px, 5vw, 80px);
+    --max:   1280px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.5;
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+  }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+  /* ============ utility ============ */
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad-x); padding-right: var(--pad-x); }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--navy);
+    opacity: 0.7;
+  }
+  .rule { height: 1px; background: var(--rule); width: 100%; }
+
+  /* ============ header ============ */
+  .topbar {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+  }
+  .topbar-inner {
+    display: flex; gap: 18px; align-items: center; justify-content: space-between;
+    padding: 9px 0; flex-wrap: wrap;
+  }
+  .topbar-inner span { opacity: 0.85; }
+  .topbar a { border-bottom: 1px dotted rgba(246,241,231,0.4); padding-bottom: 1px; }
+
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    backdrop-filter: saturate(140%) blur(6px);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .logo {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 30px; height: 30px; flex: 0 0 30px;
+  }
+  .nav-links {
+    display: flex; gap: 30px;
+    font-size: 14.5px;
+    font-weight: 500;
+  }
+  .nav-links a {
+    color: var(--navy); opacity: 0.78;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--navy); color: var(--cream);
+    padding: 11px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--ink); transform: translateY(-1px); }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+  }
+
+  /* ============ hero ============ */
+  .hero {
+    position: relative;
+    padding-top: clamp(40px, 8vw, 96px);
+    padding-bottom: clamp(60px, 10vw, 130px);
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: center;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+    font-size: clamp(48px, 7.2vw, 104px);
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 18px 0 0;
+    color: var(--navy);
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    color: var(--aqua);
+  }
+  .hero-sub {
+    margin-top: 26px;
+    font-size: 18.5px;
+    line-height: 1.5;
+    max-width: 36ch;
+    color: var(--ink);
+  }
+  .hero-meta {
+    margin-top: 32px;
+    display: flex; gap: 22px; flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+  .hero-meta div { display: flex; align-items: baseline; gap: 8px; }
+  .hero-meta strong { color: var(--navy); font-weight: 500; }
+  .hero-meta .dot { width: 5px; height: 5px; background: var(--aqua); border-radius: 50%; align-self: center; }
+
+  .hero-ctas {
+    margin-top: 36px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: transform 0.15s ease, background 0.2s, color 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary {
+    background: var(--navy); color: var(--cream);
+    box-shadow: 0 1px 0 rgba(10,37,64,0.05);
+  }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent; color: var(--navy);
+    border-color: var(--rule-strong);
+  }
+  .btn-ghost:hover { background: var(--cream); }
+  .btn .arr { transition: transform 0.2s; }
+  .btn:hover .arr { transform: translateX(3px); }
+
+  /* hero illustration */
+  .hero-art {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: var(--navy);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+      0 60px 120px -50px rgba(10,37,64,0.5),
+      0 4px 0 var(--cream-deep),
+      0 5px 0 var(--rule);
+  }
+  .hero-art .badge {
+    position: absolute; top: 22px; left: 22px;
+    z-index: 3;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--cream);
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .hero-art .badge::before {
+    content: ""; width: 6px; height: 6px; background: var(--aqua-bright); border-radius: 50%;
+    box-shadow: 0 0 12px var(--aqua-bright);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.9); }
+    50%      { opacity: 1; transform: scale(1.1); }
+  }
+  .hero-art .est {
+    position: absolute; bottom: 22px; right: 22px; z-index: 3;
+    text-align: right;
+    font-family: var(--serif);
+    color: var(--cream);
+  }
+  .hero-art .est .yr {
+    font-size: 64px; line-height: 0.9; font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    letter-spacing: -0.02em;
+  }
+  .hero-art .est .lbl {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    opacity: 0.7; margin-top: 4px;
+  }
+
+  /* SVG car wash scene */
+  .scene { position: absolute; inset: 0; }
+  .scene .water {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(69,214,231,0.25), transparent 60%),
+      linear-gradient(180deg, rgba(69,214,231,0.05), rgba(10,37,64,0));
+  }
+  .scene .stripes {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 36%;
+    background:
+      repeating-linear-gradient(90deg,
+        rgba(246,241,231,0.06) 0 14px,
+        transparent 14px 28px);
+    border-top: 1px solid rgba(246,241,231,0.15);
+  }
+  .scene .arch {
+    position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 78%; aspect-ratio: 1 / 1;
+    border: 1px solid rgba(69,214,231,0.35);
+    border-radius: 999px;
+    opacity: 0.7;
+  }
+  .scene .arch:nth-of-type(2) { width: 60%; opacity: 0.5; }
+  .scene .arch:nth-of-type(3) { width: 42%; opacity: 0.35; }
+  .scene .car {
+    position: absolute; left: 50%; bottom: 22%;
+    transform: translateX(-50%);
+    width: 64%;
+  }
+  .drops { position: absolute; inset: 0; pointer-events: none; }
+  .drops i {
+    position: absolute; width: 1px; background: linear-gradient(180deg, transparent, rgba(69,214,231,0.85), transparent);
+    height: 28px;
+    animation: fall linear infinite;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-30px); opacity: 0; }
+    20%  { opacity: 1; }
+    100% { transform: translateY(360px); opacity: 0; }
+  }
+
+  /* trust strip */
+  .trust {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--cream);
+  }
+  .trust-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .trust-cell {
+    padding: 26px clamp(12px, 2vw, 28px);
+    border-right: 1px solid var(--rule);
+  }
+  .trust-cell:last-child { border-right: 0; }
+  .trust-num {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 400;
+    line-height: 1;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+  .trust-lbl {
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+  @media (max-width: 760px) {
+    .trust-inner { grid-template-columns: 1fr 1fr; }
+    .trust-cell:nth-child(2) { border-right: 0; }
+    .trust-cell:nth-child(1), .trust-cell:nth-child(2) { border-bottom: 1px solid var(--rule); }
+  }
+
+  /* ============ section base ============ */
+  section.block {
+    padding-top: clamp(64px, 9vw, 130px);
+    padding-bottom: clamp(64px, 9vw, 130px);
+  }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: clamp(20px, 4vw, 70px);
+    align-items: end;
+    margin-bottom: clamp(36px, 5vw, 70px);
+  }
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    margin: 12px 0 0;
+    color: var(--navy);
+  }
+  .section-head h2 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    color: var(--aqua);
+  }
+  .section-head p {
+    font-size: 18px;
+    line-height: 1.55;
+    max-width: 50ch;
+    color: var(--ink);
+    margin: 0;
+    opacity: 0.85;
+  }
+  @media (max-width: 760px) {
+    .section-head { grid-template-columns: 1fr; align-items: start; }
+  }
+
+  /* ============ pricing ============ */
+  #pricing { background: var(--paper); }
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--navy);
+    border-bottom: 1px solid var(--navy);
+  }
+  .price-card {
+    padding: 36px clamp(18px, 2.4vw, 30px);
+    border-right: 1px solid var(--rule);
+    background: var(--paper);
+    display: flex; flex-direction: column;
+    transition: background 0.25s ease;
+    position: relative;
+  }
+  .price-card:last-child { border-right: 0; }
+  .price-card.feat {
+    background: var(--navy);
+    color: var(--cream);
+  }
+  .price-card.feat .price-name,
+  .price-card.feat .price-amt,
+  .price-card.feat li { color: var(--cream); }
+  .price-card.feat .price-flag { background: var(--amber); color: var(--navy); }
+
+  .price-flag {
+    position: absolute; top: -1px; right: 18px;
+    transform: translateY(-50%);
+    background: var(--navy); color: var(--cream);
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 5px 10px; border-radius: 999px;
+  }
+  .price-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .price-name-sub {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 22px;
+  }
+  .price-amt {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--navy);
+    display: flex; align-items: flex-start; gap: 4px;
+  }
+  .price-amt .dollar {
+    font-size: 28px; padding-top: 8px; opacity: 0.7;
+  }
+  .price-amt .cents {
+    font-size: 22px; padding-top: 8px;
+  }
+  .price-card ul {
+    list-style: none; padding: 0; margin: 26px 0 0;
+    font-size: 14.5px; line-height: 1.6;
+    flex: 1;
+  }
+  .price-card li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .price-card li::before {
+    content: "✓"; color: var(--aqua); font-size: 14px;
+    flex: 0 0 14px;
+  }
+  .price-card.feat li::before { color: var(--aqua-bright); }
+  .price-card li.no { opacity: 0.35; }
+  .price-card li.no::before { content: "—"; color: inherit; }
+
+  .price-foot {
+    margin-top: 40px;
+    background: var(--cream);
+    padding: 28px clamp(20px, 3vw, 36px);
+    border-radius: 4px;
+    display: flex; gap: 20px; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+    border: 1px solid var(--rule);
+  }
+  .price-foot p {
+    margin: 0;
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 28px);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    max-width: 36ch;
+  }
+  .price-foot p em { font-style: italic; color: var(--aqua); }
+
+  @media (max-width: 980px) {
+    .price-grid { grid-template-columns: 1fr 1fr; }
+    .price-card { border-bottom: 1px solid var(--rule); }
+    .price-card:nth-child(2) { border-right: 0; }
+  }
+  @media (max-width: 580px) {
+    .price-grid { grid-template-columns: 1fr; }
+    .price-card { border-right: 0; }
+  }
+
+  /* ============ membership ============ */
+  #membership {
+    background: var(--navy);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  #membership::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(69,214,231,0.18), transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(232,160,43,0.10), transparent 55%);
+    pointer-events: none;
+  }
+  #membership .wrap { position: relative; }
+  #membership .section-head h2 { color: var(--cream); }
+  #membership .section-head h2 em { color: var(--aqua-bright); }
+  #membership .section-head p { color: rgba(246,241,231,0.85); }
+  #membership .eyebrow { color: var(--aqua-bright); opacity: 1; }
+
+  .mem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  .mem-card {
+    background: rgba(246,241,231,0.04);
+    border: 1px solid rgba(246,241,231,0.16);
+    border-radius: 6px;
+    padding: 32px 28px;
+    transition: background 0.25s, transform 0.25s, border-color 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .mem-card:hover {
+    background: rgba(246,241,231,0.07);
+    border-color: rgba(69,214,231,0.5);
+    transform: translateY(-2px);
+  }
+  .mem-card.feat {
+    background: var(--cream);
+    color: var(--navy);
+    border-color: var(--cream);
+  }
+  .mem-name {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .mem-tag {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aqua-bright);
+    margin-top: 8px;
+  }
+  .mem-card.feat .mem-tag { color: var(--amber); }
+  .mem-price {
+    margin-top: 30px;
+    font-family: var(--serif);
+    font-size: 56px; line-height: 1;
+    letter-spacing: -0.03em;
+    display: flex; align-items: baseline; gap: 4px;
+  }
+  .mem-price .dollar { font-size: 22px; opacity: 0.7; }
+  .mem-price small { font-family: var(--sans); font-size: 14px; font-weight: 400; opacity: 0.7; margin-left: 6px; }
+  .mem-list {
+    list-style: none; padding: 0; margin: 24px 0 28px;
+    font-size: 14.5px;
+  }
+  .mem-list li {
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(246,241,231,0.12);
+    display: flex; gap: 10px;
+  }
+  .mem-card.feat .mem-list li { border-color: rgba(10,37,64,0.12); }
+  .mem-list li::before { content: "→"; color: var(--aqua-bright); font-family: var(--mono); }
+  .mem-card.feat .mem-list li::before { color: var(--amber); }
+  .mem-cta {
+    margin-top: auto;
+    display: inline-block;
+    padding: 13px 22px;
+    border: 1px solid var(--cream);
+    border-radius: 999px;
+    font-size: 14px; font-weight: 600;
+    text-align: center;
+    transition: background 0.2s, color 0.2s;
+  }
+  .mem-cta:hover { background: var(--cream); color: var(--navy); }
+  .mem-card.feat .mem-cta { background: var(--navy); color: var(--cream); border-color: var(--navy); }
+  .mem-card.feat .mem-cta:hover { background: var(--ink); }
+
+  .mem-fine {
+    text-align: center;
+    margin-top: 40px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em;
+    color: rgba(246,241,231,0.55);
+  }
+
+  @media (max-width: 880px) {
+    .mem-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ services ============ */
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .svc {
+    padding: 40px clamp(18px, 2.4vw, 30px);
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    transition: background 0.2s;
+  }
+  .svc:hover { background: var(--cream); }
+  .svc:nth-child(3n) { border-right: 0; }
+  .svc-icon {
+    width: 36px; height: 36px;
+    color: var(--aqua);
+    margin-bottom: 22px;
+  }
+  .svc h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    margin: 0 0 8px;
+    color: var(--navy);
+  }
+  .svc p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    opacity: 0.78;
+  }
+  .svc-meta {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--navy); opacity: 0.6;
+  }
+  @media (max-width: 880px) { .svc-grid { grid-template-columns: 1fr 1fr; } .svc:nth-child(3n) { border-right: 1px solid var(--rule); } .svc:nth-child(2n) { border-right: 0; } }
+  @media (max-width: 560px) { .svc-grid { grid-template-columns: 1fr; } .svc { border-right: 0 !important; } }
+
+  /* ============ detailing ============ */
+  #detail { background: var(--cream); }
+  .detail-grid {
+    display: grid; grid-template-columns: 1.1fr 1fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: start;
+  }
+  .detail-text h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--navy);
+    margin: 14px 0 0;
+  }
+  .detail-text h2 em { font-style: italic; color: var(--aqua); }
+  .detail-text p {
+    margin-top: 22px;
+    font-size: 17.5px; line-height: 1.55;
+    color: var(--ink);
+    max-width: 50ch;
+  }
+  .detail-tiers {
+    margin-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .detail-tier {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: baseline;
+  }
+  .detail-tier strong {
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .detail-tier span {
+    display: block;
+    font-size: 14px; line-height: 1.5;
+    margin-top: 4px;
+    color: var(--ink); opacity: 0.75;
+  }
+  .detail-tier .price {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 500;
+  }
+
+  .form {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 32px clamp(20px, 3vw, 36px);
+    box-shadow: 0 30px 60px -40px rgba(10,37,64,0.3);
+  }
+  .form h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    color: var(--navy);
+    margin: 0 0 6px;
+  }
+  .form .h-sub {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.14em;
+    text-transform: uppercase; opacity: 0.6;
+    margin-bottom: 22px;
+  }
+  .field {
+    display: block;
+    margin-top: 14px;
+    font-size: 13px;
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    opacity: 0.7;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: var(--paper);
+    font: inherit;
+    font-family: var(--sans);
+    font-size: 15.5px;
+    color: var(--ink);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: 0;
+    border-color: var(--aqua);
+    box-shadow: 0 0 0 3px rgba(26,178,197,0.18);
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
+  .form button {
+    margin-top: 26px;
+    width: 100%;
+    background: var(--navy);
+    color: var(--cream);
+    padding: 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .form button:hover { background: var(--ink); transform: translateY(-1px); }
+  .form-note {
+    margin-top: 14px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    color: var(--ink); opacity: 0.6; text-align: center;
+  }
+
+  @media (max-width: 880px) {
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ reviews ============ */
+  #reviews { background: var(--paper); }
+  .rev-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    border-bottom: 1px solid var(--navy);
+    padding-bottom: 30px;
+    margin-bottom: 50px;
+  }
+  .rev-rating {
+    display: flex; align-items: baseline; gap: 14px;
+  }
+  .rev-num {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(80px, 11vw, 150px);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--navy);
+  }
+  .rev-stars {
+    display: flex; gap: 4px;
+    color: var(--amber);
+    font-size: 22px;
+  }
+  .rev-stars + div {
+    font-family: var(--mono);
+    font-size: 12px; letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink); opacity: 0.7;
+    margin-top: 6px;
+  }
+  .rev-srcs {
+    text-align: right;
+    font-family: var(--mono); font-size: 12px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink); opacity: 0.7;
+  }
+  .rev-srcs span { display: block; padding: 4px 0; }
+  .rev-srcs strong { color: var(--navy); margin-right: 8px; font-weight: 500; }
+
+  .rev-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .rev-card {
+    padding: 30px 28px;
+    background: var(--cream);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: flex; flex-direction: column;
+  }
+  .rev-stars-sm { color: var(--amber); font-size: 14px; letter-spacing: 2px; }
+  .rev-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.4;
+    color: var(--navy);
+    margin: 16px 0 0;
+    flex: 1;
+    letter-spacing: -0.005em;
+  }
+  .rev-quote::before { content: "“"; }
+  .rev-quote::after { content: "”"; }
+  .rev-meta {
+    margin-top: 24px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    color: var(--ink); opacity: 0.7;
+  }
+  .rev-meta strong { color: var(--navy); font-weight: 500; }
+
+  @media (max-width: 880px) {
+    .rev-grid { grid-template-columns: 1fr; }
+    .rev-head { grid-template-columns: 1fr; }
+    .rev-srcs { text-align: left; }
+  }
+
+  /* ============ split: gift + promise ============ */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .split > div {
+    padding: clamp(50px, 7vw, 90px) clamp(28px, 5vw, 80px);
+  }
+  .gift {
+    background: var(--amber);
+    color: var(--navy);
+    position: relative;
+    overflow: hidden;
+  }
+  .gift::after {
+    content: "";
+    position: absolute; right: -40px; bottom: -40px;
+    width: 240px; height: 240px;
+    background: var(--navy);
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .gift h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 4.5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 14px 0 0;
+    color: var(--navy);
+    max-width: 12ch;
+  }
+  .gift h2 em { font-style: italic; }
+  .gift p {
+    margin-top: 22px; font-size: 17px; line-height: 1.5;
+    max-width: 36ch;
+  }
+  .gift .amounts {
+    margin-top: 28px;
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+  .gift .amounts button {
+    background: var(--paper);
+    color: var(--navy);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .gift .amounts button:hover, .gift .amounts button.on {
+    background: var(--navy); color: var(--cream); border-color: var(--navy);
+  }
+  .gift .gift-cta {
+    margin-top: 28px;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--navy); color: var(--cream);
+    padding: 15px 24px;
+    border-radius: 999px;
+    font-weight: 600; font-size: 14.5px;
+    transition: background 0.2s;
+  }
+  .gift .gift-cta:hover { background: var(--ink); }
+
+  .promise {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .promise h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 4.5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 14px 0 0;
+    color: var(--navy);
+    max-width: 14ch;
+  }
+  .promise h2 em { font-style: italic; color: var(--aqua); }
+  .promise > p {
+    margin-top: 20px; font-size: 16.5px; line-height: 1.55; max-width: 44ch;
+    color: var(--ink); opacity: 0.85;
+  }
+  .promise ol {
+    margin-top: 30px;
+    list-style: none; padding: 0;
+    counter-reset: p;
+  }
+  .promise li {
+    counter-increment: p;
+    padding: 18px 0 18px 56px;
+    border-top: 1px solid var(--rule);
+    position: relative;
+  }
+  .promise li:last-child { border-bottom: 1px solid var(--rule); }
+  .promise li::before {
+    content: "0" counter(p);
+    position: absolute; left: 0; top: 18px;
+    font-family: var(--mono);
+    font-size: 13px; letter-spacing: 0.1em;
+    color: var(--aqua);
+  }
+  .promise li strong {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 19px;
+    color: var(--navy);
+    display: block; margin-bottom: 4px;
+    letter-spacing: -0.005em;
+  }
+  .promise li span {
+    font-size: 15px; line-height: 1.5; color: var(--ink); opacity: 0.78;
+  }
+
+  @media (max-width: 880px) { .split { grid-template-columns: 1fr; } }
+
+  /* ============ visit ============ */
+  #visit {
+    background: var(--navy);
+    color: var(--cream);
+    padding-top: clamp(80px, 9vw, 130px);
+    padding-bottom: clamp(80px, 9vw, 130px);
+  }
+  #visit .section-head h2 { color: var(--cream); }
+  #visit .section-head h2 em { color: var(--aqua-bright); }
+  #visit .section-head p { color: rgba(246,241,231,0.85); }
+  #visit .eyebrow { color: var(--aqua-bright); opacity: 1; }
+  .visit-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(24px, 4vw, 60px);
+    align-items: stretch;
+  }
+  .visit-card {
+    background: rgba(246,241,231,0.04);
+    border: 1px solid rgba(246,241,231,0.16);
+    border-radius: 6px;
+    padding: 36px clamp(20px, 3vw, 36px);
+  }
+  .visit-card h3 {
+    font-family: var(--mono);
+    font-size: 11.5px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aqua-bright);
+    font-weight: 500;
+    margin: 0 0 18px;
+  }
+  .visit-addr {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--cream);
+    margin: 0;
+  }
+  .visit-meta {
+    margin-top: 22px;
+    display: grid; gap: 14px;
+    font-size: 15px;
+    color: rgba(246,241,231,0.85);
+  }
+  .visit-meta .row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 14px;
+    border-top: 1px solid rgba(246,241,231,0.12);
+    padding-top: 14px;
+  }
+  .visit-meta .row:first-child { border-top: 0; padding-top: 0; }
+  .visit-meta .lbl { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.6; }
+  .visit-cta {
+    margin-top: 30px;
+    display: inline-flex; gap: 10px;
+    background: var(--cream); color: var(--navy);
+    padding: 14px 22px; border-radius: 999px;
+    font-weight: 600; font-size: 14.5px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .visit-cta:hover { background: var(--aqua-bright); transform: translateY(-1px); }
+
+  /* hours table */
+  .hours { font-family: var(--mono); font-size: 14px; }
+  .hours .hr {
+    display: grid; grid-template-columns: 1fr auto;
+    padding: 11px 0;
+    border-top: 1px solid rgba(246,241,231,0.12);
+    color: rgba(246,241,231,0.85);
+  }
+  .hours .hr:first-child { border-top: 0; }
+  .hours .hr.now { color: var(--cream); }
+  .hours .hr.now::after { content: "● open"; color: var(--aqua-bright); margin-left: 14px; font-size: 12px; letter-spacing: 0.1em; }
+
+  /* simple stylized map */
+  .map-card { padding: 0; overflow: hidden; position: relative; min-height: 380px; }
+  .map-svg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: var(--navy-deep);
+  }
+  .map-pin {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+  .map-pin .dot {
+    width: 18px; height: 18px;
+    background: var(--amber);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 0 6px rgba(232,160,43,0.25), 0 0 0 14px rgba(232,160,43,0.12);
+    animation: pin 2s ease-in-out infinite;
+  }
+  @keyframes pin {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(232,160,43,0.25), 0 0 0 14px rgba(232,160,43,0.12); }
+    50%      { box-shadow: 0 0 0 10px rgba(232,160,43,0.35), 0 0 0 22px rgba(232,160,43,0.16); }
+  }
+  .map-pin .lbl {
+    margin-top: 10px;
+    background: var(--cream); color: var(--navy);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  @media (max-width: 880px) {
+    .visit-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ============ closing ============ */
+  .closing {
+    padding: clamp(80px, 10vw, 160px) 0;
+    text-align: center;
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+  }
+  .closing h2 {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-variation-settings: "opsz" 144;
+    font-size: clamp(48px, 8vw, 120px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--navy);
+    margin: 0 auto;
+    max-width: 14ch;
+  }
+  .closing h2 em {
+    font-style: italic;
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+    color: var(--aqua);
+  }
+  .closing p {
+    margin: 22px auto 0;
+    font-size: 17px;
+    color: var(--ink); opacity: 0.85;
+    max-width: 40ch;
+  }
+  .closing .btn { margin-top: 36px; }
+
+  /* ============ footer ============ */
+  footer {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 60px 0 40px;
+    font-size: 13.5px;
+  }
+  .foot-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(246,241,231,0.12);
+  }
+  .foot-logo { font-family: var(--serif); font-size: 24px; color: var(--cream); margin-bottom: 14px; font-weight: 500; }
+  .foot-grid h4 {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--aqua-bright);
+    margin: 0 0 16px; font-weight: 500;
+  }
+  .foot-grid ul { list-style: none; padding: 0; margin: 0; }
+  .foot-grid li { padding: 5px 0; }
+  .foot-grid a { color: rgba(246,241,231,0.75); transition: color 0.2s; }
+  .foot-grid a:hover { color: var(--cream); }
+  .foot-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 28px; flex-wrap: wrap; gap: 12px;
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.06em;
+    color: rgba(246,241,231,0.5);
+  }
+  @media (max-width: 760px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .foot-grid { grid-template-columns: 1fr; }
+  }
+
+  /* skip-to-main for a11y */
+  .skip {
+    position: absolute; left: -9999px; top: 0;
+  }
+  .skip:focus {
+    left: 16px; top: 16px; background: var(--navy); color: var(--cream); padding: 10px 16px; border-radius: 4px; z-index: 100;
+  }
+
+  /* mockup banner */
+  .mockup-banner {
+    position: fixed; bottom: 14px; left: 14px;
+    z-index: 200;
+    background: var(--ink); color: var(--cream);
+    padding: 8px 13px;
+    border-radius: 999px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- top bar -->
+<div class="topbar">
+  <div class="wrap topbar-inner">
+    <span>Open today · 7am – 8pm</span>
+    <span><a href="tel:5086786000">(508) 678-6000</a> · 122 Rhode Island Ave, Fall River</span>
+  </div>
+</div>
+
+<!-- nav -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <svg class="logo-mark" viewBox="0 0 30 30" fill="none" aria-hidden="true">
+        <circle cx="15" cy="15" r="14" stroke="currentColor" stroke-width="1.4"/>
+        <path d="M6 18 Q10 14 15 18 T24 18" stroke="#1ab2c5" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+        <path d="M6 13 Q10 9 15 13 T24 13" stroke="#1ab2c5" stroke-width="1.6" fill="none" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      Sonny's
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#pricing">Pricing</a>
+      <a href="#membership">Unlimited</a>
+      <a href="#services">Services</a>
+      <a href="#detail">Detailing</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a href="#membership" class="nav-cta">Wash Today →</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Fall River, MA · Est. 1996</span>
+      <h1>29 years of <em>clean cars</em> in Fall River.</h1>
+      <p class="hero-sub">A family-owned car wash with honest pricing, free vacuums, and a tunnel that gets your car actually clean. Drive in. Wash out. No surprises.</p>
+
+      <div class="hero-meta">
+        <div><span class="dot"></span><strong>4.3</strong> · 268 reviews</div>
+        <div><span class="dot"></span>Open every day · 7a–8p</div>
+        <div><span class="dot"></span>Free vacuums with every wash</div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="#pricing" class="btn btn-primary">See wash pricing <span class="arr">→</span></a>
+        <a href="#visit" class="btn btn-ghost">Get directions</a>
+      </div>
+    </div>
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="badge">Now washing</div>
+      <div class="scene">
+        <div class="water"></div>
+
+        <!-- arches representing wash tunnel -->
+        <div class="arch"></div>
+        <div class="arch"></div>
+        <div class="arch"></div>
+
+        <!-- car -->
+        <svg class="car" viewBox="0 0 320 130" fill="none">
+          <defs>
+            <linearGradient id="body" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#f6f1e7"/>
+              <stop offset="1" stop-color="#cfc6b3"/>
+            </linearGradient>
+            <linearGradient id="glass" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#45d6e7" stop-opacity="0.7"/>
+              <stop offset="1" stop-color="#1ab2c5" stop-opacity="0.95"/>
+            </linearGradient>
+          </defs>
+          <!-- shadow -->
+          <ellipse cx="160" cy="115" rx="135" ry="6" fill="#000" opacity="0.35"/>
+          <!-- body -->
+          <path d="M20 90 Q22 70 50 65 L95 50 Q130 38 170 38 Q220 38 260 55 L290 70 Q302 75 300 90 L300 100 Q300 105 295 105 L25 105 Q20 105 20 100 Z" fill="url(#body)"/>
+          <!-- windows -->
+          <path d="M85 65 L105 47 Q130 40 168 40 Q200 40 230 53 L245 65 Z" fill="url(#glass)" opacity="0.95"/>
+          <path d="M168 40 L168 65" stroke="#0a2540" stroke-width="1.2" opacity="0.5"/>
+          <!-- side line -->
+          <path d="M30 88 L295 88" stroke="#0a2540" stroke-width="0.6" opacity="0.4"/>
+          <!-- wheels -->
+          <circle cx="80" cy="105" r="16" fill="#0a2540"/>
+          <circle cx="80" cy="105" r="7" fill="#f6f1e7" opacity="0.85"/>
+          <circle cx="240" cy="105" r="16" fill="#0a2540"/>
+          <circle cx="240" cy="105" r="7" fill="#f6f1e7" opacity="0.85"/>
+          <!-- water bubbles -->
+          <circle cx="140" cy="55" r="3" fill="#fff" opacity="0.85"/>
+          <circle cx="200" cy="62" r="2" fill="#fff" opacity="0.7"/>
+          <circle cx="115" cy="70" r="2.5" fill="#fff" opacity="0.7"/>
+          <circle cx="175" cy="48" r="2" fill="#fff" opacity="0.6"/>
+        </svg>
+
+        <div class="stripes"></div>
+
+        <!-- falling water drops -->
+        <div class="drops" id="drops"></div>
+      </div>
+
+      <div class="est">
+        <div class="yr">'96</div>
+        <div class="lbl">Established</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust" aria-label="At a glance">
+  <div class="wrap">
+    <div class="trust-inner">
+      <div class="trust-cell">
+        <div class="trust-num">4.3<span style="font-size:0.5em;opacity:0.5">/5</span></div>
+        <div class="trust-lbl">268 Google Reviews</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">29 yrs</div>
+        <div class="trust-lbl">Family Owned</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">3 min</div>
+        <div class="trust-lbl">Average wash time</div>
+      </div>
+      <div class="trust-cell">
+        <div class="trust-num">∞</div>
+        <div class="trust-lbl">Free vacuums included</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Wash Menu</span>
+      </div>
+      <div>
+        <h2>Honest pricing. <em>Posted up front.</em></h2>
+        <p>Every wash, every price, no upcharge at the kiosk. What you see is what we charge — and you'll always get a printed receipt.</p>
+      </div>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="price-name">Express</div>
+        <div class="price-name-sub">The basic</div>
+        <div class="price-amt"><span class="dollar">$</span>10<span class="cents">.00</span></div>
+        <ul>
+          <li>Soft-cloth tunnel wash</li>
+          <li>Spot-free rinse</li>
+          <li>Power dry</li>
+          <li>Free self-serve vacuums</li>
+          <li class="no">Wheel cleaner</li>
+          <li class="no">Tire shine</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Deluxe</div>
+        <div class="price-name-sub">Most popular</div>
+        <div class="price-amt"><span class="dollar">$</span>15<span class="cents">.00</span></div>
+        <ul>
+          <li>Everything in Express</li>
+          <li>Triple-foam wax</li>
+          <li>Wheel cleaner</li>
+          <li>Underbody rinse</li>
+          <li class="no">Tire shine</li>
+          <li class="no">Rain-X surface</li>
+        </ul>
+      </div>
+
+      <div class="price-card feat">
+        <div class="price-flag">Best Value</div>
+        <div class="price-name">The Works</div>
+        <div class="price-name-sub">Full treatment</div>
+        <div class="price-amt"><span class="dollar">$</span>20<span class="cents">.00</span></div>
+        <ul>
+          <li>Everything in Deluxe</li>
+          <li>Tire shine</li>
+          <li>Hot wax & sealer</li>
+          <li>Bug & tar pre-treat</li>
+          <li>Rain-X surface protect</li>
+          <li class="no">Ceramic seal</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="price-name">Ultimate</div>
+        <div class="price-name-sub">The premium</div>
+        <div class="price-amt"><span class="dollar">$</span>25<span class="cents">.00</span></div>
+        <ul>
+          <li>Everything in The Works</li>
+          <li>Ceramic seal</li>
+          <li>Wheel polish</li>
+          <li>Air-dry assist</li>
+          <li>30-day shine guarantee</li>
+          <li>Free vacuum + mat shake</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="price-foot">
+      <p>Truck or oversized vehicle? <em>Add $3.</em> Self-serve bay? $2 starts the clock — and we'll tell you exactly how much time you have left.</p>
+      <a href="#membership" class="btn btn-primary">Or wash unlimited <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section id="membership" class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Sonny's Unlimited Club</span>
+      </div>
+      <div>
+        <h2>Wash <em>as often as you want.</em></h2>
+        <p>License-plate recognition gets you in the express lane in seconds. Cancel any time, online, no phone call required.</p>
+      </div>
+    </div>
+
+    <div class="mem-grid">
+      <div class="mem-card">
+        <div class="mem-name">Express</div>
+        <div class="mem-tag">Basic Unlimited</div>
+        <div class="mem-price"><span class="dollar">$</span>24<small>/mo</small></div>
+        <ul class="mem-list">
+          <li>Unlimited Express washes</li>
+          <li>Free vacuums always</li>
+          <li>Express lane entry</li>
+          <li>Cancel any time online</li>
+        </ul>
+        <a href="#" class="mem-cta">Sign up</a>
+      </div>
+
+      <div class="mem-card feat">
+        <div class="mem-name">Deluxe</div>
+        <div class="mem-tag">Most popular</div>
+        <div class="mem-price"><span class="dollar">$</span>34<small>/mo</small></div>
+        <ul class="mem-list">
+          <li>Unlimited Deluxe washes</li>
+          <li>Triple foam, wheel cleaner</li>
+          <li>Express lane entry</li>
+          <li>Add a vehicle: $19/mo</li>
+          <li>First wash free</li>
+        </ul>
+        <a href="#" class="mem-cta">Sign up</a>
+      </div>
+
+      <div class="mem-card">
+        <div class="mem-name">Ultimate</div>
+        <div class="mem-tag">Top tier</div>
+        <div class="mem-price"><span class="dollar">$</span>44<small>/mo</small></div>
+        <ul class="mem-list">
+          <li>Unlimited Ultimate washes</li>
+          <li>Ceramic seal every visit</li>
+          <li>Express lane entry</li>
+          <li>30-day shine guarantee</li>
+          <li>10% off detailing</li>
+        </ul>
+        <a href="#" class="mem-cta">Sign up</a>
+      </div>
+    </div>
+
+    <p class="mem-fine">Pays for itself in 2 washes a month. Most members use it 3–4 times a week. No contract, no commitment.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">What we do</span></div>
+      <div>
+        <h2>Six ways to <em>get clean.</em></h2>
+        <p>From a 3-minute tunnel wash to a full interior detail, we handle the lot.</p>
+      </div>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="3" y="9" width="18" height="9" rx="2"/>
+          <path d="M5 9 V6 a2 2 0 0 1 2-2 h10 a2 2 0 0 1 2 2 V9"/>
+          <circle cx="8" cy="18" r="1.5"/>
+          <circle cx="16" cy="18" r="1.5"/>
+        </svg>
+        <h3>Tunnel Wash</h3>
+        <p>Soft-cloth automatic, finished in under 3 minutes. Powered by Sonny's CarWash equipment.</p>
+        <div class="svc-meta">From $10</div>
+      </div>
+
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 21 V11 a2 2 0 0 1 2-2 h14 a2 2 0 0 1 2 2 V21"/>
+          <path d="M9 21 V14 h6 V21"/>
+          <path d="M3 11 L12 4 L21 11"/>
+        </svg>
+        <h3>Self-Serve Bays</h3>
+        <p>Four covered bays, your dollar, your time. We tell you exactly how many minutes you have left.</p>
+        <div class="svc-meta">$2 / 4 min</div>
+      </div>
+
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="10" width="13" height="8" rx="1"/>
+          <path d="M15 10 H20 L22 14 V18 H15 Z"/>
+          <circle cx="6" cy="19.5" r="1.7"/>
+          <circle cx="18" cy="19.5" r="1.7"/>
+        </svg>
+        <h3>Truck Wash</h3>
+        <p>Pickups, vans, work trucks — drive-through bays sized to handle your full-size rig.</p>
+        <div class="svc-meta">+$3 oversized</div>
+      </div>
+
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3 L13.5 8 L18.5 8 L14.5 11 L16 16 L12 13 L8 16 L9.5 11 L5.5 8 L10.5 8 Z"/>
+        </svg>
+        <h3>Hand Wash</h3>
+        <p>By appointment. We do the close-up work no machine will do — wheel wells, badges, trim.</p>
+        <div class="svc-meta">From $35</div>
+      </div>
+
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M8 14 Q12 10 16 14"/>
+          <path d="M9 9 L9.01 9"/>
+          <path d="M15 9 L15.01 9"/>
+        </svg>
+        <h3>Detailing</h3>
+        <p>Interior shampoo, leather conditioning, paint correction, ceramic coating. Book online below.</p>
+        <div class="svc-meta">From $89</div>
+      </div>
+
+      <div class="svc">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M5 7 L12 13 L19 7"/>
+          <rect x="9" y="13" width="6" height="8"/>
+          <path d="M12 21 L12 13"/>
+          <circle cx="5" cy="5" r="2"/>
+          <circle cx="19" cy="5" r="2"/>
+        </svg>
+        <h3>Free Vacuums</h3>
+        <p>Powerful self-serve vacuums included with every wash, no time limit, no extra coin.</p>
+        <div class="svc-meta">Always free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DETAILING -->
+<section id="detail" class="block">
+  <div class="wrap detail-grid">
+    <div class="detail-text">
+      <span class="eyebrow">Book by appointment</span>
+      <h2>Detailing that <em>shows.</em></h2>
+      <p>Our detail bay is separate from the tunnel — quiet, climate-controlled, and run by a two-person crew that's been with us since 2018. Most jobs are same-day if you book before 11am.</p>
+
+      <div class="detail-tiers">
+        <div class="detail-tier">
+          <div>
+            <strong>Express Detail</strong>
+            <span>Hand wash, vacuum, dash & door wipe-down, windows. About 90 minutes.</span>
+          </div>
+          <div class="price">$89</div>
+        </div>
+        <div class="detail-tier">
+          <div>
+            <strong>Full Interior</strong>
+            <span>Shampoo seats & carpets, leather conditioning, vents, all surfaces. 3 hours.</span>
+          </div>
+          <div class="price">$179</div>
+        </div>
+        <div class="detail-tier">
+          <div>
+            <strong>The Works Detail</strong>
+            <span>Full interior + clay bar, machine polish, hand wax. Half-day appointment.</span>
+          </div>
+          <div class="price">$299</div>
+        </div>
+        <div class="detail-tier">
+          <div>
+            <strong>Ceramic Coating</strong>
+            <span>Multi-year paint protection. 2-day appointment, indoor cure. By quote.</span>
+          </div>
+          <div class="price">From $599</div>
+        </div>
+      </div>
+    </div>
+
+    <form class="form" onsubmit="event.preventDefault(); alert('In a live site this would email Sonny\\'s and confirm by text. Form is mockup-only.');">
+      <h3>Book a detail</h3>
+      <div class="h-sub">We confirm by text within 1 hour</div>
+
+      <label class="field">
+        Name
+        <input type="text" placeholder="Jane Souza" required>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          Phone
+          <input type="tel" placeholder="(508) 555-0143" required>
+        </label>
+        <label class="field">
+          Email
+          <input type="email" placeholder="you@email.com">
+        </label>
+      </div>
+
+      <label class="field">
+        Vehicle
+        <input type="text" placeholder="2019 Honda CR-V" required>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          Service
+          <select>
+            <option>Express Detail · $89</option>
+            <option>Full Interior · $179</option>
+            <option>The Works Detail · $299</option>
+            <option>Ceramic Coating · quote</option>
+            <option>Not sure — please advise</option>
+          </select>
+        </label>
+        <label class="field">
+          Preferred day
+          <input type="date">
+        </label>
+      </div>
+
+      <label class="field">
+        Anything we should know?
+        <textarea rows="3" placeholder="Pet hair, kid stuff, that one mystery stain..."></textarea>
+      </label>
+
+      <button type="submit">Request appointment →</button>
+      <div class="form-note">No deposit required · Cancel free up to 24 hours before</div>
+    </form>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="block">
+  <div class="wrap">
+    <div class="rev-head">
+      <div>
+        <span class="eyebrow">What our customers say</span>
+        <div class="rev-rating" style="margin-top:14px">
+          <div class="rev-num">4.3</div>
+          <div>
+            <div class="rev-stars">★★★★<span style="opacity:0.4">★</span></div>
+            <div>268 reviews · Verified</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-srcs">
+        <span><strong>Google</strong>258 reviews</span>
+        <span><strong>Facebook</strong>9 reviews</span>
+        <span><strong>Yelp</strong>10 reviews</span>
+      </div>
+    </div>
+
+    <div class="rev-grid">
+      <div class="rev-card">
+        <div class="rev-stars-sm">★★★★★</div>
+        <p class="rev-quote">The best decision I ever made. The staff cares about you and your car. They really do a great job.</p>
+        <div class="rev-meta"><strong>Nicolette M.</strong> · Repeat customer</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars-sm">★★★★★</div>
+        <p class="rev-quote">Awesome service. My number one place to go. Always come out spotless.</p>
+        <div class="rev-meta"><strong>Stephen G.</strong> · Foursquare</div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-stars-sm">★★★★<span style="opacity:0.3">★</span></div>
+        <p class="rev-quote">Free vacuums and the dryers actually leave the car dry. Fast even when it's busy.</p>
+        <div class="rev-meta"><strong>Reviewer · Google</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPLIT: GIFT + PROMISE -->
+<section class="split" aria-label="Gift cards and our promise">
+  <div class="gift">
+    <span class="eyebrow" style="opacity:1">Gift cards</span>
+    <h2>The cleanest gift in <em>Fall River.</em></h2>
+    <p>Buy any amount. Mailed in two days, or printed at the wash for last-minute moments.</p>
+    <div class="amounts" id="gift-amounts">
+      <button>$25</button>
+      <button class="on">$50</button>
+      <button>$100</button>
+      <button>$200</button>
+      <button>Custom</button>
+    </div>
+    <a href="#" class="gift-cta">Buy gift card <span class="arr">→</span></a>
+  </div>
+
+  <div class="promise">
+    <span class="eyebrow">Our promise</span>
+    <h2>Receipts. Records. <em>Real people.</em></h2>
+    <p>We've been here 29 years because we do right by people, even on the days something goes wrong. Here's exactly how we work.</p>
+    <ol>
+      <li>
+        <strong>A printed receipt for every wash.</strong>
+        <span>Every transaction generates a receipt with date, time, plate, and tier — kept on file for 90 days.</span>
+      </li>
+      <li>
+        <strong>The price you see is the price you pay.</strong>
+        <span>No quiet upgrades, no hidden surcharges. The kiosk shows the same number the sign shows.</span>
+      </li>
+      <li>
+        <strong>If we damage it, we own it.</strong>
+        <span>Walk into the office, show your receipt, and we'll review the bay's video and respond within 48 hours.</span>
+      </li>
+      <li>
+        <strong>Family-owned, accountable in person.</strong>
+        <span>Sonny is here most days. If something is off, ask for him directly.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="eyebrow">Visit us</span></div>
+      <div>
+        <h2>Right off Plymouth Ave, <em>two blocks from the highway.</em></h2>
+        <p>Open every single day, 7am to 8pm. Last car in the tunnel at 7:50pm.</p>
+      </div>
+    </div>
+
+    <div class="visit-grid">
+      <div class="visit-card">
+        <h3>Address & Hours</h3>
+        <p class="visit-addr">122 Rhode Island Ave<br>Fall River, MA 02724</p>
+
+        <div class="visit-meta">
+          <div class="row">
+            <div class="lbl">Phone</div>
+            <div><a href="tel:5086786000" style="color:inherit">(508) 678-6000</a></div>
+          </div>
+          <div class="row">
+            <div class="lbl">Cross st.</div>
+            <div>Aetna St & Miller St</div>
+          </div>
+          <div class="row">
+            <div class="lbl">Payment</div>
+            <div>Visa · MasterCard · Amex · Cash</div>
+          </div>
+        </div>
+
+        <h3 style="margin-top:30px">Hours</h3>
+        <div class="hours" id="hours">
+          <div class="hr"><span>Monday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Tuesday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Wednesday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Thursday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Friday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Saturday</span><span>7am – 8pm</span></div>
+          <div class="hr"><span>Sunday</span><span>7am – 8pm</span></div>
+        </div>
+
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Sonny%27s+Car+Wash+122+Rhode+Island+Ave+Fall+River+MA" class="visit-cta">Get directions <span>↗</span></a>
+      </div>
+
+      <div class="visit-card map-card" aria-label="Map of 122 Rhode Island Ave, Fall River">
+        <svg class="map-svg" viewBox="0 0 400 380" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <!-- streets background -->
+          <rect width="400" height="380" fill="#061a30"/>
+          <!-- block grid -->
+          <g stroke="#1ab2c5" stroke-opacity="0.18" stroke-width="0.6">
+            <path d="M0 50 H400"/>
+            <path d="M0 110 H400"/>
+            <path d="M0 170 H400"/>
+            <path d="M0 230 H400"/>
+            <path d="M0 290 H400"/>
+            <path d="M0 350 H400"/>
+            <path d="M50 0 V380"/>
+            <path d="M120 0 V380"/>
+            <path d="M200 0 V380"/>
+            <path d="M280 0 V380"/>
+            <path d="M350 0 V380"/>
+          </g>
+          <!-- highway / main road -->
+          <path d="M0 200 L400 180" stroke="#45d6e7" stroke-opacity="0.55" stroke-width="3" fill="none"/>
+          <path d="M0 200 L400 180" stroke="#45d6e7" stroke-opacity="0.2" stroke-width="9" fill="none"/>
+          <text x="20" y="195" fill="#45d6e7" font-family="DM Mono" font-size="10" opacity="0.7">RHODE ISLAND AVE</text>
+          <!-- cross streets -->
+          <text x="60" y="40" fill="#fff" font-family="DM Mono" font-size="9" opacity="0.4">AETNA ST</text>
+          <text x="280" y="350" fill="#fff" font-family="DM Mono" font-size="9" opacity="0.4">PLYMOUTH AVE</text>
+          <!-- river hint -->
+          <path d="M380 0 Q360 100 380 200 Q400 280 380 380" stroke="#1ab2c5" stroke-opacity="0.25" stroke-width="14" fill="none"/>
+          <text x="345" y="100" fill="#45d6e7" font-family="DM Mono" font-size="9" opacity="0.5" transform="rotate(85 345 100)">TAUNTON RIVER</text>
+        </svg>
+        <div class="map-pin">
+          <div class="dot"></div>
+          <div class="lbl">Sonny's · 122 Rhode Island</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <h2>See you at the <em>tunnel.</em></h2>
+    <p>Drive in any time today between 7am and 8pm. No appointment needed.</p>
+    <a href="#pricing" class="btn btn-primary">View wash menu →</a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Sonny's Car Wash</div>
+        <p style="opacity:0.7;margin:0;line-height:1.55">Family-owned in Fall River, Massachusetts since 1996. 122 Rhode Island Ave.</p>
+        <p style="opacity:0.6;margin-top:14px;font-family:'DM Mono',monospace;font-size:11.5px;letter-spacing:0.06em">(508) 678-6000</p>
+      </div>
+      <div>
+        <h4>Wash</h4>
+        <ul>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#membership">Unlimited Club</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#detail">Detailing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#">Buy gift card</a></li>
+          <li><a href="#membership">Join Unlimited</a></li>
+          <li><a href="#detail">Book a detail</a></li>
+          <li><a href="#">Fleet accounts</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Our story</a></li>
+          <li><a href="#">Damage claims</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <span>© 1996–2026 Sonny's Car Wash, Inc.</span>
+      <span>Mon–Sun · 7am – 8pm</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mockup-banner">Mockup · for Scott</div>
+
+<script>
+  // animated water drops in hero
+  (function(){
+    const drops = document.getElementById('drops');
+    if (!drops) return;
+    for (let i = 0; i < 24; i++) {
+      const d = document.createElement('i');
+      d.style.left = (Math.random() * 100) + '%';
+      d.style.animationDuration = (1.6 + Math.random() * 2) + 's';
+      d.style.animationDelay = (Math.random() * 3) + 's';
+      d.style.height = (18 + Math.random() * 30) + 'px';
+      drops.appendChild(d);
+    }
+  })();
+
+  // mark today's hours as "open"
+  (function(){
+    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    const today = days[new Date().getDay()];
+    document.querySelectorAll('#hours .hr').forEach(r => {
+      if (r.querySelector('span').textContent === today) r.classList.add('now');
+    });
+  })();
+
+  // gift amount toggle
+  (function(){
+    const grp = document.getElementById('gift-amounts');
+    if (!grp) return;
+    grp.addEventListener('click', e => {
+      if (e.target.tagName !== 'BUTTON') return;
+      grp.querySelectorAll('button').forEach(b => b.classList.remove('on'));
+      e.target.classList.add('on');
+    });
+  })();
+</script>
+
+</body>
+</html>
