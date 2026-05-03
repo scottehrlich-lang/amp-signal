@@ -266,6 +266,37 @@ section.block {
 section.block.alt { background: var(--off); max-width: none; padding-left: 5vw; padding-right: 5vw; }
 section.block.alt .alt-inner { max-width: 1480px; margin: 0 auto; }
 
+/* ==================== CAST HERO COMPOSITE ==================== */
+.cast-hero {
+  margin-top: 56px;
+  margin-bottom: 40px;
+  background: var(--white);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(10,22,52,.06);
+  border: 1px solid var(--border);
+}
+.cast-hero img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.cast-hero-caption {
+  padding: 18px 24px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+}
+.cast-hero-caption strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
 /* ==================== CAST ==================== */
 .cast-grid {
   display: grid;
@@ -683,6 +714,13 @@ footer a:hover { text-decoration: underline; }
     <div class="meta">
       Recurring across all 26 drops<br>
       Each character carries a stakeholder POV
+    </div>
+  </div>
+
+  <div class="cast-hero">
+    <img src="../marketing-assets/character/cast-composite.png" alt="The Inside the Signal cast: Maya, the Pitchman, Marcus, Diane">
+    <div class="cast-hero-caption">
+      Left to right: <strong>Maya</strong> · <strong>The Pitchman</strong> · <strong>Marcus</strong> · <strong>Diane</strong>
     </div>
   </div>
 
