@@ -1894,6 +1894,139 @@ section {
 @media (max-width: 800px) {
   .s-adoption-cta .stats-row { grid-template-columns: repeat(2, 1fr); }
 }
+
+
+/* ==================== 11b · SAMPLE CREATIVE SHOWCASE ==================== */
+.s-samples {
+  background: var(--white);
+  justify-content: center;
+  padding: 100px 5vw;
+}
+.s-samples .inner { max-width: 1480px; width: 100%; margin: 0 auto; }
+.s-samples h2 .accent { color: var(--text3); }
+.s-samples .lede {
+  font-size: clamp(17px, 1.25vw, 20px);
+  color: var(--text2);
+  line-height: 1.55;
+  max-width: 56ch;
+  margin-top: 24px;
+}
+.s-samples .samples-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.s-samples .sample-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: all .3s cubic-bezier(.2,.7,.2,1);
+}
+.s-samples .sample-card:hover {
+  border-color: var(--navy);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(10,22,52,.14);
+}
+.s-samples .sample-thumb {
+  aspect-ratio: 16 / 10;
+  background: var(--off);
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--hairline);
+}
+.s-samples .sample-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform .5s ease;
+}
+.s-samples .sample-card:hover .sample-thumb img {
+  transform: scale(1.02);
+}
+.s-samples .sample-thumb::after {
+  content: "LIVE";
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  color: var(--white);
+  background: var(--green);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.s-samples .sample-meta { padding: 24px 24px 26px; }
+.s-samples .sample-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.s-samples .sample-name {
+  font-weight: 900;
+  font-size: 22px;
+  color: var(--navy);
+  letter-spacing: -.015em;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.s-samples .sample-desc {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+.s-samples .sample-cta {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1px solid var(--hairline);
+}
+.s-samples .sample-cta .arrow {
+  font-size: 14px;
+  transition: transform .25s ease;
+}
+.s-samples .sample-card:hover .sample-cta .arrow {
+  transform: translate(3px, -3px);
+}
+.s-samples .proof-foot {
+  margin-top: 40px;
+  padding: 22px 28px;
+  background: var(--off);
+  border-radius: 4px;
+  border-left: 4px solid var(--navy);
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.s-samples .proof-foot code {
+  font-family: 'Space Mono', monospace;
+  color: var(--navy);
+  font-weight: 700;
+}
+@media (max-width: 1100px) {
+  .s-samples .samples-grid { grid-template-columns: 1fr; gap: 32px; }
+}
 </style>
 </head>
 <body>
@@ -1934,6 +2067,7 @@ section {
   <a class="nav-dot" data-target="09" data-label="Inside" href="#sec-09"></a>
   <a class="nav-dot" data-target="10" data-label="Cast" href="#sec-10"></a>
   <a class="nav-dot" data-target="11" data-label="Drops" href="#sec-11"></a>
+  <a class="nav-dot" data-target="11b" data-label="Samples" href="#sec-11b"></a>
   <a class="nav-dot" data-target="12" data-label="Calendar" href="#sec-12"></a>
   <a class="nav-dot" data-target="13" data-label="Channels" href="#sec-13"></a>
   <a class="nav-dot" data-target="14" data-label="Adoption" href="#sec-14"></a>
@@ -1942,7 +2076,7 @@ section {
 </nav>
 
 <!-- ==================== SECTION COUNTER ==================== -->
-<div class="section-counter"><span class="num" id="secNum">01</span> / 17</div>
+<div class="section-counter"><span class="num" id="secNum">01</span> / 18</div>
 
 <!-- ==================== 01 · OPEN ==================== -->
 <section class="s-open" data-num="01" id="sec-01" data-audio="01-open">
@@ -2306,7 +2440,7 @@ section {
         </div>
       </div>
       <div class="composite-frame reveal r-2">
-        <img src="https://raw.githubusercontent.com/scottehrlich-lang/amp-signal/main/marketing-assets/character/cast-composite.png" alt="The Inside the Signal cast">
+        <img src="../marketing-assets/character/cast-composite.png" alt="The Inside the Signal cast">
       </div>
     </div>
     <div class="closer reveal r-4">What follows is the actual plan &mdash; cast, formats, schedule, distribution.</div>
@@ -2425,7 +2559,7 @@ section {
       </div>
     </div>
 
-    <div class="drops-divider reveal r-2">7 reusable drops &middot; lighter register, Slack-native</div>
+    <div class="drops-divider reveal r-2">7 reusable drops &middot; lighter register, Teams-native</div>
     <div class="drops-grid">
       <div class="drop-card reveal r-2">
         <div class="drop-id">D1 &middot; reusable</div>
@@ -2468,6 +2602,58 @@ section {
 
     <div class="proof-bar reveal r-5">
       <strong>3 already produced as proof of format.</strong> H1 Launch Film, D1 Tab Count, D3 AE Diary &mdash; live now at <code style="font-family:'Space Mono',monospace;color:var(--navy)">/inside/</code>. Click through to view.
+    </div>
+  </div>
+</section>
+
+
+<!-- ==================== 11b · ALREADY PRODUCED (sample creative) ==================== -->
+<section class="s-samples" data-num="11b" id="sec-11b" data-audio="11b-samples">
+  <div class="inner">
+    <div class="eyebrow reveal">Already produced</div>
+    <h2 class="huge reveal r-1">Not slides<br>about a campaign.<br><span class="accent">The campaign.</span></h2>
+    <p class="lede reveal r-2">Three pieces are produced and live right now. Click any of them to open the actual creative in a new tab. This is what's running on day one of pilot &mdash; not what we hope to make.</p>
+
+    <div class="samples-grid">
+      <a href="../inside/films/h1/" target="_blank" rel="noopener" class="sample-card reveal r-2">
+        <div class="sample-thumb">
+          <img src="../marketing-assets/screenshots/sample-h1-launch-film.png" alt="H1 Launch Film preview">
+        </div>
+        <div class="sample-meta">
+          <div class="sample-tag">H1 &middot; Hero piece</div>
+          <div class="sample-name">The Launch Film</div>
+          <div class="sample-desc">Eight-slide auto-play sequence. Cast composite, Ken Burns motion, pitchman narration. The piece that announces the campaign on day one.</div>
+          <div class="sample-cta">View live <span class="arrow">&#8599;</span></div>
+        </div>
+      </a>
+
+      <a href="../inside/drops/d1-tab-count/" target="_blank" rel="noopener" class="sample-card reveal r-3">
+        <div class="sample-thumb">
+          <img src="../marketing-assets/screenshots/sample-d1-tab-count.png" alt="D1 Tab Count preview">
+        </div>
+        <div class="sample-meta">
+          <div class="sample-tag">D1 &middot; Reusable drop</div>
+          <div class="sample-name">Tab Count</div>
+          <div class="sample-desc">14 tabs &rarr; 2. Maya, animated counter. Designed for a Teams in-feed share &mdash; the format that proves the campaign isn't just hero pieces.</div>
+          <div class="sample-cta">View live <span class="arrow">&#8599;</span></div>
+        </div>
+      </a>
+
+      <a href="../inside/drops/d3-ae-diary/" target="_blank" rel="noopener" class="sample-card reveal r-4">
+        <div class="sample-thumb">
+          <img src="../marketing-assets/screenshots/sample-d3-ae-diary.png" alt="D3 AE Diary preview">
+        </div>
+        <div class="sample-meta">
+          <div class="sample-tag">D3 &middot; Weekly drop</div>
+          <div class="sample-name">AE Diary</div>
+          <div class="sample-desc">Editorial pull-quote card. Real moment from a real AE's week. Email-ready, intranet-ready, all-hands-ready &mdash; one asset, every channel.</div>
+          <div class="sample-cta">View live <span class="arrow">&#8599;</span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="proof-foot reveal r-5">
+      Three of twenty-six produced. The full campaign hub at <code>/inside/</code> shows the schedule, cast, and complete format library &mdash; everything you'd see week-by-week through the pilot.
     </div>
   </div>
 </section>
@@ -2576,7 +2762,7 @@ section {
 
     <div class="channel-grid">
       <div class="channel reveal r-2">
-        <div class="channel-name">Slack &middot; #signal</div>
+        <div class="channel-name">Microsoft Teams &middot; Signal channel</div>
         <div class="channel-cadence">Daily-to-weekly</div>
         <div class="channel-content">Playful drops, in-feed engagement, shareable formats. Where the campaign feels alive day-to-day.</div>
       </div>
@@ -2588,7 +2774,7 @@ section {
       <div class="channel reveal r-3">
         <div class="channel-name">Internal email digest</div>
         <div class="channel-cadence">Weekly</div>
-        <div class="channel-content">Recap of the week + Leaderboard + next-week tease. For the people who don't live in Slack.</div>
+        <div class="channel-content">Recap of the week + Leaderboard + next-week tease. For the people who don't live in Teams.</div>
       </div>
       <div class="channel reveal r-3">
         <div class="channel-name">Sinclair intranet</div>

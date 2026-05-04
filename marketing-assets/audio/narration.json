@@ -1,12 +1,12 @@
 {
-  "_comment": "v3.1 narration: added 7 internal-campaign sections (08-objection through 14-adoption-cta). Legacy 08-pilot and 09-signoff audio keys are preserved (no Birdie regen needed). New campaign keys: 08-objection, 09-inside-hero, 10-cast, 11-drops, 12-calendar, 13-distribution, 14-adoption-cta — those are the 7 new MP3s Birdie should generate. Voice and settings unchanged.",
+  "_comment": "v3.1 narration: added 7 internal-campaign sections (08-objection through 14-adoption-cta). Legacy 08-pilot and 09-signoff audio keys are preserved (no Birdie regen needed). New campaign keys: 08-objection, 09-inside-hero, 10-cast, 11-drops, 12-calendar, 13-distribution, 14-adoption-cta — those are the 7 new MP3s Birdie should generate. Voice and settings unchanged. v3.2: added 11b-samples for the sample-creative showcase section.",
   "voice_id": "EV4R1ZIcLtNYU4JyFxOe",
   "model_id": "eleven_turbo_v2_5",
   "output_format": "mp3_44100_128",
   "settings": {
-    "stability": 0.40,
+    "stability": 0.4,
     "similarity_boost": 0.85,
-    "style": 0.50,
+    "style": 0.5,
     "use_speaker_boost": true
   },
   "sections": [
@@ -56,7 +56,11 @@
     },
     {
       "id": "11-drops",
-      "text": "Twelve reusable drop formats. Five hero pieces — serious, executive-credible, paced through the quarter. Seven shorter playful drops — Slack-native, designed to spread, never overwhelming. Roughly sixty-forty static-to-motion. We've already produced three of them as proof — the launch film, the tab count, the A.E. diary. You can see them now."
+      "text": "Twelve reusable drop formats. Five hero pieces — serious, executive-credible, paced through the quarter. Seven shorter playful drops — Teams-native, designed to spread, never overwhelming. Roughly sixty-forty static-to-motion. We've already produced three of them as proof — the launch film, the tab count, the A.E. diary. You can see them now."
+    },
+    {
+      "id": "11b-samples",
+      "text": "Look at this. Three pieces of the campaign are already produced. The launch film. The tab count drop. The A.E. diary. Click any of them. Open them in a new tab. Judge them yourself. This isn't a campaign we're describing. It's a campaign you're already looking at."
     },
     {
       "id": "12-calendar",
@@ -64,7 +68,7 @@
     },
     {
       "id": "13-distribution",
-      "text": "Internal marketing fails when it asks people to check a new inbox. So we don't. The drops live where attention already lives — Slack, email, all-hands, intranet, regional meetings, onboarding. Embedded, not added. Each channel gets the format that fits how it's consumed."
+      "text": "Internal marketing fails when it asks people to check a new inbox. So we don't. The drops live where attention already lives — Teams, email, all-hands, intranet, regional meetings, onboarding. Embedded, not added. Each channel gets the format that fits how it's consumed."
     },
     {
       "id": "14-adoption-cta",

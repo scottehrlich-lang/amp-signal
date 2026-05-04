@@ -72,7 +72,7 @@ A 12-week internal marketing campaign architected to drive AMP Signal adoption a
 **26 drops across 12 weeks:**
 - 5 hero pieces (H1 Launch Film, H2 Win Story ×3-4, H3 Manager Moment ×2, H4 The Reckoning, H5 The Recap)
 - 7 reusable drop formats (Tab Count, Marcus Says/Does, AE Diary, Before/After, Leaderboard, Sources Say, Reaction Frame)
-- ~60% static / ~40% motion mix for distribution flexibility (Slack, email, intranet, all-hands, vertical social)
+- ~60% static / ~40% motion mix for distribution flexibility (Teams, email, intranet, all-hands, vertical social)
 
 ---
 

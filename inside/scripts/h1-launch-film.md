@@ -125,7 +125,7 @@ Voice casting note: Pitchman is Scott. Maya/Marcus/Diane lines need separate Ele
 
 ### Static derivatives (auto-generated from key frames)
 - **Email banner** (1200×400): pitchman + headline + URL
-- **Slack header** (1200×600): cast composite
+- **Teams banner** (1200×600): cast composite
 - **Intranet hero** (16:9 still): pitchman with title card
 - **Print one-pager** (PDF): script as essay-style writeup with character portraits
 
