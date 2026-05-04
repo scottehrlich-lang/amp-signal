@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside the Signal · Teams Post · Champion Share</title>
+<meta name="description" content="Sample creative — peer-driven Teams post showing how a champion AE shares a win with the regional team.">
+<style>
+:root {
+  --teams-purple: #5b5fc7;
+  --teams-purple-dark: #4f52b2;
+  --teams-bg: #f5f5f5;
+  --teams-panel: #ffffff;
+  --teams-panel-alt: #f3f2f1;
+  --teams-border: #e1dfdd;
+  --teams-hairline: #edebe9;
+  --text: #242424;
+  --text2: #616161;
+  --text3: #8a8a8a;
+  --link: #5b5fc7;
+  --like: #d13438;
+  --signal-navy: #0a1634;
+  --signal-green: #00a86b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--teams-bg);
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.42;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sample-context banner */
+.sample-banner {
+  background: var(--signal-navy);
+  color: #fff;
+  padding: 10px 24px;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.sample-banner .left { display: flex; align-items: center; gap: 12px; }
+.sample-banner .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--signal-green); }
+.sample-banner a { color: rgba(255,255,255,.7); text-decoration: none; font-weight: 700; }
+.sample-banner a:hover { color: #fff; }
+
+/* App shell */
+.app {
+  display: grid;
+  grid-template-columns: 68px 280px 1fr;
+  height: calc(100vh - 38px);
+  min-height: 760px;
+  background: var(--teams-bg);
+}
+
+/* Left app rail */
+.app-rail {
+  background: var(--teams-purple);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+  gap: 4px;
+}
+.rail-item {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: rgba(255,255,255,.85);
+  font-size: 9px;
+  font-weight: 600;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  margin-left: -3px;
+}
+.rail-item .ic {
+  width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.rail-item.active {
+  background: rgba(0,0,0,.18);
+  border-left-color: #fff;
+  color: #fff;
+}
+.rail-spacer { flex: 1; }
+.rail-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c4cdf3, #93a3e6);
+  margin: 12px 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--teams-purple);
+  font-weight: 700;
+  font-size: 12px;
+  border: 2px solid rgba(255,255,255,.2);
+}
+
+/* Channel sidebar */
+.channels {
+  background: var(--teams-panel-alt);
+  border-right: 1px solid var(--teams-border);
+  overflow-y: auto;
+}
+.channels-header {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--teams-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.channels-header h2 { font-size: 18px; font-weight: 700; }
+.channels-header .add { color: var(--text3); font-size: 18px; cursor: pointer; }
+.team {
+  padding: 8px 0;
+}
+.team-name {
+  padding: 8px 16px 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.team-name::before {
+  content: "▾";
+  font-size: 10px;
+  color: var(--text3);
+}
+.channel-item {
+  padding: 7px 16px 7px 32px;
+  font-size: 14px;
+  color: var(--text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+.channel-item:hover { background: rgba(0,0,0,.04); }
+.channel-item.active {
+  background: var(--teams-panel);
+  color: var(--text);
+  font-weight: 700;
+  border-left: 3px solid var(--teams-purple);
+  padding-left: 29px;
+}
+.channel-item .hash { color: var(--text3); margin-right: 2px; }
+.channel-item.active .hash { color: var(--teams-purple); }
+
+/* Main content */
+.main {
+  background: var(--teams-panel);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.main-header {
+  padding: 14px 24px;
+  border-bottom: 1px solid var(--teams-border);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.main-header .ch-icon {
+  width: 32px; height: 32px;
+  border-radius: 4px;
+  background: var(--teams-purple);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+}
+.main-header .ch-meta { flex: 1; }
+.main-header .ch-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+.main-header .ch-desc {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+.main-tabs {
+  display: flex;
+  gap: 0;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--teams-border);
+  background: var(--teams-panel);
+}
+.main-tab {
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text2);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.main-tab.active {
+  color: var(--teams-purple);
+  border-bottom-color: var(--teams-purple);
+}
+
+/* Posts feed */
+.posts {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--teams-panel);
+}
+.day-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 24px;
+  font-size: 12px;
+  color: var(--text3);
+  font-weight: 600;
+}
+.day-divider::before,
+.day-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--teams-border);
+}
+
+/* Post card */
+.post {
+  background: var(--teams-panel);
+  border: 1px solid var(--teams-border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+.post-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  background-size: cover;
+  background-position: center top;
+}
+.avatar.maya   { background: linear-gradient(135deg, #c97064, #a85d52) url("../../../marketing-assets/character/maya-base.jpg") center top / cover; }
+.avatar.marcus { background: linear-gradient(135deg, #547caa, #3d6493) url("../../../marketing-assets/character/marcus-base.jpg") center top / cover; }
+.avatar.diane  { background: linear-gradient(135deg, #6b8aa1, #506e85) url("../../../marketing-assets/character/diane-base.jpg") center top / cover; }
+.post-meta { flex: 1; }
+.post-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.post-name .role-pill {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  background: rgba(91,95,199,.12);
+  color: var(--teams-purple);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+.post-name .role-pill.rsm {
+  background: rgba(0,168,107,.12);
+  color: var(--signal-green);
+}
+.post-time {
+  font-size: 12px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+.post-subject {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.post-body {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.post-body p { margin-bottom: 12px; }
+.post-body p:last-child { margin-bottom: 0; }
+.post-body strong { font-weight: 700; }
+
+/* In-post screenshot card */
+.alert-card {
+  margin: 16px 0;
+  background: linear-gradient(180deg, #fff 0%, #fafbfd 100%);
+  border: 1px solid var(--teams-border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.alert-card .alert-head {
+  background: var(--signal-navy);
+  color: #fff;
+  padding: 10px 16px;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.alert-card .alert-head .left {
+  display: flex; align-items: center; gap: 10px;
+}
+.alert-card .alert-head .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245,158,11,.25);
+}
+.alert-card .alert-body {
+  padding: 18px 20px;
+}
+.alert-card .acct {
+  font-size: 13px;
+  color: var(--text3);
+  font-family: 'Space Mono', ui-monospace, monospace;
+  letter-spacing: .04em;
+  margin-bottom: 4px;
+}
+.alert-card .acct-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--signal-navy);
+  letter-spacing: -.01em;
+  margin-bottom: 12px;
+}
+.alert-card .alert-stat {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--teams-hairline);
+}
+.alert-card .stat-label {
+  font-size: 10px;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+.alert-card .stat-val {
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--signal-navy);
+  letter-spacing: -.01em;
+}
+.alert-card .stat-val.up { color: #f59e0b; }
+.alert-card .alert-cta {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--teams-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text2);
+}
+.alert-card .alert-cta .btn {
+  background: var(--signal-navy);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Post reactions */
+.post-reactions {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--teams-hairline);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reaction {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: var(--teams-panel-alt);
+  border: 1px solid var(--teams-border);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+}
+.reaction.mine {
+  background: rgba(91,95,199,.08);
+  border-color: var(--teams-purple);
+  color: var(--teams-purple);
+  font-weight: 600;
+}
+
+.post-actions {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--teams-hairline);
+  display: flex;
+  gap: 4px;
+  font-size: 12px;
+}
+.post-action {
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: var(--text2);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.post-action:hover { background: var(--teams-panel-alt); color: var(--text); }
+.post-action .ic { font-size: 14px; }
+
+/* Replies */
+.replies {
+  margin-top: 4px;
+  padding-left: 52px;
+  border-left: 2px solid transparent;
+  position: relative;
+}
+.reply {
+  display: flex;
+  gap: 12px;
+  padding: 12px 0;
+}
+.reply .avatar { width: 32px; height: 32px; font-size: 12px; }
+.reply-body { flex: 1; min-width: 0; }
+.reply-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.reply-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.reply-time {
+  font-size: 11px;
+  color: var(--text3);
+}
+.reply-text {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.replies-summary {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--teams-purple);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+/* Reply composer */
+.composer {
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: var(--teams-panel-alt);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text3);
+  cursor: text;
+}
+.composer .ic { font-size: 16px; }
+</style>
+</head>
+<body>
+
+<!-- Sample context banner -->
+<div class="sample-banner">
+  <div class="left">
+    <span class="dot"></span>
+    <span>Sample creative · Peer-driven champion share · 1 of 3</span>
+  </div>
+  <a href="../../">← Inside the Signal hub</a>
+</div>
+
+<div class="app">
+  <!-- Left app rail -->
+  <div class="app-rail">
+    <div class="rail-item"><div class="ic">💬</div>Activity</div>
+    <div class="rail-item"><div class="ic">💭</div>Chat</div>
+    <div class="rail-item active"><div class="ic">👥</div>Teams</div>
+    <div class="rail-item"><div class="ic">📅</div>Calendar</div>
+    <div class="rail-item"><div class="ic">📞</div>Calls</div>
+    <div class="rail-item"><div class="ic">📁</div>Files</div>
+    <div class="rail-spacer"></div>
+    <div class="rail-avatar">SE</div>
+  </div>
+
+  <!-- Channels -->
+  <div class="channels">
+    <div class="channels-header">
+      <h2>Teams</h2>
+      <span class="add">⊕</span>
+    </div>
+    <div class="team">
+      <div class="team-name">Sinclair Sales — East Region</div>
+      <div class="channel-item"><span class="hash">#</span>general</div>
+      <div class="channel-item"><span class="hash">#</span>announcements</div>
+      <div class="channel-item active"><span class="hash">#</span>signal</div>
+      <div class="channel-item"><span class="hash">#</span>renewals</div>
+      <div class="channel-item"><span class="hash">#</span>political-window</div>
+      <div class="channel-item"><span class="hash">#</span>random</div>
+    </div>
+    <div class="team">
+      <div class="team-name">Sinclair Innovation</div>
+      <div class="channel-item"><span class="hash">#</span>amp-signal-pilot</div>
+      <div class="channel-item"><span class="hash">#</span>r-and-d</div>
+    </div>
+  </div>
+
+  <!-- Main panel -->
+  <div class="main">
+    <div class="main-header">
+      <div class="ch-icon">SE</div>
+      <div class="ch-meta">
+        <div class="ch-name">Sinclair Sales — East Region &nbsp;<span style="color: var(--text3); font-weight: 400; font-size: 14px;">›</span>&nbsp;<span style="color: var(--teams-purple);">#signal</span></div>
+        <div class="ch-desc">Adoption channel for AMP Signal pilot · 38 members · Pinned by Diane Park</div>
+      </div>
+    </div>
+
+    <div class="main-tabs">
+      <div class="main-tab active">Posts</div>
+      <div class="main-tab">Files</div>
+      <div class="main-tab">Wins board</div>
+      <div class="main-tab">+ 2 more</div>
+    </div>
+
+    <div class="posts">
+      <div class="day-divider">Today · October 14</div>
+
+      <!-- The post -->
+      <div class="post">
+        <div class="post-header">
+          <div class="avatar maya"></div>
+          <div class="post-meta">
+            <div class="post-name">
+              Maya Hernández
+              <span class="role-pill">Account Executive</span>
+            </div>
+            <div class="post-time">2:14 PM · East Region</div>
+          </div>
+        </div>
+
+        <div class="post-subject">🎯 Renewal play worked exactly the way Signal said it would</div>
+
+        <div class="post-body">
+          <p>Walked into the <strong>Brennan Auto</strong> renewal Tuesday already knowing they overdelivered Q3 by 18%. Signal's pacing alert flagged it Friday morning — gave me three days to build the upsell case for OTT and political-window inventory.</p>
+
+          <p>Customer didn't see it coming. Closed <strong>+$43K on top of the renewal</strong>.</p>
+
+          <div class="alert-card">
+            <div class="alert-head">
+              <div class="left">
+                <span class="dot"></span>
+                <span>Pacing alert · the brief that started it</span>
+              </div>
+              <span>Friday 7:42 AM</span>
+            </div>
+            <div class="alert-body">
+              <div class="acct">ACCOUNT · BRENNAN AUTO GROUP · 14 STATIONS</div>
+              <div class="acct-name">Q3 campaign overdelivered by 18%</div>
+              <div class="alert-stat">
+                <div>
+                  <div class="stat-label">Delivered</div>
+                  <div class="stat-val up">+18%</div>
+                </div>
+                <div>
+                  <div class="stat-label">Renewal date</div>
+                  <div class="stat-val">Oct 12</div>
+                </div>
+                <div>
+                  <div class="stat-label">Suggested ask</div>
+                  <div class="stat-val">+ OTT, +pol</div>
+                </div>
+              </div>
+              <div class="alert-cta">
+                <span>2 adjacent inventory plays auto-built. Open the brief →</span>
+                <a href="#" class="btn">Open in Signal</a>
+              </div>
+            </div>
+          </div>
+
+          <p>For the AEs in the channel — if you've been ignoring the pacing tile, try this: pull it 24–48 hours before any renewal call. The intel is already there. Just open it.</p>
+
+          <p><strong>Anyone else use the pacing alert this week? Drop your wins below 👇</strong></p>
+        </div>
+
+        <div class="post-reactions">
+          <span class="reaction mine">🎯 8</span>
+          <span class="reaction">🔥 3</span>
+          <span class="reaction">💯 1</span>
+          <span class="reaction" style="margin-left: auto; padding: 4px 10px; background: transparent; border: none;">12 reactions · 7 replies</span>
+        </div>
+
+        <div class="post-actions">
+          <div class="post-action"><span class="ic">↩</span> Reply</div>
+          <div class="post-action"><span class="ic">😊</span> React</div>
+          <div class="post-action"><span class="ic">↗</span> Share</div>
+          <div class="post-action"><span class="ic">🔖</span> Save</div>
+          <div class="post-action" style="margin-left: auto;"><span class="ic">⋯</span></div>
+        </div>
+
+        <!-- Replies -->
+        <div class="replies">
+          <div class="reply">
+            <div class="avatar marcus"></div>
+            <div class="reply-body">
+              <div class="reply-head">
+                <span class="reply-name">Marcus Chen</span>
+                <span class="reply-time">1h ago</span>
+              </div>
+              <div class="reply-text">OK fine I'll admit something. I've been using it for two weeks and didn't say anything. Found a $120K save on my Wexford account. Alert was right. Don't make this weird.</div>
+            </div>
+          </div>
+
+          <div class="reply">
+            <div class="avatar diane"></div>
+            <div class="reply-body">
+              <div class="reply-head">
+                <span class="reply-name">Diane Park</span>
+                <span class="role-pill rsm" style="font-size: 9px;">Regional Sales Manager</span>
+                <span class="reply-time">45m ago</span>
+              </div>
+              <div class="reply-text">Pinning this thread. Brennan is exactly the playbook — pacing alert on Friday, brief on Monday, expansion ask on Tuesday. We're getting receipts. Maya, walk us through it at Friday's all-hands?</div>
+            </div>
+          </div>
+
+          <div class="replies-summary">↓ See 5 more replies</div>
+
+          <div class="composer">
+            <span class="ic">✎</span>
+            <span>Reply to this thread…</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
