@@ -1,5 +1,5 @@
 {
-  "_comment": "v3 narration: natural-cadence rewrite. 'Amp Signal' lowercase forces single-word read (avoids letter-by-letter A-M-P). Punctuation reworked for conversational delivery — em-dashes, ellipses, fragment rhythm. Style bumped to 0.50 + stability lowered to 0.40 for more emotional variation. Run via OpenClaw → ElevenLabs.",
+  "_comment": "v3.1 narration: added 7 internal-campaign sections (08-objection through 14-adoption-cta). Legacy 08-pilot and 09-signoff audio keys are preserved (no Birdie regen needed). New campaign keys: 08-objection, 09-inside-hero, 10-cast, 11-drops, 12-calendar, 13-distribution, 14-adoption-cta — those are the 7 new MP3s Birdie should generate. Voice and settings unchanged.",
   "voice_id": "EV4R1ZIcLtNYU4JyFxOe",
   "model_id": "eleven_turbo_v2_5",
   "output_format": "mp3_44100_128",
@@ -41,6 +41,34 @@
     {
       "id": "07-math",
       "text": "I'm being deliberately conservative here. Three independent buckets, ten percent each. Even if you don't believe one of them... the math still clears the bar. We won't know the real numbers until we run the pilot. That's the point of running it."
+    },
+    {
+      "id": "08-objection",
+      "text": "Here's the part nobody wants to admit. Every Sinclair tool rollout you've seen end the same way — installed, trained on, ignored. Adoption hasn't been a software problem. It's been a people problem. About seventy percent of enterprise software rollouts fail to hit adoption goals. So this time — we built the adoption first."
+    },
+    {
+      "id": "09-inside-hero",
+      "text": "This is Inside the Signal. A twelve-week internal marketing campaign — already architected. It does two jobs at once. Right now... it's the proof to you that adoption isn't an afterthought. After greenlight... it becomes the engine that drives the actual adoption. Real characters. Real cadence. Real plan. What follows is the actual plan."
+    },
+    {
+      "id": "10-cast",
+      "text": "Five recurring characters carry the whole campaign. Maya — the early believer. Marcus — the burned-by-rollouts skeptic who comes around. Diane — the regional sales manager whose endorsement opens doors. Me — the pitchman, host. And the dashboard itself — the platform treated as a recurring character. The converted skeptic does more for adoption than the early evangelist ever could."
+    },
+    {
+      "id": "11-drops",
+      "text": "Twelve reusable drop formats. Five hero pieces — serious, executive-credible, paced through the quarter. Seven shorter playful drops — Slack-native, designed to spread, never overwhelming. Roughly sixty-forty static-to-motion. We've already produced three of them as proof — the launch film, the tab count, the A.E. diary. You can see them now."
+    },
+    {
+      "id": "12-calendar",
+      "text": "Twenty-six drops across twelve weeks. About two pieces per week. Three phases — six weeks of teaser before launch, twelve in-pilot, then expansion to the rest of the regions. Every week is named. Every drop is mapped. No filler."
+    },
+    {
+      "id": "13-distribution",
+      "text": "Internal marketing fails when it asks people to check a new inbox. So we don't. The drops live where attention already lives — Slack, email, all-hands, intranet, regional meetings, onboarding. Embedded, not added. Each channel gets the format that fits how it's consumed."
+    },
+    {
+      "id": "14-adoption-cta",
+      "text": "Adoption isn't a hope. It's a plan with a calendar. Inside the Signal is real — already produced, already scheduled, already in motion. The first drop is live. Open it in a new tab. Judge it for yourself. That's the only honest test."
     },
     {
       "id": "08-pilot",
